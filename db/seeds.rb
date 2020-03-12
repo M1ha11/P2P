@@ -9,25 +9,16 @@
 User.create([
   {
     email: Faker::Internet.email,
-    phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
-    card_number: Faker::Number.number(digits: 16),
-    card_expiration: Faker::Date.between(from: 3.month.from_now, to: 2.year.from_now),
     role: 'admin',
     password: '123456'
   },
   {
     email: Faker::Internet.email,
-    phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
-    card_number: Faker::Number.number(digits: 16),
-    card_expiration: Faker::Date.between(from: 3.month.from_now, to: 2.year.from_now),
     role: 'user',
     password: '123456'
   },
   {
     email: Faker::Internet.email,
-    phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
-    card_number: Faker::Number.number(digits: 16),
-    card_expiration: Faker::Date.between(from: 3.month.from_now, to: 2.year.from_now),
     role: 'user',
     password: '123456'
   }

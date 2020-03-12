@@ -64,4 +64,6 @@ Rails.application.configure do
     Bullet.rails_logger = true
     Bullet.unused_eager_loading_enable = false
   end
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
