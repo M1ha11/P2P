@@ -5,12 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, presence: true, uniqueness: true
-  validates :phone_number, presence: true, length: { minimum: 9, maximum: 15 }
+  validates :phone_number, presence: true, length: { minimum: 9, maximum: 20 }
   validates :card_number, presence: true, uniqueness: true, length: { is: 16 } 
   validates :card_expiration, presence: true
   validate :card_expiration_cannot_be_in_the_past
   enum role: %i[user admin]
-  validates :role, inclusion: { in: %i[user admin] }
+  validates :role, inclusion: { in: %w[user admin] }
 
   def card_expiration_cannot_be_in_the_past
     if card_expiration.present? && card_expiration < (Date.today + 30)
