@@ -6,6 +6,8 @@ AllCops:
     - 'log/**/*'
     - 'tmp/**/*'
     - 'node_modules/**/*'
+    - 'app/assets/**/*'
+    - 'lib/**/*'
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -18,10 +20,6 @@ Style/ClassAndModuleChildren:
 
 Metrics/LineLength:
   Max: 120
-
-Style/BracesAroundHashParameters:
-  Exclude:
-    - spec/**/*_spec.rb
 
 Style/BlockDelimiters:
   Exclude:
