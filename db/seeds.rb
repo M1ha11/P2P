@@ -10,16 +10,19 @@ User.create([
   {
     email: Faker::Internet.email,
     role: 'admin',
-    password: '123456'
+    password: '123456',
+    confirmed_at: Time.now.utc
   },
   {
     email: Faker::Internet.email,
     role: 'user',
-    password: '123456'
+    password: '123456',
+    confirmed_at: Time.now.utc
   },
   {
     email: Faker::Internet.email,
     role: 'user',
-    password: '123456'
+    password: '123456',
+    confirmed_at: Time.now.utc
   }
 ])
