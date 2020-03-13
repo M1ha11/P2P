@@ -2,18 +2,17 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:twitter] 
 
   validates :email, presence: true, uniqueness: true
-  # validates :phone_number, presence: true, length: { minimum: 9, maximum: 20 }
-  # validates :card_number, presence: true, uniqueness: true, length: { is: 16 } 
-  # validates :card_expiration, presence: true
-  # validate :card_expiration_cannot_be_in_the_past
   enum role: %i[user admin]
 
-  # def card_expiration_cannot_be_in_the_past
-  #   if card_expiration.present? && card_expiration < (Date.today + 30)
-  #     errors.add(:card_expiration, 'should be bigger than date of next month')
-  #   end
-  # end
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+    end
+  end
 end

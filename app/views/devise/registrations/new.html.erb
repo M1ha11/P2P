@@ -10,7 +10,7 @@
 
           <div class="field">
             <%= f.label :email, class: 'label-login' %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'field-login' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: 'field-login' %>
           </div>
 
           <div class="field">
@@ -18,12 +18,12 @@
             <% if @minimum_password_length %>
             <em class='label-login'>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password", class: 'field-login' %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password', class: 'field-login' %>
           </div>
 
           <div class="field">
             <%= f.label :password_confirmation, class: 'label-login' %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'field-login' %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirm password', class: 'field-login' %>
           </div>
 
           <div class="actions submit-btn">
@@ -36,3 +36,25 @@
     </div>
   </div>
 </div>
+
+<%- if devise_mapping.omniauthable? %>
+  <div class='third-party'>
+    <div class='card login-card'>
+      <div class='card-body'>
+        <div class='card-title'>
+          <h1 class='login-title-thd'>Sign In with</h1>        
+        </div>
+        <div>
+          <ul class='list-group list-group-horizontal nodots'>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <li class='thd-li'>
+                <%= link_to image_tag("/third_party_service/#{provider}.png", class: 'img-thd'), omniauth_authorize_path(resource_name, provider) %><br>
+                <%= link_to "#{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'thd-lnk' %><br />
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> 
+<% end %>

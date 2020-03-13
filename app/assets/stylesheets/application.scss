@@ -87,6 +87,12 @@
   width: 70%;
   margin-bottom: 15px;
   height: 30px;
+  border-radius: 8px;
+}
+
+.field-login:focus {
+  outline: 0;
+  box-shadow: 0 0 8px #33ffcc;
 }
 
 .new_user {
@@ -109,4 +115,44 @@
 .btn-login:hover {
   background-color: #008060;
   color: #33ffcc;
+}
+
+.third-party {
+  margin-top: 40px;
+  display: grid;
+  max-width: 700px;
+  min-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-title-thd {
+  color: #00e68a;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.img-thd {
+  width: 50px;
+  height: 50px;
+}
+
+.nodots {
+  list-style-type: none;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.thd-li {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.thd-lnk {
+  color: #33ffcc;
+}
+
+.thd-lnk:hover {
+  color: #008060;
 }

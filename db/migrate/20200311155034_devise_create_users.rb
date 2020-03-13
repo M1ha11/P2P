@@ -33,6 +33,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.datetime :locked_at
 
       t.integer :role, default: 0
+      t.string :provider, limit: 150
+      t.string :uid, limit: 10
 
       t.timestamps null: false
     end

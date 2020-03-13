@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2020_03_11_155034) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.integer "role", default: 0
+    t.string "provider", limit: 150
+    t.string "uid", limit: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
