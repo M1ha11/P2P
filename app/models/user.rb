@@ -23,8 +23,8 @@
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  # :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable, :lockable,
          :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:twitter]
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A(\S+)@(.+)\.(\S+)\z/i }
