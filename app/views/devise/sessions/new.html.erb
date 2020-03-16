@@ -1,0 +1,67 @@
+
+<div class='container-login'>
+  <div class="card login-card">
+    <div class='card-body'>
+      <div class='card-title'>
+        <h1 class='login-title'>Log In</h1>        
+      </div>
+      <div class='login-form'>
+        <% if flash[:errors] %>
+          <% flash[:errors].each do |e| %>
+            <p><%=e%></p><br>
+          <% end %>
+        <% end %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+          <div class="field">
+            <%= f.label :email, class: 'label-login' %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: 'field-login' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password, class: 'label-login' %>
+            <% if @minimum_password_length %>
+            <em class='label-login'>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password', class: 'field-login' %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me, class: 'label-login' %>
+            </div>
+          <% end %>
+
+          <div class="actions submit-btn">
+            <%= f.submit "Log In", class: 'btn log-btn btn-lg btn-login' %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
+<%- if devise_mapping.omniauthable? %>
+  <div class='third-party'>
+    <div class='card login-card'>
+      <div class='card-body'>
+        <div class='card-title'>
+          <h1 class='login-title-thd'>Sign In with</h1>        
+        </div>
+        <div>
+          <ul class='list-group list-group-horizontal nodots'>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <li class='thd-li'>
+                <%= link_to image_tag("/third_party_service/#{provider}.png", class: 'img-thd'), omniauth_authorize_path(resource_name, provider) %><br>
+                <%= link_to "#{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'thd-lnk' %><br />
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> 
+<% end %>
