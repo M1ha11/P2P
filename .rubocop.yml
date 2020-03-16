@@ -5,9 +5,7 @@ AllCops:
     - 'config/**/*'
     - 'log/**/*'
     - 'tmp/**/*'
-    - 'node_modules/**/*'
     - 'app/assets/**/*'
-    - 'lib/**/*'
 
 Style/FrozenStringLiteralComment:
   Enabled: false
