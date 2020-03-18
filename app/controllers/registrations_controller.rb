@@ -6,6 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     build_resource
+    resource.build_profile
     yield resource if block_given?
     respond_with resource
   end
@@ -13,6 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
+    binding.pry
     resource.save
     yield resource if block_given?
     if resource.persisted?
@@ -131,6 +133,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def sign_up_params
+    binding.pry
     devise_parameter_sanitizer.sanitize(:sign_up)
   end
 

@@ -1,3 +1,43 @@
 // Place all the styles related to the Profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.profile-head {
+  background-color: #343a40;
+  width: 100%;
+  display: grid;
+  height: 260px;
+  max-height: 500px;
+}
+
+.container-profile {
+  margin-top: 20px;
+  width: 90%;
+  min-width: 500px;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.avatar {
+  width: 220px;
+  height: 220px;
+  box-shadow: 0 0 35px #33ffcc;
+}
+
+.avatar-cnt {
+  margin-top: 70px;
+  margin-left: 10px;
+  display: flex;
+}
+
+.nodots {
+  list-style-type: none;
+}
+
+.main-info {
+  margin-left: 60px;
+  margin-right: 10px;
+  margin-top: 30px;
+}
