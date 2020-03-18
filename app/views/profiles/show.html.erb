@@ -1,30 +1,20 @@
 <div class='container-profile'>
-  <div class='profile-head'>
-    <ul class="list-group list-group-horizontal nodots">
-      <li>
-        <div class='avatar-cnt'>
-          <img src="" class='rounded-circle avatar'>
-        </div>
-      </li>
-      <li>
-        <div class='main-info'>
-          <h1 class='main-nm'><%= @profile.user.email %></h1>
-          <h5 class='us-info'>Phone: <%= @profile.phone_number %></h5>
-          <h5>Address: <%= @profile.address %></h5>
-        </div>
-      </li>
-      <li>
-        <div class='card-info'>
-          
-        </div>
-      </li>
-      <li>
-        <div class='claims-info'>
-          <p>Success credit project: <%= @profile.success_credit_project %></p>
-          <p>Success lend project: <%= @profile.success_lend_project %></p>
-        </div>
-      </li>
-    </ul>
+  <div class='profile-head row justify-content-start'>
+    <div class='avatar-cnt'>
+      <img src="" class='rounded-circle avatar'>
+    </div>
+    <div class='main-info gr-cl'>
+      <h1 class='main-nm'><%= @profile.user.email %></h1>
+      <h6 class='us-ph-info wh-cl'>Phone:  <%= @profile.phone_number %></h6>
+      <h6 class='us-ad-info wh-cl'>Address:  <%= @profile.address %></h6>
+    </div>
+    <div class='card-info col'>
+      
+    </div>
+    <div class='claims-info col col-2'>
+      <h5 class='wh-cl success'>Success credit project: <span class='gr-cl'><%= @profile.success_credit_project %></span></p>
+      <h5 class='wh-cl success'>Success lend project: <span class='gr-cl'><%= @profile.success_lend_project %></span></p>
+    </div>
   </div>
   <div class='profile-body'>
     

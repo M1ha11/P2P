@@ -14,10 +14,11 @@
 .container-profile {
   margin-top: 20px;
   width: 90%;
-  min-width: 500px;
   display: grid;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .avatar {
@@ -28,7 +29,7 @@
 
 .avatar-cnt {
   margin-top: 70px;
-  margin-left: 10px;
+  margin-left: 30px;
   display: flex;
 }
 
@@ -39,5 +40,38 @@
 .main-info {
   margin-left: 60px;
   margin-right: 10px;
-  margin-top: 30px;
+  margin-top: 40px;
+}
+
+.main-nm {
+  font-weight: bold;
+}
+
+.gr-cl {
+  color: #33ffcc;
+}
+
+.wh-cl {
+  color: white;
+}
+
+.us-ph-info {
+  margin-top: 70px;
+  font-style: italic;
+}
+
+.us-ad-info {
+  font-size: 15px;
+  font-style: italic;
+}
+
+.claims-info {
+  margin-top: 90px;
+  margin-left: 40px;
+  margin-bottom: 30px;
+  margin-right: 10px;
+}
+
+.success {
+  font-style: italic;
 }

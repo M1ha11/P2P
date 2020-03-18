@@ -13,7 +13,7 @@
             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: 'field-login' %>
           </div>
 
-          <%= fields_for :profile do |profile_f| %>
+          <%= f.fields_for :profile do |profile_f| %>
 
             <div class="field">
               <%= profile_f.label :phone_number, class: 'label-login' %><br />
