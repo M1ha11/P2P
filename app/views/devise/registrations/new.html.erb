@@ -39,6 +39,15 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirm password', class: 'field-login' %>
           </div>
 
+          <br>
+
+          <%= f.fields_for :profile do |profile_f| %>
+            <div class='field'>
+              <%= profile_f.label :avatar, class: 'label-login' %>
+              <%= profile_f.file_field :avatar, class: 'image-ch' %>
+            </div>
+          <% end %>
+
           <div class="actions submit-btn">
             <%= f.submit "Sign up", class: 'btn log-btn btn-lg btn-login' %>
           </div>

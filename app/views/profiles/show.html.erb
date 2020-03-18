@@ -1,7 +1,11 @@
 <div class='container-profile'>
   <div class='profile-head row justify-content-start'>
     <div class='avatar-cnt'>
-      <img src="" class='rounded-circle avatar'>
+      <% if @profile.avatar.attached? %>
+        <%= image_tag @profile.avatar, class: 'rounded-circle avatar' %>
+      <% else %>
+        <img src="" class='rounded-circle avatar'>
+      <% end %>
     </div>
     <div class='main-info gr-cl'>
       <h1 class='main-nm'><%= @profile.user.email %></h1>
