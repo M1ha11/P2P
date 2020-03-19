@@ -60,6 +60,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootstrap', '~> 4.4'
 gem 'devise', '~> 4.7'
 gem 'dotenv', '~> 2.7'
+gem 'jquery-rails', '~> 4.3'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-oauth2', '~> 1.6'
 gem 'omniauth-twitter', '~> 1.4'

@@ -12,15 +12,6 @@
               <p class='label-login'><%= msg %></p>
             <% end %>
           <% end %>
-          
-          <%= f.fields_for :user do |user_f| %>
-
-            <div class="field">
-              <%= user_f.label :email, class: 'label-login' %><br />
-              <%= user_f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: 'field-login' %>
-            </div>
-
-          <% end %>
 
           <div class="field">
             <%= f.label :phone_number, class: 'label-login' %><br />
