@@ -25,10 +25,16 @@
             </button>
           </li>
         <% else %>
-          <li class='nav-item'>
+          <li class='nav-item btn-group'>
             <button type='button' class='btn btn-outline-success'>
-              <%= link_to 'Edit Profile', edit_profile_path(current_user.profile.id), class: 'nav-log-btn' %>
+              <%= link_to 'Profile', profile_path(current_user.profile.id), class: 'nav-log-btn' %>
             </button>
+            <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true"  aria-controls='drop-menu'>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu" id='drop-menu'>
+              <%= link_to 'Edit Profile', edit_profile_path(current_user.profile.id), class: 'dropdown-item' %>
+            </div>
           </li>
           <li class='nav-item'>
             <button type='button' class='btn btn-outline-danger'>

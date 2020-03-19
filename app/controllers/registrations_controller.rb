@@ -1,7 +1,10 @@
+# rubocop:disable all
+# :reek:all
+
 class RegistrationsController < Devise::RegistrationsController
-  prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
-  prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
-  prepend_before_action :set_minimum_password_length, only: [:new, :edit]
+  prepend_before_action :require_no_authentication, only: %i[new create cancel]
+  prepend_before_action :authenticate_scope!, only: %i[edit update destroy]
+  prepend_before_action :set_minimum_password_length, only: %i[new edit]
 
   # GET /resource/sign_up
   def new
@@ -36,3 +39,5 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 end
+
+# rubocop:enable all
