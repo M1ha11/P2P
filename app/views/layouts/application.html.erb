@@ -26,6 +26,11 @@
           </li>
         <% else %>
           <li class='nav-item'>
+            <button type='button' class='btn btn-outline-success'>
+              <%= link_to 'Edit Profile', edit_profile_path(current_user.profile.id), class: 'nav-log-btn' %>
+            </button>
+          </li>
+          <li class='nav-item'>
             <button type='button' class='btn btn-outline-danger'>
               <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-unlog-btn' %>
             </button>

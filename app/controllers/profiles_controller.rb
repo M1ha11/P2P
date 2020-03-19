@@ -7,7 +7,6 @@ class ProfilesController < ApplicationController
       if @profile && current_user.profile.id == @profile.id
         format.html { render :show }
       else
-        flash[:errors] = @profile.errors.full_message
         format.html { redirect_to root_url }
       end
     end
@@ -18,7 +17,9 @@ class ProfilesController < ApplicationController
 
   def update
     respond_to do |format|
+      binding.pry
       if @profile.update(profile_params)
+        binding.pry
         format.html { redirect_to @profile, notice: 'Profile was successfully updated!' }
       else
         flash[:errors] = @profile.errors.full_message
@@ -35,6 +36,7 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:success_credit_project, :success_lend_project,
-                                    :phone_number, :address, :avatar, :user_id)
+                                    :phone_number, :address, :avatar,
+                                    user_attributes: [:email, :password, :password_confirmation])
   end
 end

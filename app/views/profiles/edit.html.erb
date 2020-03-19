@@ -1,0 +1,68 @@
+<div class='container-login-e'>
+  <div class="card login-card">
+    <div class='card-body'>
+      <div class='card-title'>
+        <h1 class='login-title'>Edit Profile</h1>       
+      </div>
+      <div class='login-card-f'>
+        <%= form_for(@profile, url: profile_path(@profile.id), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: current_user %>
+
+          <%= f.fields_for :user do |user_f| %>
+
+            <div class="field">
+              <%= user_f.label :email, class: 'label-login' %><br />
+              <%= user_f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: 'field-login' %>
+            </div>
+
+          <% end %>
+
+          <div class="field">
+            <%= f.label :phone_number, class: 'label-login' %><br />
+            <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: 'Phone Number', class: 'field-login' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :address, class: 'label-login' %><br />
+            <%= f.text_area :address, rows: 3, autofocus: true, autocomplete: "address", placeholder: 'Address', class: 'field-login area' %>
+          </div>
+
+
+          <%= f.fields_for :user do |user_f| %>
+
+            <div class="field">
+              <%= user_f.label :password, class: 'label-login' %> <i class='label-login'>(leave blank if you don't want to change it)</i><br />
+              <%= user_f.password_field :password, autocomplete: "new-password", placeholder: 'Password', class: 'field-login' %>
+              <% if @minimum_password_length %>
+                <br />
+                <em class='label-login'><%= @minimum_password_length %> characters minimum</em>
+              <% end %>
+            </div>
+
+            <div class="field">
+              <%= user_f.label :password_confirmation, class: 'label-login' %><br />
+              <%= user_f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirm password', class: 'field-login' %>
+            </div>
+
+            <div class="field">
+              <%= user_f.label :current_password, class: 'label-login' %> <i class='label-login'>(we need your current password to confirm your changes)</i><br />
+              <%= user_f.password_field :current_password, autocomplete: "current-password", placeholder: 'Current password', class: 'field-login' %>
+            </div>
+
+          <% end %>
+
+           <div class='field'>
+              <%= f.label :avatar, class: 'label-login' %>
+              <%= f.file_field :avatar, class: 'image-ch' %>
+            </div>
+
+          <div class="actions submit-btn">
+            <%= f.submit "Update", class: 'btn log-btn btn-lg btn-login' %>
+          </div>
+        <% end %>
+
+        <%= link_to "Back", :back %>
+      </div>
+    </div>
+  </div>
+</div>
