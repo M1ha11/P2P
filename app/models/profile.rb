@@ -12,7 +12,10 @@
 #  updated_at             :datetime         not null
 #
 class Profile < ApplicationRecord
-  validates :phone_number, presence: true, length: { minimum: 10, maximum: 25 }, format: { with: /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{2,3})?\)?[- ]?\d{3}[- ]?\d{4}\z/ }
+  validates :phone_number, presence: true, length: { minimum: 10, maximum: 25 },
+                           format: {
+                             with: /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{2,3})?\)?[- ]?\d{3}[- ]?\d{4}\z/
+                           }
   validates :address, presence: true
 
   has_one_attached :avatar

@@ -7,6 +7,7 @@
       <div class='login-card-f'>
         <%= form_for(@profile, url: profile_path(@profile.id), html: { method: :put }) do |f| %>
           <%= render "devise/shared/error_messages", resource: current_user %>
+          <p class='label-login'><%= flash[:alert] %></p>
           <% if flash[:errors] %>
             <% flash[:errors].each do |msg| %>
               <p class='label-login'><%= msg %></p>

@@ -12,8 +12,8 @@ class ProfilesController < ApplicationController
 
   def update
     @profile.update(profile_params)
-    flash[:errors] = @profile.errors.full_messages
-    respond_with @profile, location: -> { profile_path(@profile.id) }
+    # flash[:errors] = @profile.errors.full_messages
+    respond_with @profile, flash: true, location: -> { profile_path(@profile.id) }
   end
 
   private
