@@ -4,7 +4,7 @@
 
 
 .profile-head {
-  background-color: #343a40;
+  background-color: var(--bootstrap-black);
   width: 100%;
   display: grid;
   height: 260px;
@@ -25,7 +25,7 @@
 .avatar {
   width: 220px;
   height: 220px;
-  box-shadow: 0 0 35px #33ffcc;
+  box-shadow: 0 0 35px var(--azure);
 }
 
 .avatar-cnt {
@@ -39,7 +39,7 @@
 }
 
 .main-info {
-  background-color: #343a40;
+  background-color: var(--bootstrap-black);
   margin-left: 60px;
   margin-right: 10px;
   margin-top: 40px;
@@ -51,7 +51,7 @@
 }
 
 .gr-cl {
-  color: #33ffcc;
+  color: var(--azure);
 }
 
 .wh-cl {
@@ -69,7 +69,7 @@
 }
 
 .claims-info {
-  background-color: #343a40;
+  background-color: var(--bootstrap-black);
   margin-top: 90px;
   margin-left: 40px;
   margin-bottom: 30px;
