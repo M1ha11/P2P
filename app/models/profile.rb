@@ -12,12 +12,15 @@
 #  updated_at             :datetime         not null
 #
 class Profile < ApplicationRecord
+  belongs_to :user
+
+  has_one_attached :avatar
+
   validates :phone_number, presence: true, length: { minimum: 10, maximum: 25 },
                            format: {
                              with: /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{2,3})?\)?[- ]?\d{3}[- ]?\d{4}\z/
                            }
   validates :address, presence: true
-
-  has_one_attached :avatar
-  belongs_to :user
+  validates :success_credit_project, numericality: true
+  validates :success_lend_project, numericality: true
 end

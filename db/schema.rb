@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 2020_03_16_104044) do
     t.string "phone_number", limit: 25, null: false
     t.string "address", limit: 150, null: false
     t.string "avatar"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_profiles_on_user_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,4 +73,5 @@ ActiveRecord::Schema.define(version: 2020_03_16_104044) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "profiles", "users"
 end

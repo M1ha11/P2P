@@ -12,7 +12,6 @@ class ProfilesController < ApplicationController
 
   def update
     @profile.update(profile_params)
-    # flash[:errors] = @profile.errors.full_messages
     respond_with @profile, flash: true, location: -> { profile_path(@profile.id) }
   end
 
@@ -20,6 +19,11 @@ class ProfilesController < ApplicationController
 
   def set_profile
     @profile = Profile.find_by(id: params[:id])
+  end
+
+  def flash_interpolation_options
+    binding.pry
+    { resource_errors: @profile.errors.full_messages }
   end
 
   def profile_params
