@@ -22,7 +22,6 @@ class ProfilesController < ApplicationController
   end
 
   def flash_interpolation_options
-    binding.pry
     { resource_errors: @profile.errors.full_messages }
   end
 
