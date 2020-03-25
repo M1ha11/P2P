@@ -12,7 +12,7 @@
   <body>
     <nav class='navbar navbar-dark bg-dark'>
       <h1 class='title'>P2P</h1>
-      <ul class='nav justify-content-canter'>
+      <ul class='nav justify-content-center'>
         <% unless current_user %>
           <li class='nav-item'>
             <button type='button' class='btn btn-outline-success'>
@@ -25,9 +25,20 @@
             </button>
           </li>
         <% else %>
+          <li class='nav-item btn-group'>
+            <button type='button' class='btn btn-outline-success'>
+              <%= link_to 'Profile', profile_path(current_user.profile.id), class: 'nav-log-btn' %>
+            </button>
+            <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dp-mn dropdown-menu" role='menu'>
+              <%= link_to 'Edit Profile', edit_profile_path(current_user.profile.id), class: 'dropdown-item drop-menu' %>
+            </div>
+          </li>
           <li class='nav-item'>
             <button type='button' class='btn btn-outline-danger'>
-              <%= link_to 'Log Out', destroy_user_session_path, class: 'nav-unlog-btn' %>
+              <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-unlog-btn' %>
             </button>
           </li>
         <% end %>

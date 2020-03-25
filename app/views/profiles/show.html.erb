@@ -1,0 +1,26 @@
+<div class='container-profile'>
+  <div class='profile-head row justify-content-center'>
+    <div class='avatar-cnt'>
+      <% if @profile.avatar.attached? %>
+        <%= image_tag @profile.avatar, class: 'rounded-circle avatar' %>
+      <% else %>
+        <%= image_tag '/avatar/avatar.png', class:'rounded-circle avatar'  %>
+      <% end %>
+    </div>
+    <div class='main-info gr-cl'>
+      <h1 class='main-nm'><%= @profile.user.email %></h1>
+      <h6 class='us-ph-info wh-cl'>Phone:  <%= @profile.phone_number %></h6>
+      <h6 class='us-ad-info wh-cl'>Address:  <%= @profile.address %></h6>
+    </div>
+    <div class='card-info col'>
+  
+    </div>
+    <div class='claims-info col col-2'>
+      <h5 class='wh-cl success'>Success credit project: <span class='gr-cl'><%= @profile.success_credit_project %></span></p>
+      <h5 class='wh-cl success'>Success lend project: <span class='gr-cl'><%= @profile.success_lend_project %></span></p>
+    </div>
+  </div>
+  <div class='profile-body'>
+    
+  </div>
+</div>

@@ -26,3 +26,21 @@ User.create([
     confirmed_at: Time.now.utc
   }
 ])
+
+Profile.create([
+  {
+    phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
+    address: Faker::Address.full_address,
+    user: User.first
+  },
+  {
+    phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
+    address: Faker::Address.full_address,
+    user: User.second
+  },
+  {
+    phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
+    address: Faker::Address.full_address,
+    user: User.find(3)
+  }
+])
