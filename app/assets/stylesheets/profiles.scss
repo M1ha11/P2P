@@ -1,0 +1,100 @@
+// Place all the styles related to the Profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.profile-head {
+  background-color: var(--bootstrap-black);
+  width: 100%;
+  display: grid;
+  height: 260px;
+  max-height: 600px;
+  min-width: 300px;
+}
+
+.container-profile {
+  margin-top: 20px;
+  width: 90%;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.avatar {
+  width: 220px;
+  height: 220px;
+  box-shadow: 0 0 35px var(--azure);
+}
+
+.avatar-cnt {
+  margin-top: 70px;
+  margin-left: 30px;
+  display: flex;
+}
+
+.nodots {
+  list-style-type: none;
+}
+
+.main-info {
+  background-color: var(--bootstrap-black);
+  margin-left: 60px;
+  margin-right: 10px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.main-nm {
+  font-weight: bold;
+}
+
+.gr-cl {
+  color: var(--azure);
+}
+
+.wh-cl {
+  color: white;
+}
+
+.us-ph-info {
+  margin-top: 70px;
+  font-style: italic;
+}
+
+.us-ad-info {
+  font-size: 15px;
+  font-style: italic;
+}
+
+.claims-info {
+  background-color: var(--bootstrap-black);
+  margin-top: 90px;
+  margin-left: 40px;
+  margin-bottom: 30px;
+  margin-right: 10px;
+}
+
+.success {
+  font-style: italic;
+}
+
+.container-login-e {
+  display: grid;
+  max-width: 900px;
+  min-width: 300px;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-card-f {
+  display: grid;
+  border-radius: 20px;
+  margin-left: 25%;
+}
+
+.edit_profile {
+  width: 90%;
+}

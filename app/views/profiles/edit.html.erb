@@ -1,0 +1,46 @@
+<div class='container-login-e'>
+  <div class="card login-card">
+    <div class='card-body'>
+      <div class='card-title'>
+        <h1 class='login-title'>Edit Profile</h1>       
+      </div>
+      <div class='login-card-f'>
+        <%= form_for(@profile, url: profile_path(@profile.id), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: current_user %>
+          <% if flash[:alert] %>
+            <% if flash[:alert].include?(',') %>
+              <% flash[:alert].split(',').each do |msg| %>
+                <p class='label-login-red'><%= msg %></p>
+              <% end %>
+            <% else %>
+              <p class='label-login'><%= flash[:alert] %></p>
+            <% end %>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :phone_number, class: 'label-login' %>
+            
+            <br />
+            <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: 'Phone Number', class: 'field-login' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :address, class: 'label-login' %><br />
+            <%= f.text_area :address, rows: 3, autofocus: true, autocomplete: "address", placeholder: 'Address', class: 'field-login area' %>
+          </div>
+
+           <div class='field'>
+              <%= f.label :avatar, class: 'label-login' %>
+              <%= f.file_field :avatar, class: 'image-ch' %>
+            </div>
+
+          <div class="actions submit-btn">
+            <%= f.submit "Update", class: 'btn log-btn btn-lg btn-login' %>
+          </div>
+        <% end %>
+
+        <%= link_to "Back", :back, class: 'thd-lnk' %>
+      </div>
+    </div>
+  </div>
+</div>

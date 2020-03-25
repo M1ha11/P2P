@@ -16,6 +16,16 @@
 
 @import 'bootstrap';
 
+:root {
+  --bootstrap-black: #343a40;
+  --dark-green: #008060;
+  --oliva: #00cc7a;
+  --mint: #00e68e;
+  --custom-red: #cc0000;
+  --mega-dark-green: #004d00;
+  --azure: #33ffcc;
+}
+
 .footer {
   position: fixed;
  	bottom: 0;
@@ -23,28 +33,28 @@
 }
 
 .footer-text {
-  color: #00e68e;
+  color: var(--mint);
 }
 
 .title {
-  color: #00e68e;
+  color: var(--mint);
 	size: 50px;
 }
 
 .nav-log-btn {
-  color: #00e68e;
+  color: var(--mint);
 }
 
 .nav-log-btn:hover {
- 	color: #004d00;
+ 	color: var(--mega-dark-green);
 }
 
 .nav-unlog-btn {
-  color: #cc0000;
+  color: var(--custom-red);
 }
 
 .nav-unlog-btn:hover {
- 	color: #ff1a75;
+ 	color: var(--bootstrap-black);
 }
 
 .card-title {
@@ -53,7 +63,7 @@
 }
 
 .login-title {
-  color: #00e68a;
+  color: var(--mint);
   font-size: 50px;
   font-weight: bold;
 }
@@ -67,23 +77,28 @@
   display: grid;
   max-width: 700px;
   min-width: 200px;
-  margin-top: 100px;
+  margin-top: 60px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .label-login {
-  color: #00cc7a;
+  color: var(--oliva);
   font-size: 18px;
 }
 
+.label-login-red {
+  font-size: 18px;
+  color: var(--custom-red);
+}
+
 .label-login-can {
-  color: #00cc7a;
+  color: var(--oliva);
   font-size: 26px;
 }
 
 .card-body {
-  background-color: #343a40;
+  background-color: var(--bootstrap-black);
   padding: 20px;
   border-radius: 20px;
 }
@@ -97,7 +112,7 @@
 
 .field-login:focus {
   outline: 0;
-  box-shadow: 0 0 8px #33ffcc;
+  box-shadow: 0 0 8px var(--azure);
 }
 
 .new_user {
@@ -113,13 +128,13 @@
 .btn-login {
   border-radius: 15px;
   width: 50%;
-  background-color: #00cc7a;
+  background-color: var(--oliva);
   justify-content: center;
 }
 
 .btn-login:hover {
-  background-color: #008060;
-  color: #33ffcc;
+  background-color: var(--dark-green);
+  color: var(--azure);
 }
 
 .third-party {
@@ -129,10 +144,11 @@
   min-width: 200px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 80px;
 }
 
 .login-title-thd {
-  color: #00e68a;
+  color: var(--mint);
   font-size: 27px;
   font-weight: bold;
 }
@@ -155,9 +171,31 @@
 }
 
 .thd-lnk {
-  color: #33ffcc;
+  color: var(--azure);
 }
 
 .thd-lnk:hover {
-  color: #008060;
+  color: var(--dark-green);
+}
+
+.area {
+  height: 60px;
+} 
+
+.image-ch {
+  color: var(--azure);
+}
+
+.drop-menu {
+  background-color: var(--bootstrap-black);
+  color: var(--mint);
+}
+
+.drop-menu:hover {
+  background-color: var(--bootstrap-black);
+  color: var(--azure);
+}
+
+.dp-mn {
+  background-color: var(--bootstrap-black);
 }

@@ -27,6 +27,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :lockable,
          :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:twitter]
 
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
+
   validates :email, presence: true, uniqueness: true, format: { with: /\A(\S+)@(.+)\.(\S+)\z/i }
   enum role: %i[user admin]
 
