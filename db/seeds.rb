@@ -26,21 +26,3 @@ User.create([
     confirmed_at: Time.now.utc
   }
 ])
-
-Card.create([
-  {
-    card_number: Faker::Number.number(digits: 16)
-    expire_date: Faker::Date.between(from: 3.month.ago, to: 1.year.ago)
-    user: User.first
-  },
-  {
-    card_number: Faker::Number.number(digits: 16)
-    expire_date: Faker::Date.between(from: 3.month.ago, to: 1.year.ago)
-    user: User.second
-  },
-  {
-    card_number: Faker::Number.number(digits: 16)
-    expire_date: Faker::Date.between(from: 3.month.ago, to: 1.year.ago)
-    user: User.find(3)
-  }
-])
