@@ -22,7 +22,7 @@ class ProfilesController < ApplicationController
   end
 
   def flash_interpolation_options
-    { resource_errors: @profile.errors.full_messages }
+    { resource_errors: @profile.errors.full_messages.join(',') }
   end
 
   def profile_params

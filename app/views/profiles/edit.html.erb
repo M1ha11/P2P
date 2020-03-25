@@ -8,10 +8,9 @@
         <%= form_for(@profile, url: profile_path(@profile.id), html: { method: :put }) do |f| %>
           <%= render "devise/shared/error_messages", resource: current_user %>
           <% if flash[:alert] %>
-            <% flash[:alert] = flash[:alert].delete('[]') %>
             <% if flash[:alert].include?(',') %>
               <% flash[:alert].split(',').each do |msg| %>
-                <p class='label-login'><%= msg %></p>
+                <p class='label-login-red'><%= msg %></p>
               <% end %>
             <% else %>
               <p class='label-login'><%= flash[:alert] %></p>
