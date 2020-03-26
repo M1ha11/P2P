@@ -1,0 +1,31 @@
+// Place all the styles related to the Cards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container-card-new {
+  display: grid;
+  max-width: 500px;
+  min-width: 300px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cred-title {
+  background-color: var(--bootstrap-black);
+}
+
+.cred-body {
+  background-color: var(--azure);
+}
+
+.cr-card-title {
+  color: var(--bootstrap-black);
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.label-cr-card {
+  color: var(--bootstrap-black);
+  font-size: 18px;
+}
