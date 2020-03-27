@@ -13,8 +13,8 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.create(card_params)
-    binding.pry
+    @card = current_user.cards.build(card_params)
+    @card.save
     respond_with @card, location: -> { cards_path }
   end
 
@@ -26,7 +26,11 @@ class CardsController < ApplicationController
 
   private
 
+  def flash_interpolation_options
+    { resource_errors: @card.errors.full_messages.join(',') }
+  end
+
   def card_params
-    params.require(:card).permit(:card_number, :expire_date)
+    params.require(:card).permit(:card_number, :expire_date, user: [:id])
   end
 end

@@ -3,7 +3,7 @@ en:
     actions:
       create:
         notice: '%{resource_name} was successfully created.'
-        # alert: '%{resource_name} could not be created.'
+        alert: '{resource_errors}'
       update:
         notice: '%{resource_name} was successfully updated.'
         alert: '%{resource_errors}'

@@ -88,13 +88,14 @@
 }
 
 .new-lnk-cr {
+  margin-left: 45%;
 }
 
 .new-cr-btn {
   background-color: var(--oliva);
   justify-content: center;
   border-radius: 30px;
-  font-size: 30px;
+  font-size: 25px;
   padding: 20px;
   color: white;
 }
@@ -151,4 +152,13 @@
   margin-top: 5px;
   margin-left: 200px;
   font-size: 20px;
+}
+
+.crd-del {
+  color: var(--mega-dark-green);
+  text-decoration: underline;
+}
+
+.crd-del:hover {
+  color: var(--custom-red);
 }
