@@ -1,38 +1,45 @@
 <div class='container-card-new'>
-  <div class="card login-card">
-    <div class='card-body cred-body'>
+  <div class="card login-card cr-card">
+    <div class='cred-body'>
       <div class='card-title cred-title'>
         <h1 class='cr-card-title'>New Card</h1>       
       </div>
-      <div class='login-card-f'>
-        <%= form_for(@card, url: new_card_path, html: { method: :post }) do |f| %>
-          <% if flash[:alert] %>
-            <% if flash[:alert].include?(',') %>
-              <% flash[:alert].split(',').each do |msg| %>
-                <p class='label-login-red'><%= msg %></p>
+      <div class='row justify-content-start'>
+        <div class='card-chip col col-2'>
+          <%= image_tag('/credit_card/chip_2.png', class: 'chip-img') %>
+        </div>
+        <div class='login-card-f col col-10'>
+          <%= form_for(@card, url: new_card_path, html: { method: :post }) do |f| %>
+            <% if flash[:alert] %>
+              <% if flash[:alert].include?(',') %>
+                <% flash[:alert].split(',').each do |msg| %>
+                  <p class='label-login-red'><%= msg %></p>
+                <% end %>
+              <% else %>
+                <p class='label-login-red'><%= flash[:alert] %></p>
               <% end %>
-            <% else %>
-              <p class='label-login-red'><%= flash[:alert] %></p>
             <% end %>
+
+            <div class="field">
+              <%= f.label :card_number, class: 'label-cr-card' %>
+              <br />
+              <%= f.text_field :card_number, autofocus: true, autocomplete: "card_number", placeholder: 'Card Number', class: 'field-login-cr' %>
+            </div>
+
+            <div class='card-date'>
+              <div class="field">
+                <%= f.label :expire_date, class: 'label-cr-card' %><br />
+                <%= f.date_field :expire_date, autofocus: true, autocomplete: "expire_date", placeholder: 'MM/YYYY', class: 'field-login-cr' %>
+              </div>
+            </div>
+
+            <div class="actions submit-btn-cr">
+              <%= f.submit "Create", class: 'btn log-btn btn-lg btn-login' %>
+            </div>
           <% end %>
 
-          <div class="field">
-            <%= f.label :card_number, class: 'label-cr-card' %>
-            <br />
-            <%= f.text_field :card_number, autofocus: true, autocomplete: "card_number", placeholder: 'Card Number', class: 'field-login' %>
-          </div>
-
-          <div class="field">
-            <%= f.label :expire_date, class: 'label-cr-card' %><br />
-            <%= f.date_field :expire_date, value: f.object.strftime('%m/%Y'), autofocus: true, autocomplete: "expire_date", placeholder: 'MM/YYYY', class: 'field-login' %>
-          </div>
-
-          <div class="actions submit-btn">
-            <%= f.submit "Create", class: 'btn log-btn btn-lg btn-login' %>
-          </div>
-        <% end %>
-
-        <%= link_to "Back", :back, class: 'thd-lnk' %>
+          <%= link_to "Back", :back, class: 'thd-lnk' %>
+        </div>
       </div>
     </div>
   </div>

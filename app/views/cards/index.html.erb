@@ -1,0 +1,33 @@
+<div class='card-main'>
+  <div class='new-lnk-cr'>
+    <%= link_to 'New Card', new_card_path, class: 'new-cr-btn' %>
+  </div>
+  <div class='cards'>
+    <% @cards.each do |card| %>
+      <div class='cr-mn-card-container'>
+        <div class='cr-card-main'>
+          <div class='crd-body'>
+            <div class='card-title crd-title-main'>
+              <h1 class='crd-card-title-main'>Credit Card</h1>
+            </div>
+            <div class='card-info '>
+              <div class='row'>
+                <div class='card-chip-main col col-2'>
+                  <%= image_tag('/credit_card/chip_2.png', class: 'chip-img-main') %>
+                </div>
+                <div class='crd-main-info col-8'>
+                  <p class='crd-nm'>
+                    <%= @card.card_number %>
+                  </p>
+                  <p class='crd-dt'>
+                    <%= @card.expire_date %>
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

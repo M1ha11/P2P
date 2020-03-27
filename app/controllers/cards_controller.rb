@@ -4,7 +4,8 @@ class CardsController < ApplicationController
   respond_to :html
 
   def index
-    @cards = current_user.card.all
+    @cards = current_user.cards.all
+    respond_with @cards, location: -> { cards_path }
   end
 
   def new
