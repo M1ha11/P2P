@@ -14,7 +14,8 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.create(card_params)
-    resond_with @card, location: -> { cards_path }
+    binding.pry
+    respond_with @card, location: -> { cards_path }
   end
 
   def destroy
@@ -26,6 +27,6 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:card_number, :expire_date, :user_id)
+    params.require(:card).permit(:card_number, :expire_date)
   end
 end

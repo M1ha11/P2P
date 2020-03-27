@@ -17,10 +17,7 @@
                 </div>
                 <div class='crd-main-info col-8'>
                   <p class='crd-nm'>
-                    <%= @card.card_number %>
-                  </p>
-                  <p class='crd-dt'>
-                    <%= @card.expire_date %>
+                    <%= @card.card_number[0..-5].gsub(/\d+/, '*')%><%= @card.card_number.last(4) %>
                   </p>
                 </div>
               </div>
