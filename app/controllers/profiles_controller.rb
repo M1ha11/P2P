@@ -1,28 +1,29 @@
 class ProfilesController < ApplicationController
   responders :flash
-  before_action :set_profile
   before_action :authenticate_user!
   respond_to :html
 
   def show
-    respond_with @profile, location: -> { profile_path(@profile.id) }
+    respond_with profile, location: -> { profile_path(profile.id) }
   end
 
-  def edit; end
+  def edit
+    profile
+  end
 
   def update
-    @profile.update(profile_params)
-    respond_with @profile, flash: true, location: -> { profile_path(@profile.id) }
+    profile.update(profile_params)
+    respond_with profile, flash: true, location: -> { profile_path(profile.id) }
   end
 
   private
 
-  def set_profile
-    @profile = Profile.find_by(id: params[:id])
+  def profile
+    @profile ||= Profile.find(params[:id])
   end
 
   def flash_interpolation_options
-    { resource_errors: @profile.errors.full_messages.join(',') }
+    { resource_errors: profile.errors.full_messages.join(',') }
   end
 
   def profile_params

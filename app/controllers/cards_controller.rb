@@ -4,7 +4,7 @@ class CardsController < ApplicationController
   respond_to :html
 
   def index
-    @cards = current_user.cards.all
+    @cards = Card.all
     respond_with @cards, location: -> { cards_path }
   end
 
@@ -18,7 +18,7 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    @card = Card.find_by(id: params[:id])
+    @card = Card.find(params[:id])
     @card.destroy
     respond_with @card, location: -> { cards_path }
   end
