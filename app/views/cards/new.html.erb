@@ -23,13 +23,13 @@
             <div class="field">
               <%= f.label :card_number, class: 'label-cr-card' %>
               <br />
-              <%= f.text_field :card_number, autofocus: true, autocomplete: "card_number", placeholder: 'Card Number', class: 'field-login-cr' %>
+              <%= f.text_field :card_number, autofocus: true, autocomplete: "card_number", placeholder: 'Card Number', maxlength: 19, class: 'field-login-cr' %>
             </div>
 
             <div class='card-date'>
               <div class="field">
                 <%= f.label :expire_date, class: 'label-cr-card' %><br />
-                <%= f.date_field :expire_date, autofocus: true, autocomplete: "expire_date", placeholder: 'MM/YYYY', class: 'field-login-cr' %>
+                <%= f.text_field :expire_date, autofocus: true, autocomplete: "expire_date", placeholder: 'MM/YYYY', maxlength: 7, class: 'field-login-cr' %>
               </div>
             </div>
 

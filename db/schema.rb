@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2020_03_23_124942) do
   create_table "cards", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "card_number", limit: 16, null: false
-    t.date "expire_date", null: false
+    t.string "card_number", limit: 19, null: false
+    t.string "expire_date", limit: 7, null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
