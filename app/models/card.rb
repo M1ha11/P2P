@@ -5,8 +5,10 @@ class Card < ApplicationRecord
 
   belongs_to :user
 
-  validates :card_number, presence: true, format: { with: /\A(\d{4})\s(\d{4})\s(\d{4})\s(\d{4})\z/ }, if: :choose_number_format
-  validates :card_number, presence: true, format: { with: /\A(\d{16})\z/ }, unless: :choose_number_format
+  validates :card_number, presence: true, format: { with: /\A(\d{4})\s(\d{4})\s(\d{4})\s(\d{4})\z/ },
+                          if: :choose_number_format
+  validates :card_number, presence: true, format: { with: /\A(\d{16})\z/ },
+                          unless: :choose_number_format
   validates :expire_date, presence: true, format: { with: %r/\d{2}\/\d{4}/ }
   validate :validate_expire
 
