@@ -38,6 +38,7 @@ group :development, :test do
   gem 'annotate', '~> 3.1'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails', '~> 5.1'
   gem 'faker', '~> 2.10'
   gem 'pry', '~> 0.12.2'
   gem 'rspec-rails', '~> 3.9'
