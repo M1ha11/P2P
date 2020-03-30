@@ -32,12 +32,12 @@ Profile.create([
   {
     phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
     address: Faker::Address.full_address,
-    user: User.first
+    user: User.second
   },
   {
     phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
     address: Faker::Address.full_address,
-    user: User.second
+    user: User.first
   },
   {
     phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
@@ -47,6 +47,5 @@ Profile.create([
 ])
 
 2.times do
-  c = FactoryBot.build(:card)
-  c.save!
+  FactoryBot.create(:card)
 end
