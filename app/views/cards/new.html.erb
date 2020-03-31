@@ -10,7 +10,7 @@
         </div>
         <div class='login-card-f col col-10'>
           <%= form_for(@card, url: cards_path) do |f| %>
-            <%= render 'flash' %>
+            <%= render 'shared/flash' %>
 
             <div class="field">
               <%= f.label :card_number, class: 'label-cr-card' %>

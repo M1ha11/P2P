@@ -4,9 +4,7 @@ class Card < ApplicationRecord
 
   belongs_to :user
 
-  include ActiveModel::Validations
   validates_with CardDateValidator
-
   validates :card_number, presence: true, format: { with: /\A(\d{4}\s\d{4}\s\d{4}\s\d{4})\z/ }
   validates :expire_date, presence: true, format: { with: %r/\d{2}\/\d{4}/ }
 
