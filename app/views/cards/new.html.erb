@@ -1,0 +1,38 @@
+<div class='container-card-new'>
+  <div class="card login-card cr-card">
+    <div class='cred-body'>
+      <div class='card-title cred-title'>
+        <h1 class='cr-card-title'>New Card</h1>       
+      </div>
+      <div class='row justify-content-start'>
+        <div class='card-chip col col-2'>
+          <%= image_tag('/credit_card/chip_2.png', class: 'chip-img') %>
+        </div>
+        <div class='login-card-f col col-10'>
+          <%= form_for(@card, url: cards_path) do |f| %>
+            <%= render 'shared/flash' %>
+
+            <div class="field">
+              <%= f.label :card_number, class: 'label-cr-card' %>
+              <br />
+              <%= f.text_field :card_number, autofocus: true, autocomplete: "card_number", placeholder: 'Card Number', maxlength: 19, class: 'field-login-cr' %>
+            </div>
+
+            <div class='card-date'>
+              <div class="field">
+                <%= f.label :expire_date, class: 'label-cr-card' %><br />
+                <%= f.text_field :expire_date, autofocus: true, autocomplete: "expire_date", placeholder: 'MM/YYYY', maxlength: 7, class: 'field-login-cr' %>
+              </div>
+            </div>
+
+            <div class="actions submit-btn-cr">
+              <%= f.submit "Create", class: 'btn log-btn btn-lg btn-login' %>
+            </div>
+          <% end %>
+
+          <%= link_to "Back", :back, class: 'thd-lnk' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

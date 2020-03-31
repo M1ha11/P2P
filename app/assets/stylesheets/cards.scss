@@ -1,0 +1,165 @@
+// Place all the styles related to the Cards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container-card-new {
+  display: grid;
+  max-width: 700px;
+  min-width: 300px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cred-title {
+  margin-top: 10px;
+  background-color: var(--bootstrap-black);
+}
+
+.login-card {
+  display: grid;
+  border-radius: 30px;
+}
+
+.cred-body {
+  background-color: var(--card-green);
+  padding: 20px;
+  border-radius: 20px;
+   box-shadow: 0 0 10px var(--bootstrap-black);
+}
+
+.cr-card-title {
+  color: var(--mint);
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.label-cr-card {
+  color: var(--bootstrap-black);
+  font-size: 18px;
+}
+
+.field-login-cr {
+  width: 70%;
+  margin-bottom: 15px;
+  height: 30px;
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+.field-login-cr:focus {
+  outline: 0;
+  box-shadow: 0 0 8px var(--pinky);
+}
+
+.card-chip {
+  width: 70px;
+  margin-left: 40px;
+}
+
+.chip-img {
+  width: 70px;
+}
+
+.submit-btn-cr {
+  margin-top: 20px;
+  margin-left: 70px;
+  margin-right: 60px;
+}
+
+.card-date {
+  width: 40%;
+  margin-left: 230px;
+}
+
+.cr-mn-card-container {
+  display: grid;
+  max-width: 500px;
+  min-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+}
+
+.card-main {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+.new-lnk-cr {
+  margin-left: 45%;
+}
+
+.new-cr-btn {
+  background-color: var(--oliva);
+  justify-content: center;
+  border-radius: 30px;
+  font-size: 25px;
+  padding: 20px;
+  color: white;
+}
+
+.new-cr-btn:hover {
+  background-color: var(--dark-green);
+  color: var(--azure);
+}
+
+.cards {
+  margin-left: 50px;
+  margin-top: 40px;
+}
+
+.cr-card-main {
+  display: grid;
+  border-radius: 30px;
+}
+
+.crd-body {
+  background-color: var(--card-green);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px var(--bootstrap-black);
+}
+
+.crd-title-main {
+  margin-top: 3px;
+  background-color: var(--bootstrap-black);
+}
+
+.crd-card-title-main {
+  color: var(--mint);
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.card-chip-main {
+  width: 50px;
+  margin-left: 10px;
+}
+
+.chip-img-main {
+  width: 50px;
+}
+
+.crd-nm {
+  margin-top: 40px;
+  margin-left: 50px;
+  font-size: 24px;
+}
+
+.crd-dt {
+  margin-top: 5px;
+  margin-left: 200px;
+  font-size: 20px;
+}
+
+.crd-del {
+  color: var(--mega-dark-green);
+  text-decoration: underline;
+}
+
+.crd-del:hover {
+  color: var(--custom-red);
+}
