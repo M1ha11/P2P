@@ -28,6 +28,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:twitter]
 
   has_one :profile, dependent: :destroy
+  has_many :cards, dependent: :destroy
+
   accepts_nested_attributes_for :profile
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A(\S+)@(.+)\.(\S+)\z/i }
