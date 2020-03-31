@@ -1,8 +1,4 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!
-  responders :flash
-  respond_to :html
-
   def index
     @cards = Card.all
     respond_with @cards, location: -> { cards_path }

@@ -8,7 +8,7 @@ var num = document.getElementById('card_card_number');
 num.onkeyup = space_in_number;
 
 function slash() {
-  if (this.value.length == 2) {
+  if (this.value.length === 2) {
     this.value = this.value + '/';
   }
 }

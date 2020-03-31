@@ -17,7 +17,7 @@
                 </div>
                 <div class='crd-main-info col-8'>
                   <p class='crd-nm'>
-                    <%= card.card_number[0..-5].gsub(/d{4}/, '\& ').gsub(/\d/, '*')%> <%= card.card_number.last(4) %>
+                    <%= show_card_number(card) %>
                   </p>
                   <p class='crd-dt'>
                     <%= link_to 'Delete', card_path(card), method: :delete, class: 'crd-del' %>

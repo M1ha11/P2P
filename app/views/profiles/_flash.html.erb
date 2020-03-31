@@ -1,0 +1,9 @@
+<% if flash[:alert] %>
+  <% if flash[:alert].include?(',') %>
+    <% flash[:alert].split(',').each do |msg| %>
+      <p class='label-login-red'><%= msg %></p>
+    <% end %>
+  <% else %>
+    <p class='label-login'><%= flash[:alert] %></p>
+  <% end %>
+<% end %>

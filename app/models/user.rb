@@ -34,6 +34,4 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A(\S+)@(.+)\.(\S+)\z/i }
   enum role: %i[user admin]
-
-  has_many :cards
 end

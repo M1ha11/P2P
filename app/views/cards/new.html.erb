@@ -10,18 +10,7 @@
         </div>
         <div class='login-card-f col col-10'>
           <%= form_for(@card, url: cards_path) do |f| %>
-            <% if flash[:errors] %>
-              <p class='label-login-red'><%= flash[:errors] %></p>
-            <% end %>
-            <% if flash[:alert] %>
-              <% if flash[:alert].include?(',') %>
-                <% flash[:alert].split(',').each do |msg| %>
-                  <p class='label-login-red'><%= msg %></p>
-                <% end %>
-              <% else %>
-                <p class='label-login-red'><%= flash[:alert] %></p>
-              <% end %>
-            <% end %>
+            <%= render 'flash' %>
 
             <div class="field">
               <%= f.label :card_number, class: 'label-cr-card' %>

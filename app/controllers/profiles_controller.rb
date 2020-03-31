@@ -1,8 +1,4 @@
 class ProfilesController < ApplicationController
-  responders :flash
-  before_action :authenticate_user!
-  respond_to :html
-
   def show
     respond_with profile, location: -> { profile_path(profile.id) }
   end
