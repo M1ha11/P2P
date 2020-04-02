@@ -1,11 +1,12 @@
 class ClaimsController < ApplicationController
-  before_action :authenticate_user!
-  responders :flash
-  respond_to :html
-
-  def index
-    @claims = Claim.where(status: 'public')
+   def index
+    @claims = Claim.where(status: 'publicly')
     respond_with @claims, location: -> { claims_path }
+  end
+
+  def user_index
+    @claims = current_user.claims
+    respond_with @claims, location: -> { user_index_claims_path }
   end
 
   def new

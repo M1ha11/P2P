@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_124942) do
+ActiveRecord::Schema.define(version: 2020_03_30_154844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 2020_03_23_124942) do
     t.string "expire_date", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_cards_on_user_id"
+  end
+
+  create_table "claims", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "amount", null: false
+    t.string "currency", null: false
+    t.string "goal", null: false
+    t.float "interest_rate", null: false
+    t.string "repayment_period", null: false
+    t.string "payment_frequency", null: false
+    t.integer "status", default: 0, null: false
   end
 
   create_table "profiles", force: :cascade do |t|

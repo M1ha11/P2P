@@ -98,3 +98,34 @@
 .edit_profile {
   width: 90%;
 }
+
+.profile-body {
+  width: 100%;
+  display: grid;
+  margin-top: 70px;
+}
+
+.btn-new-claim {
+  font-size: 26px;
+  border-radius: 30px;
+  background-color: var(--bootstrap-black);
+  padding: 20px;
+  color: var(--azure);
+}
+
+.btn-new-claim:hover {
+  color: var(--oliva);
+  background-color: var(--mega-dark-green);
+}
+
+.btn-cl {
+  width: 80%;
+  margin-left: 10%;
+  height: 50px;
+  text-align: center;
+}
+
+.cl-prof {
+  width: 100%;
+  display: grid;
+}
