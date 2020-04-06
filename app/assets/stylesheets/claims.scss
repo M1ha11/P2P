@@ -73,3 +73,54 @@
 .bd-show {
   margin-top: 100px;
 }
+
+.container-claim-show {
+  margin-left: 100px;
+  display: grid;
+}
+
+.card-cl-show {
+  background-color: var(--bootstrap-black);
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.claim-user {
+  color: white;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.card-sub-title {
+  margin-right: 25px;
+}
+
+hr.solid {
+  border-top: 1px solid var(--mint);
+}
+
+.goal-info {
+  margin-left: 10px;
+}
+
+.txt-godl-info {
+  color: white;
+  font-size: 18px;
+}
+
+.txt-other-info {
+  color: var(--mint);
+  font-size: 18px;
+}
+
+.info {
+  color: white;
+  font-style: italic;
+}
+
+.index-claim-container {
+  margin-top: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
+  display: grid;
+}

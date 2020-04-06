@@ -1,32 +1,49 @@
 <div class='row bd-show'>
   <div class='col-6'>
     <div class='container-claim-show'>
-      <div class='card'>
+      <div class='card-cl-show'>
         <div class='cl-card-body'>
           <div class='card-title'>
-            <h1 class='login-title'>
-              Credit on <%= @claim.amount %> <%= @claim.currency %>
-            </h1>
-            <h4>
-              <%= @claim.user.email %>
-            </h4>
-          </div>
-          <div class='claim-info'>
-            <div class='goal-info'>
-              <p>
-                <%= @claim.goal %>
-              </p>
+            <div class='row justify-content-md-center'>
+              <h1 class='login-title sh'>
+                Credit on <%= @claim.amount %> <%= @claim.currency %>
+              </h1>
             </div>
-            <div class='other-info'>
-              <p>
-                Interest rate: <%= @claim.interest_rate %> 
-              </p>
-              <p>
-                Payment frequenct: <%= @claim.payment_frequency %>
-              </p>
-              <p>
-                Repayment period: <%= @claim.repayment_period %>
-              </p>
+          </div>
+          <div class='card-sub-title'>
+            <div class='row justify-content-md-end'>
+              <h4 class='claim-user'>
+                <%= @claim.user.email %>
+              </h4>
+            </div>
+          </div>
+
+          <hr class='solid'>
+          
+          <div class='claim-info'>
+            <div class='row'>
+              <div class='col-7'>
+                <div class='goal-info'>
+                  <p class='txt-godl-info'>
+                    <%= @claim.goal %>
+                  </p>
+                </div>
+              </div>
+              <div class='col-4'>
+                <div class='other-info'>
+                  <p class='txt-other-info'>
+                    Interest rate: <span class='info'><%= @claim.interest_rate %></span>
+                  </p>
+                  <hr class='solid'>
+                  <p class='txt-other-info'>
+                    Payment frequenct: <span class='info'><%= @claim.payment_frequency %></span>
+                  </p>
+                  <hr class='solid'>
+                  <p class='txt-other-info'>
+                    Repayment period: <span class='info'><%= @claim.repayment_period %></span>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
