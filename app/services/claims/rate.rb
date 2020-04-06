@@ -4,7 +4,7 @@ module Claims
 
     def initialize
       @rate = []
-    end  
+    end
 
     def list
       url = "#{API}?onDate=#{Date.today.strftime('%Y-%m-%d')}"

@@ -1,5 +1,5 @@
 class ClaimsController < ApplicationController
-   def index
+  def index
     @claims = Claim.where(status: 'publicly')
     respond_with @claims, location: -> { claims_path }
   end
@@ -11,14 +11,12 @@ class ClaimsController < ApplicationController
   end
 
   def create
-    binding.pry
     @claim = current_user.claims.build(claim_params)
     @claim.save
     respond_with @claim, location: -> { claim_path(claim.id) }
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     claim.update(claim_params)
