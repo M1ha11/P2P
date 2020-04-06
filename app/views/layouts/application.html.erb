@@ -10,7 +10,9 @@
 
   <body>
     <nav class='navbar navbar-dark bg-dark'>
-      <h1 class='title'>P2P</h1>
+      <h1 class='title'>
+        <%= link_to 'P2P', root_path, class: 'title' %>
+      </h1>
       <ul class='nav justify-content-center'>
         <% unless current_user %>
           <li class='nav-item'>

@@ -16,12 +16,12 @@
           <div class='row'>
             <div class="field col-5">
               <%= f.label :currency, class: 'label-login' %><br />
-              <%= f.select :currency, ClaimCurrency.new.currency, size: 10, autofocus: true, class: 'field-login-cl' %>
+              <%= f.select :currency, @currencies, size: 10, autofocus: true, class: 'field-login-cl' %>
             </div>
 
             <div class="field col-5">
               <%= f.label :interest_rate, class: 'label-login' %><br />
-              <%= f.select :interest_rate,  ClaimRate.new.rate, size: 3, autofocus: true, class: 'field-login-cl' %>
+              <%= f.select :interest_rate,  @rates, size: 3, autofocus: true, class: 'field-login-cl' %>
             </div>
           </div>
 

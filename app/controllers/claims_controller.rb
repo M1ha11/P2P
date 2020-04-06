@@ -4,12 +4,9 @@ class ClaimsController < ApplicationController
     respond_with @claims, location: -> { claims_path }
   end
 
-  def user_index
-    @claims = current_user.claims
-    respond_with @claims, location: -> { user_index_claims_path }
-  end
-
   def new
+    @currencies = Claims::Currency.new.list
+    @rates = Claims::Rate.new.list
     @claim = Claim.new
   end
 
