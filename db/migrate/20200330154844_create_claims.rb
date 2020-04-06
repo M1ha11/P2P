@@ -10,6 +10,7 @@ class CreateClaims < ActiveRecord::Migration[5.2]
       t.string :repayment_period, null: false
       t.string :payment_frequency, null: false
       t.integer :status, null: false, default: 0
+      t.references :user, foreign_key: true, null: false
     end
   end
 end

@@ -14,9 +14,10 @@ class ClaimsController < ApplicationController
   end
 
   def create
+    binding.pry
     @claim = current_user.claims.build(claim_params)
     @claim.save
-    respond_with @claim, location: -> { claim_path }
+    respond_with @claim, location: -> { claim_path(claim.id) }
   end
 
   def edit
@@ -39,7 +40,7 @@ class ClaimsController < ApplicationController
   private
 
   def claim
-    @claim ||= Claim.find(:id)
+    @claim ||= Claim.find(params[:id])
   end
 
   def flash_interpolation_options
@@ -47,7 +48,7 @@ class ClaimsController < ApplicationController
   end
 
   def claim_params
-    params.require(:claim).permit(:amount, :currency, :goal, :interest_rate, :repaiment_period, :payment_frequency,
+    params.require(:claim).permit(:amount, :currency, :goal, :interest_rate, :repayment_period, :payment_frequency,
                                   :status, user: [:id])
   end
 end

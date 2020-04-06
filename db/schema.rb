@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 2020_03_30_154844) do
     t.string "repayment_period", null: false
     t.string "payment_frequency", null: false
     t.integer "status", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_claims_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -95,5 +97,6 @@ ActiveRecord::Schema.define(version: 2020_03_30_154844) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cards", "users"
+  add_foreign_key "claims", "users"
   add_foreign_key "profiles", "users"
 end

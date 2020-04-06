@@ -1,5 +1,5 @@
 <div class='container-login-cl'>
-  <div class="card cl-card">
+  <div class="cl-card">
     <div class='cl-body'>
       <div class='card-title'>
         <h1 class='login-title'>New Credit Claim</h1>        
@@ -16,30 +16,30 @@
           <div class='row'>
             <div class="field col-5">
               <%= f.label :currency, class: 'label-login' %><br />
-              <%= f.text_field :currency, size: 10, autofocus: true, class: 'field-login-cl' %>
+              <%= f.select :currency, ClaimCurrency.new.currency, size: 10, autofocus: true, class: 'field-login-cl' %>
             </div>
 
             <div class="field col-5">
               <%= f.label :interest_rate, class: 'label-login' %><br />
-              <%= f.text_field :interest_rate, size: 3, autofocus: true, class: 'field-login-cl' %>
+              <%= f.select :interest_rate,  ClaimRate.new.rate, size: 3, autofocus: true, class: 'field-login-cl' %>
             </div>
           </div>
 
           <div class='row'>
             <div class="field col-5">
-              <%= f.label :repaiment_period, class: 'label-login' %><br />
-              <%= f.text_field :repaiment_period, size: 8, autofocus: true, class: 'field-login-cl' %>
+              <%= f.label :repayment_period, class: 'label-login' %><br />
+              <%= f.select :repayment_period, Claim.repayment_periods, size: 8, autofocus: true, class: 'field-login-cl' %>
             </div>
 
             <div class="field col-5">
               <%= f.label :payment_frequency, class: 'label-login' %><br />
-              <%= f.text_field :payment_frequency, size: 8, autofocus: true, class: 'field-login-cl' %>
+              <%= f.select :payment_frequency, Claim.payment_frequencies, size: 8, autofocus: true, class: 'field-login-cl' %>
             </div>
           </div>
 
           <div class="field">
             <%= f.label :goal, class: 'label-login' %><br />
-            <%= f.text_area :goal, row: 3, autofocus: true, placeholder: 'Goal', class: 'field-login-cl area' %>
+            <%= f.text_area :goal, row: 5, autofocus: true, placeholder: 'Goal', class: 'field-login-cl area' %>
           </div>
 
           <div class="actions submit-btn">
