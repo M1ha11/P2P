@@ -5,15 +5,18 @@ class ClaimsController < ApplicationController
   end
 
   def new
-    @currencies = Claims::Currency.new.list
-    @rates = Claims::Rate.new.list
+    set_service
     @claim = Claim.new
   end
 
   def create
     @claim = current_user.claims.build(claim_params)
-    @claim.save
-    respond_with @claim, location: -> { claim_path(claim.id) }
+    if @claim.save
+      respond_with @claim, location: -> { claim_path(claim.id) }
+    else
+      set_service
+      respond_with @claim, location: -> { new_claim_path }
+    end
   end
 
   def edit; end
@@ -33,6 +36,11 @@ class ClaimsController < ApplicationController
   end
 
   private
+
+  def set_service
+    @currencies = Claims::Currency.new.list
+    @rates = Claims::Rate.new.list
+  end
 
   def claim
     @claim ||= Claim.find(params[:id])

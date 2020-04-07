@@ -5,13 +5,14 @@
 #  id                :bigint           not null, primary key
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  amount            :float
-#  currency          :integer
-#  goal              :string
-#  interest_rate     :float
-#  repaiment_period  :integer
-#  payment_frequency :integer
-#  status            :integer
+#  amount            :float            not null
+#  currency          :string           not null
+#  goal              :string           not null
+#  interest_rate     :float            not null
+#  repayment_period  :string           not null
+#  payment_frequency :string           not null
+#  status            :integer          default("0"), not null
+#  user_id           :bigint           not null
 #
 class Claim < ApplicationRecord
   belongs_to :user
