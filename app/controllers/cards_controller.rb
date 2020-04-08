@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   def index
-    @cards = Card.all
+    @cards = policy_scope(Card)
+    authorize @cards
     respond_with @cards, location: -> { cards_path }
   end
 
@@ -10,12 +11,14 @@ class CardsController < ApplicationController
 
   def create
     @card = current_user.cards.build(card_params)
+    authorize @card
     @card.save
     respond_with @card, location: -> { cards_path }
   end
 
   def destroy
     @card = Card.find(params[:id])
+    authorize @card
     @card.destroy
     respond_with @card, location: -> { cards_path }
   end
