@@ -8,6 +8,7 @@
 #  phone_number           :string(25)       not null
 #  address                :string(150)      not null
 #  avatar                 :string
+#  user_id                :bigint           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
