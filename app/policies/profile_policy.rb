@@ -8,15 +8,15 @@ class ProfilePolicy < ApplicationPolicy
   end
 
   def show?
-    user.present? && profile.user == user || user.admin?
+    profile.user == user || user.admin?
   end
 
   def update?
-    user.present? && profile.user == user
+    profile.user == user
   end
 
   def edit?
-    user.present? && profile.user == user
+    profile.user == user
   end
 
   private

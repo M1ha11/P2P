@@ -1,22 +1,20 @@
 class CardPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.present?
-        scope.where(user_id: user.id)
-      end
+      scope.where(user_id: user.id)
     end
   end
 
   def index?
-    user.present?
+    true
   end
 
   def create?
-    user.present?
+    true
   end
 
   def destroy?
-    user.present? && card.user == user
+    card.user == user
   end
 
   private

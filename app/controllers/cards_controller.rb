@@ -1,7 +1,6 @@
 class CardsController < ApplicationController
   def index
     @cards = policy_scope(Card)
-    authorize @cards
     respond_with @cards, location: -> { cards_path }
   end
 
