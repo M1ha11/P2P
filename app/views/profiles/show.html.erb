@@ -12,9 +12,11 @@
       <h6 class='us-ph-info wh-cl'>Phone:  <%= @profile.phone_number %></h6>
       <h6 class='us-ad-info wh-cl'>Address:  <%= @profile.address %></h6>
     </div>
-    <div class='card-info col'>
-      <%= link_to 'Credit Cards' ,cards_path, class: 'nav-log-btn'%>
-    </div>
+    <% if @profile.user.id == current_user.id %>
+      <div class='card-info col'>
+        <%= link_to 'Credit Cards' ,cards_path, class: 'nav-log-btn'%>
+      </div>
+    <% end %>
     <div class='claims-info col col-2'>
       <h5 class='wh-cl success'>Success credit project: <span class='gr-cl'><%= @profile.success_credit_project %></span></p>
       <h5 class='wh-cl success'>Success lend project: <span class='gr-cl'><%= @profile.success_lend_project %></span></p>
