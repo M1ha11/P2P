@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: cards
+#
+#  id          :bigint           not null, primary key
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  card_number :string(19)       not null
+#  expire_date :string           not null
+#  user_id     :bigint           not null
+#
 class Card < ApplicationRecord
   before_save :encrypt!
   before_save :remove_spaces!

@@ -1,0 +1,64 @@
+<div class='row bd-show'>
+  <div class='col-6'>
+    <div class='container-claim-show'>
+      <div class='card-cl-show'>
+        <div class='cl-card-body'>
+          <div class='card-title'>
+            <div class='row justify-content-md-center'>
+              <h1 class='login-title sh'>
+                Credit on <%= @claim.amount %> <%= @claim.currency %>
+              </h1>
+            </div>
+          </div>
+          <div class='card-sub-title'>
+            <div class='row justify-content-md-end'>
+              <h4 class='claim-user'>
+                <%= @claim.user.email %>
+              </h4>
+            </div>
+          </div>
+
+          <hr class='solid'>
+          
+          <div class='claim-info'>
+            <div class='row'>
+              <div class='col-7'>
+                <div class='goal-info'>
+                  <p class='txt-godl-info'>
+                    <%= @claim.goal %>
+                  </p>
+                </div>
+              </div>
+              <div class='col-4'>
+                <div class='other-info'>
+                  <p class='txt-other-info'>
+                    Interest rate: <span class='info'><%= @claim.interest_rate %></span>
+                  </p>
+                  <hr class='solid'>
+                  <p class='txt-other-info'>
+                    Payment frequency: <span class='info'><%= @claim.payment_frequency %></span>
+                  </p>
+                  <hr class='solid'>
+                  <p class='txt-other-info'>
+                    Repayment period: <span class='info'><%= @claim.repayment_period %></span>
+                  </p>
+                </div>
+                <div class='row justify-content-md-end'>
+                  <div class='del-but'>
+                    <button type='button' class='btn btn-outline-danger'>
+                      <%= link_to 'Delete', claim_path, method: :delete, class: 'nav-unlog-btn' %>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-4'>
+    
+  </div>
+</div>
