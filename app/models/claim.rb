@@ -18,8 +18,6 @@ class Claim < ApplicationRecord
   belongs_to :user
 
   enum status: %i[publicly privatly archive]
-  # enum payment_frequency: ['twice a month', 'once a month', 'once a 3 month', 'once a 4 month',
-  #                          'once a 6 month', 'once a year']
   enum payment_frequency: { 'twice a month': 'twice a month', 'once a month': 'once a month',
                             'once a 3 month': 'once a 3 month', 'once a 4 month': 'once a 4 month',
                             'once a 6 month': 'once a 6 month', 'once a year': 'once a year' }
