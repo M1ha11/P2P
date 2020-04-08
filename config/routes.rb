@@ -5,10 +5,6 @@ Rails.application.routes.draw do
 
   resources :profiles, only: %i[show edit update]
   resources :cards, only: %i[index new create destroy]
-  resources :claims do
-    collection do
-      get :user_index
-    end
-  end
+  resources :claims
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
