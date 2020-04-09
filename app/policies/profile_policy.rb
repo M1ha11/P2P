@@ -1,22 +1,22 @@
 class ProfilePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user == scope.user || user.admin?
+      if user == scope.user || admin?
         scope.user.claims
       end
     end
   end
 
   def show?
-    profile.user == user || user.admin?
+    belongs_to_user?(profile) || admin?
   end
 
   def update?
-    profile.user == user
+    belongs_to_user?(profile)
   end
 
   def edit?
-    profile.user == user
+    belongs_to_user?(profile)
   end
 
   private

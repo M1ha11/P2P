@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
@@ -34,6 +34,14 @@ class ApplicationPolicy
     false
   end
 
+  def admin?
+    user.admin?
+  end
+
+  def belongs_to_user?(record)
+    record.user == user
+  end
+
   class Scope
     attr_reader :user, :scope
 
@@ -44,6 +52,18 @@ class ApplicationPolicy
 
     def resolve
       scope.all
+    end
+
+    def admin?
+      user.admin?
+    end
+
+    def user?
+      user.user?
+    end
+
+    def belongs_to_user?(record)
+      record.user == user
     end
   end
 end

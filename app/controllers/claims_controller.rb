@@ -1,16 +1,18 @@
 class ClaimsController < ApplicationController
   def index
-    @claims = Claim.where(status: 'publicly')
+    @claims = policy_scope(Claim)
     respond_with @claims, location: -> { claims_path }
   end
 
   def new
     set_service
     @claim = Claim.new
+    authorize @claim
   end
 
   def create
     @claim = current_user.claims.build(claim_params)
+    authorize @claim
     if @claim.save
       respond_with @claim, location: -> { claim_path(claim.id) }
     else
@@ -44,6 +46,7 @@ class ClaimsController < ApplicationController
 
   def claim
     @claim ||= Claim.find(params[:id])
+    authorize @claim
   end
 
   def flash_interpolation_options

@@ -13,8 +13,12 @@ class CardPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    true
+  end
+
   def destroy?
-    card.user == user
+    belongs_to_user?(card)
   end
 
   private

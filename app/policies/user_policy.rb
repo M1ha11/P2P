@@ -1,13 +1,13 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    admin?
   end
 
   def lock?
-    user.admin?
+    admin?
   end
 
   def unlock?
-    user.admin?
+    admin?
   end
 end
