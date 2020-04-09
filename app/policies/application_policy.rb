@@ -7,7 +7,6 @@ class ApplicationPolicy
   end
 
   def index?
-    return true if user.nil?
     true
   end
 
@@ -37,6 +36,10 @@ class ApplicationPolicy
 
   def admin?
     user.admin?
+  end
+
+  def user?
+    user.user?
   end
 
   def belongs_to_user?(record)

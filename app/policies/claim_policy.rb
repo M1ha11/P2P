@@ -4,13 +4,10 @@ class ClaimPolicy < ApplicationPolicy
       if admin?
         scope.all
       elsif user?
-        scope.where(status: 'publicly')
-      elsif user.blank? || user.nil? || !user
+        scope.where(status: 'publicly') + scope.where(user_id: user.id).where.not(status: 'publicly')
+      else
         scope.where(status: 'publicly')
       end
-    end
-
-    def user_claims
     end
   end
 
@@ -19,7 +16,7 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    user? || admin?
   end
 
   def create?
