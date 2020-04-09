@@ -1,0 +1,46 @@
+<div class='user-container'>
+  <div class='user-card'>
+    <div class='card-body'>
+      <div class='user-table'>
+        <table class='table'>
+          <thead class='t-head'>
+            <tr>
+              <th scope='col'>Status</th>
+              <th scope='col'>Email</th>
+              <th scope='col'>Phone Number</th>
+              <th scope='col'>Address</th>
+              <th scope='col'>Role</th>
+              <th scope='col'>Credits</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <th scope='row'>
+                  <% if user.access_locked? %>  
+                    <%= link_to unlock_user_path(user.id), method: :patch do %>
+                      <i class="fas fa-lock us-wh-rec"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to lock_user_path(user.id), method: :patch do %>
+                      <i class="fas fa-key us-wh-rec"></i>
+                    <% end %>
+                  <% end %>
+                </th>
+                <td class="us-gr-rec"><%= user.email %></td>
+                <td class="us-wh-rec"><%= user.profile.phone_number%></td>
+                <td class="us-wh-rec"><%= user.profile.address%></td>
+                <td class="us-gr-rec">
+                  <%= user.role %>
+                </td>
+                <td class="us-gr-rec">
+                  <%= user.profile.success_credit_project%>/<%= user.profile.success_lend_project %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,10 +4,14 @@ class ClaimPolicy < ApplicationPolicy
       if admin?
         scope.all
       elsif user?
-        scope.where(status: 'publicly').merge(scope.where(user_id: user.id))
+        scope.where(status: 'publicly') + scope.where(user_id: user.id)
       elsif user.blank? || user.nil? || !user
         scope.where(status: 'publicly')
       end
+    end
+
+    def user_claims
+      scope.where(user_id: user.id)
     end
   end
 
@@ -16,7 +20,7 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def new?
-    belongs_to_user?(claim)
+    true
   end
 
   def create?
@@ -36,7 +40,7 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def show?
-    belongs_to_user?(claim) || admin?
+    true
   end
 
   private

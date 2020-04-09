@@ -1,3 +1,32 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.t-head {
+  background-color: var(--mint);
+}
+
+.us-wh-rec {
+  color: white;
+}
+
+.us-gr-rec {
+  color: var(--mint);
+}
+
+.user-container {
+  width: 95%;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-table {
+  padding: 1em;
+}
+
+.user-card {
+  border-radius: 2em;
+  display: grid;
+  min-width: 400px;
+}
