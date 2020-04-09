@@ -7,6 +7,7 @@ class ApplicationPolicy
   end
 
   def index?
+    return true if user.nil?
     true
   end
 

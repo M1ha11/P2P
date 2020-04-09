@@ -43,13 +43,15 @@
                     Repayment period: <span class='info'><%= @claim.repayment_period %></span>
                   </p>
                 </div>
-                <div class='row justify-content-md-end'>
-                  <div class='del-but'>
-                    <button type='button' class='btn btn-outline-danger'>
-                      <%= link_to 'Delete', claim_path, method: :delete, class: 'nav-unlog-btn' %>
-                    </button>
+                <% if policy(@claim).destroy? %>
+                  <div class='row justify-content-md-end'>
+                    <div class='del-but'>
+                      <button type='button' class='btn btn-outline-danger'>
+                        <%= link_to 'Delete', claim_path, method: :delete, class: 'nav-unlog-btn' %>
+                      </button>
+                    </div>
                   </div>
-                </div>
+                <% end %>
               </div>
             </div>
           </div>
