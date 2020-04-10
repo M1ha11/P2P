@@ -12,10 +12,26 @@ class UserPolicy < ApplicationPolicy
   end
 
   def lock?
-    admin?
+    admin? && user_not_admin?
   end
 
   def unlock?
-    admin?
+    admin? && user_not_admin?
+  end
+
+  def change_role?
+    not_locked? && admin?
+  end
+
+  private
+
+  def user_not_admin?
+    return true unless record.admin?
+    false
+  end
+
+  def not_locked?
+    return true unless record.access_locked?
+    false
   end
 end

@@ -66,8 +66,8 @@ class ApplicationPolicy
       user.user? if user
     end
 
-    def belongs_to_user?(record)
-      record.user == user
+    def belongs_to_user?(scope)
+      scope.user == user
     end
   end
 end

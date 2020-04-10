@@ -5,13 +5,11 @@ class UsersController < ApplicationController
   end
 
   def lock
-    return if user.admin?
     user.lock_access!({ send_instructions: false })
     respond_with user, location: -> { users_path }
   end
 
   def unlock
-    return if user.admin?
     user.unlock_access!
     respond_with user, location: -> { users_path }
   end
@@ -25,6 +23,7 @@ class UsersController < ApplicationController
 
   def user
     @user ||= User.find(params[:id])
+    authorize @user
   end
 
   def user_params

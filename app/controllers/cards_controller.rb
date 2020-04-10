@@ -1,6 +1,5 @@
 class CardsController < ApplicationController
   def index
-    binding.pry
     @cards = policy_scope(Card)
     respond_with @cards, location: -> { cards_path }
   end
