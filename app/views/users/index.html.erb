@@ -31,7 +31,9 @@
                 <td class="us-wh-rec"><%= user.profile.phone_number%></td>
                 <td class="us-wh-rec"><%= user.profile.address%></td>
                 <td class="us-gr-rec">
-                  <%= user.role %>
+                  <%= form_for(user, url: change_role_user_path(user.id), html: { method: :patch }) do |f| %>
+                    <%= f.select :role, User.roles.keys, {}, { onchange: 'this.form.submit();', class: 'role' } %>
+                  <% end %>
                 </td>
                 <td class="us-gr-rec">
                   <%= user.profile.success_credit_project%>/<%= user.profile.success_lend_project %>

@@ -35,11 +35,11 @@ class ApplicationPolicy
   end
 
   def admin?
-    user.admin?
+    user.admin? if user
   end
 
   def user?
-    user.user?
+    user.user? if user
   end
 
   def belongs_to_user?(record)
@@ -59,11 +59,11 @@ class ApplicationPolicy
     end
 
     def admin?
-      user.admin?
+      user.admin? if user
     end
 
     def user?
-      user.user?
+      user.user? if user
     end
 
     def belongs_to_user?(record)

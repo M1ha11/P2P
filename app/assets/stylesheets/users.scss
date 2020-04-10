@@ -30,3 +30,12 @@
   display: grid;
   min-width: 400px;
 }
+
+.role {
+  background-color: var(--bootstrap-black);
+  color: var(--mint);
+}
+ .role:focus {
+  outline: 0;
+  box-shadow: 0 0 8px var(--azure);
+ }

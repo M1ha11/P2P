@@ -1,12 +1,4 @@
 class ProfilePolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      if user == scope.user || admin?
-        scope.user.claims
-      end
-    end
-  end
-
   def show?
     belongs_to_user?(profile) || admin?
   end

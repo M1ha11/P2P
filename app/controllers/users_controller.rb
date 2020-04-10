@@ -5,16 +5,20 @@ class UsersController < ApplicationController
   end
 
   def lock
+    return if user.admin?
     user.lock_access!({ send_instructions: false })
     respond_with user, location: -> { users_path }
   end
 
   def unlock
+    return if user.admin?
     user.unlock_access!
     respond_with user, location: -> { users_path }
   end
 
-  def make_admin
+  def change_role
+    user.update(user_params)
+    respond_with user, location: -> { users_path }
   end
 
   private
@@ -24,6 +28,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :role)
+    params.require(:user).permit(:role)
   end
 end

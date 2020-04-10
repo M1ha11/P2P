@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     member do
       patch 'lock'
       patch 'unlock'
-      patch 'make_admin'
+      patch 'change_role'
     end
   end
   resources :claims

@@ -1,7 +1,7 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.admin?
+      if admin?
         scope.where.not(id: user.id)
       end
     end
