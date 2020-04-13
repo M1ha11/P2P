@@ -14,6 +14,7 @@
 #
 class Profile < ApplicationRecord
   belongs_to :user
+  has_many :claims, through: :user
 
   has_one_attached :avatar
 

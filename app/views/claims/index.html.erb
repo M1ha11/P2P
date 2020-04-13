@@ -1,3 +1,5 @@
 <div class='index-claim-container'>
-  <%= render 'claims' %>
+  <div class='row'>
+      <%= render partial: 'claims', collection: @claims, as: :claim %>
+  </div>
 </div>

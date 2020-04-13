@@ -1,5 +1,6 @@
 class ApplicationPolicy
   attr_reader :user, :record
+  delegate :admin?, :user?, to: :user, :allow_nil => true
 
   def initialize(user, record)
     @user = user
@@ -34,21 +35,14 @@ class ApplicationPolicy
     false
   end
 
-  def admin?
-    user.admin? if user
-  end
-
-  def user?
-    user.user? if user
-  end
-
   def belongs_to_user?(record)
     record.user == user
   end
 
   class Scope
     attr_reader :user, :scope
-
+    delegate :admin?, :user?, to: :user, :allow_nil => true
+ 
     def initialize(user, scope)
       @user = user
       @scope = scope
@@ -56,14 +50,6 @@ class ApplicationPolicy
 
     def resolve
       scope.all
-    end
-
-    def admin?
-      user.admin? if user
-    end
-
-    def user?
-      user.user? if user
     end
 
     def belongs_to_user?(scope)

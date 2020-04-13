@@ -24,12 +24,14 @@
     </div>
   </div>
   <div class='profile-body'>
-    <div class='btn btn-cl'>
-      <%= link_to 'New Credit Claim', new_claim_path, class: 'btn-new-claim' %>
-    </div>
-    <% unless @profile.user.claims.nil? %>
+      <div class='btn btn-cl'>
+        <%= link_to 'New Credit Claim', new_claim_path, class: 'btn-new-claim' %>
+      </div>
+    <% unless @profile.claims.nil? %>
       <div class='cl-prof'>
-      
+        <div class='row'>
+          <%= render partial: 'claims/claims', collection: @profile.claims, as: :claim %>
+        </div>
       </div>
     <% end %>
   </div>

@@ -27,7 +27,7 @@
                     <% end %>
                   <% end %>
                 </th>
-                <td class="us-gr-rec"><%= user.email %></td>
+                <td class="us-gr-rec"><%= link_to user.email, profile_path(user.profile.id), class: 'us-gr-rec-lnk' %></td>
                 <td class="us-wh-rec"><%= user.profile.phone_number%></td>
                 <td class="us-wh-rec"><%= user.profile.address%></td>
                 <td class="us-gr-rec">
