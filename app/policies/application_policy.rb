@@ -1,6 +1,6 @@
 class ApplicationPolicy
   attr_reader :user, :record
-  delegate :admin?, :user?, to: :user, :allow_nil => true
+  delegate :admin?, :user?, to: :user, allow_nil: true
 
   def initialize(user, record)
     @user = user
@@ -41,8 +41,8 @@ class ApplicationPolicy
 
   class Scope
     attr_reader :user, :scope
-    delegate :admin?, :user?, to: :user, :allow_nil => true
- 
+    delegate :admin?, :user?, to: :user, allow_nil: true
+
     def initialize(user, scope)
       @user = user
       @scope = scope

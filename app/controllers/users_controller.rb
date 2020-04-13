@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def lock
-    user.lock_access!({ send_instructions: false })
+    user.lock_access!(send_instructions: false)
     respond_with user, location: -> { users_path }
   end
 
