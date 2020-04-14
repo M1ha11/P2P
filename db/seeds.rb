@@ -8,9 +8,9 @@
 require 'factory_bot_rails'
 
 3.times do
-  # FactoryBot.create(:user)
-  # FactoryBot.create(:profile)
-  # FactoryBot.create(:card)
-  # FactoryBot.create(:claim)
+  FactoryBot.create(:user)
+  FactoryBot.create(:profile)
+  FactoryBot.create(:card)
+  FactoryBot.create(:claim)
   FactoryBot.create(:comment)
 end

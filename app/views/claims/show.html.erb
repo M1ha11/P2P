@@ -56,9 +56,23 @@
         </div>
       </div>
     </div>
+
+  
+    <div class='comments'>
+      <div class="comment-title">
+        <h1 class='title-com'>Comments:</h1>
+      </div>
+      <%= render partial: 'comments/new' %>
+    </div>
+    <div class='all-comments'>
+      <ul class='list-com'>
+        <%= render partial: 'comments/comment', collection: @claim.comments, as: :comment %>
+      </ul>
+    </div>
+
   </div>
 
   <div class='col-4'>
-    
+
   </div>
 </div>
