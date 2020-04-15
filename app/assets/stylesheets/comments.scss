@@ -35,6 +35,16 @@
   box-shadow: 0 0 8px var(--azure);
 }
 
+.field-reply {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.field-reply:focus {
+  outline: 0;
+  box-shadow: 0 0 8px var(--bootstrap-black);
+}
+
 .sub-com {
   width: 50%;
 }
@@ -49,6 +59,7 @@
   font-style: italic;
   font-weight: bold;
   color: var(--mega-dark-green);
+  margin-left: 10px;
 }
 
 .text-com {
@@ -63,4 +74,21 @@
 
 .list-com {
   list-style-type: none;
+}
+
+.lnk-rep {
+  margin-left: 28px;
+  color: var(--oliva);
+}
+
+.lnk-rep:hover {
+  color: var(--bootstrap-black);
+}
+
+.del-com-lnk {
+  color: var(--custom-red);
+}
+
+.del-com-lnk:hover {
+  color: var(--bootstrap-black);
 }

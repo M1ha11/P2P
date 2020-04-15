@@ -8,11 +8,4 @@
     <span class='com-user'><%= comment.user.email %></span>
   </p>
   <p class='text-com'><%= comment.text %></p>
-  <% if comment.replies %>
-    <div class='replies'>
-      <ul class='list-com'>
-        <%= render partial: 'comments/reply', collection: comment.replies, as: :comment %>
-      </ul>
-    </div>
-  <% end %>
 </li>
