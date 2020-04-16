@@ -1,7 +1,7 @@
 <li>
   <p>
     <% if comment.user.profile.avatar.attached? %>
-      <%= image_tag @profile.avatar, class: 'rounded-circle com-ava' %>
+      <%= image_tag comment.user.profile.avatar, class: 'rounded-circle com-ava' %>
     <% else %>
       <%= image_tag '/avatar/avatar.png', class:'rounded-circle com-ava'  %>
     <% end %>

@@ -11,7 +11,7 @@
     <p class='text-com'><%= comment.text %></p>
     <div id='reply_id'>
       <%= link_to 'Reply', new_claim_comment_path(@claim.id, parent_id: comment.id), remote: true, class: 'lnk-rep' %>
-      <%= link_to 'Delete', claim_comment_path(@claim.id), method: :delete, class: 'del-com-lnk' %>
+      <%= link_to 'Delete', claim_comment_path(@claim.id, comment.id), method: :delete, class: 'del-com-lnk' %>
     </div>
     <% unless comment.replies.nil? %>
       <div class='replies'>

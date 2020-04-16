@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    respond_with @comment, location: -> {}
+    respond_with @comment, location: -> { claim_path(params[:claim_id]) }
   end
 
   private
