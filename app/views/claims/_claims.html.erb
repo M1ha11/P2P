@@ -1,18 +1,14 @@
-<div class='row'>
-  <% @claims.each do |claim| %>
-    <div class='card-ind col-4'>
-      <div class='card-body cl-body'>
-        <div class='card-title'>
-          <h1 class='cl-title'>
-            <%= link_to "Credit #{claim.amount} #{claim.currency}", claim_path(claim.id), class: 'cl-name' %>
-          </h1>
-        </div>
-        <div class='card-txt'>
-          <p class='cl-goal'>
-            <%= claim.goal.truncate(100) %>
-          </p>
-        </div>
-      </div>
+<div class='card-ind col-4'>
+  <div class='card-body cl-body'>
+    <div class='card-title'>
+      <h1 class='cl-title'>
+        <%= link_to "Credit #{claim.amount} #{claim.currency}", claim_path(claim.id), class: 'cl-name' %>
+      </h1>
     </div>
-  <% end %>
+    <div class='card-txt'>
+      <p class='cl-goal'>
+        <%= claim.goal.truncate(100) %>
+      </p>
+    </div>
+  </div>
 </div>

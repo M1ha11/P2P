@@ -1,0 +1,48 @@
+<div class='user-container'>
+  <div class='user-card'>
+    <div class='card-body'>
+      <div class='user-table'>
+        <table class='table'>
+          <thead class='t-head'>
+            <tr>
+              <th scope='col'>Status</th>
+              <th scope='col'>Email</th>
+              <th scope='col'>Phone Number</th>
+              <th scope='col'>Address</th>
+              <th scope='col'>Role</th>
+              <th scope='col'>Credits</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <th scope='row'>
+                  <% unless policy(user).editable_user_not_locked? %>  
+                    <%= link_to unlock_user_path(user.id), method: :patch do %>
+                      <%= fa_icon 'lock', class: 'us-wh-rec' %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to lock_user_path(user.id), method: :patch do %>
+                     <%= fa_icon 'key', class: 'us-wh-rec' %>
+                    <% end %>
+                  <% end %>
+                </th>
+                <td class="us-gr-rec"><%= link_to user.email, profile_path(user.profile.id), class: 'us-gr-rec-lnk' %></td>
+                <td class="us-wh-rec"><%= user.profile.phone_number%></td>
+                <td class="us-wh-rec"><%= user.profile.address%></td>
+                <td class="us-gr-rec">
+                  <%= form_for(user, url: change_role_user_path(user.id), html: { method: :patch }) do |f| %>
+                    <%= f.select :role, User.roles.keys, {}, { onchange: 'this.form.submit();', class: 'role' } %>
+                  <% end %>
+                </td>
+                <td class="us-gr-rec">
+                  <%= user.profile.success_credit_project%>/<%= user.profile.success_lend_project %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
