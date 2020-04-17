@@ -1,7 +1,11 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where.not(id: user.id) if admin?
+      if admin?
+        scope.where.not(id: user.id)
+      else
+        scope.none
+      end
     end
   end
 
@@ -10,28 +14,22 @@ class UserPolicy < ApplicationPolicy
   end
 
   def lock?
-    admin? && user_not_admin?
+    admin? && editable_user_not_admin?
   end
 
   def unlock?
-    admin? && user_not_admin?
+    admin? && editable_user_not_admin?
   end
 
   def change_role?
-    not_locked? && admin?
+    editable_user_not_locked? && admin?
   end
 
-  private
-
-  def user_not_admin?
-    return true unless record.admin?
-
-    false
+  def editable_user_not_admin?
+    !record.admin?
   end
 
-  def not_locked?
-    return true unless record.access_locked?
-
-    false
+  def editable_user_not_locked?
+    !record.access_locked?
   end
 end

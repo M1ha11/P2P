@@ -4,8 +4,7 @@
     <title>P2P</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <script src="https://kit.fontawesome.com/acd777fbd0.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -26,7 +25,7 @@
             </button>
           </li>
         <% else %>
-          <% if current_user.admin? %>
+          <% if policy(current_user).admin? %>
             <li class='nav-item btn-group'>
               <button type='button' class='btn btn-outline-success'>
                 <%= link_to 'Users', users_path, class: 'nav-log-btn' %>

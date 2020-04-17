@@ -19,9 +19,11 @@
                   <p class='crd-nm'>
                     <%= show_card_number(card) %>
                   </p>
-                  <p class='crd-dt'>
-                    <%= link_to 'Delete', card_path(card), method: :delete, class: 'crd-del' %>
-                  </p>
+                  <% if policy(card).destroy? %>
+                    <p class='crd-dt'>
+                      <%= link_to 'Delete', card_path(card), method: :delete, class: 'crd-del' %>
+                    </p>
+                  <% end %>
                 </div>
               </div>
             </div>

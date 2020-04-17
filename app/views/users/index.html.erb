@@ -17,13 +17,13 @@
             <% @users.each do |user| %>
               <tr>
                 <th scope='row'>
-                  <% if user.access_locked? %>  
+                  <% unless policy(user).editable_user_not_locked? %>  
                     <%= link_to unlock_user_path(user.id), method: :patch do %>
-                      <i class="fas fa-lock us-wh-rec"></i>
+                      <%= fa_icon 'lock', class: 'us-wh-rec' %>
                     <% end %>
                   <% else %>
                     <%= link_to lock_user_path(user.id), method: :patch do %>
-                      <i class="fas fa-key us-wh-rec"></i>
+                     <%= fa_icon 'key', class: 'us-wh-rec' %>
                     <% end %>
                   <% end %>
                 </th>

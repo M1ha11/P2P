@@ -4,7 +4,7 @@ class ClaimPolicy < ApplicationPolicy
       if admin?
         scope.all
       elsif user?
-        scope.where(status: 'publicly') + scope.where(user_id: user.id).where.not(status: 'publicly')
+        scope.where(status: 'publicly').or(scope.where(user_id: user.id).where.not(status: 'publicly'))
       else
         scope.where(status: 'publicly')
       end
