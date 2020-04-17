@@ -63,6 +63,9 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     byebug (11.1.1)
+    closure_tree (7.1.0)
+      activerecord (>= 4.2.10)
+      with_advisory_lock (>= 4.0.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
@@ -263,6 +266,8 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    with_advisory_lock (4.6.0)
+      activerecord (>= 4.2)
 
 PLATFORMS
   ruby
@@ -273,6 +278,7 @@ DEPENDENCIES
   bootstrap (~> 4.4)
   bullet (~> 6.1)
   byebug
+  closure_tree (~> 7.1)
   devise (~> 4.7)
   dotenv (~> 2.7)
   factory_bot_rails (~> 5.1)
