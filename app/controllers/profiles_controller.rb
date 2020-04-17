@@ -16,6 +16,7 @@ class ProfilesController < ApplicationController
 
   def profile
     @profile ||= Profile.find(params[:id])
+    authorize @profile
   end
 
   def flash_interpolation_options

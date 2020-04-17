@@ -4,8 +4,7 @@
     <title>P2P</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -26,6 +25,13 @@
             </button>
           </li>
         <% else %>
+          <% if policy(current_user).admin? %>
+            <li class='nav-item btn-group'>
+              <button type='button' class='btn btn-outline-success'>
+                <%= link_to 'Users', users_path, class: 'nav-log-btn' %>
+              </button>
+            </li>
+          <% end %>
           <li class='nav-item btn-group'>
             <button type='button' class='btn btn-outline-success'>
               <%= link_to 'Profile', profile_path(current_user.profile.id), class: 'nav-log-btn' %>
