@@ -60,13 +60,15 @@ ActiveRecord::Schema.define(version: 2020_04_13_114506) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "text"
+    t.string "text"
     t.integer "parent_id"
     t.bigint "user_id", null: false
-    t.bigint "claim_id", null: false
+    t.string "commentable_type"
+    t.bigint "commentable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["claim_id"], name: "index_comments_on_claim_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -109,7 +111,6 @@ ActiveRecord::Schema.define(version: 2020_04_13_114506) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cards", "users"
   add_foreign_key "claims", "users"
-  add_foreign_key "comments", "claims"
   add_foreign_key "comments", "users"
   add_foreign_key "profiles", "users"
 end

@@ -13,10 +13,10 @@
       <%= link_to 'Reply', new_claim_comment_path(@claim.id, parent_id: comment.id), remote: true, class: 'lnk-rep' %>
       <%= link_to 'Delete', claim_comment_path(@claim.id, comment.id), method: :delete, class: 'del-com-lnk' %>
     </div>
-    <% unless comment.replies.nil? %>
+    <% unless comment.child.nil? %>
       <div class='replies'>
         <ul class='list-com'>
-          <%= render partial: 'comments/reply', collection: comment.replies, as: :comment %>
+          <%= render partial: 'comments/reply', collection: comment.child, as: :comment %>
         </ul>
       </div>
     <% end %>
