@@ -1,17 +1,19 @@
 <% unless comment.parent_id %>
   <li>
     <p>
-      <% if comment.user.profile.avatar.attached? %>
-        <%= image_tag comment.user.profile.avatar, class: 'rounded-circle com-ava' %>
-      <% else %>
-        <%= image_tag '/avatar/avatar.png', class:'rounded-circle com-ava'  %>
-      <% end %>
+        <%= comment_user_avatar(comment) %>
       <span class='com-user'><%= comment.user.email %></span>
     </p>
     <p class='text-com'><%= comment.text %></p>
     <div id=<%= "reply_id_#{comment.id}"%>>
-      <%= link_to 'Reply', new_claim_comment_path(@claim.id, parent_id: comment.id), remote: true, class: 'lnk-rep' %>
-      <%= link_to 'Delete', claim_comment_path(@claim.id, comment.id), method: :delete, class: 'del-com-lnk' %>
+
+      <% if policy(comment).new? %>
+        <%= link_to 'Reply', new_claim_comment_path(@claim.id, parent_id: comment.id), remote: true, class: 'lnk-rep' %>
+      <% end %>
+
+      <% if policy(comment).destroy? %>
+        <%= link_to 'Delete', claim_comment_path(@claim.id, comment.id), method: :delete, class: 'del-com-lnk' %>
+      <% end %>
     </div>
     <% unless comment.child.nil? %>
       <div class='replies'>

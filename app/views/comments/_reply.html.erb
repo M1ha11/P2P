@@ -1,13 +1,11 @@
 <li>
   <p>
-    <% if comment.user.profile.avatar.attached? %>
-      <%= image_tag comment.user.profile.avatar, class: 'rounded-circle com-ava' %>
-    <% else %>
-      <%= image_tag '/avatar/avatar.png', class:'rounded-circle com-ava'  %>
-    <% end %>
+    <%= comment_user_avatar(comment) %>
     <span class='com-user'><%= comment.user.email %></span>
   </p>
 
   <p class='text-com'><%= comment.text %></p>
-  <%= link_to 'Delete', claim_comment_path(@claim.id, comment.id), method: :delete, class: 'del-com-lnk-reply' %>
+  <% if policy(comment).destroy? %>
+    <%= link_to 'Delete', claim_comment_path(@claim.id, comment.id), method: :delete, class: 'del-com-lnk-reply' %>
+  <% end %>
 </li>
