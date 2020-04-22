@@ -16,6 +16,8 @@
 #
 class Claim < ApplicationRecord
   belongs_to :user
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :tagging
 
   enum status: %i[publicly privatly archive]
   enum payment_frequency: { 'twice a month': 'twice a month', 'once a month': 'once a month',
