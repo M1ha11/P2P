@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :profiles, only: %i[show edit update]
   resources :cards, only: %i[index new create destroy]
   resources :claims do
-    resources :comments, only: %i[index new create destroy]
+    resources :comments, only: %i[new create destroy]
   end
   resources :users, only: %i[index] do
     member do

@@ -6,11 +6,9 @@
     </p>
     <p class='text-com'><%= comment.text %></p>
     <div id=<%= "reply_id_#{comment.id}"%>>
-
       <% if policy(comment).new? %>
         <%= link_to 'Reply', new_claim_comment_path(@claim.id, parent_id: comment.id), remote: true, class: 'lnk-rep' %>
       <% end %>
-
       <% if policy(comment).destroy? %>
         <%= link_to 'Delete', claim_comment_path(@claim.id, comment.id), method: :delete, class: 'del-com-lnk' %>
       <% end %>
