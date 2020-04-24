@@ -1,5 +1,5 @@
 <div id='reply_from'>
-  <%= form_for @comment, url: claim_comments_path do |f| %>
+  <%= form_for [@commentable, Comment.new] do |f| %>
     <%= f.hidden_field :parent_id, value: params[:parent_id] %>
     <div class='row'>
       <div class='col-10'> 

@@ -6,6 +6,13 @@
 
   <p class='text-com'><%= comment.text %></p>
   <% if policy(comment).destroy? %>
-    <%= link_to 'Delete', claim_comment_path(@claim.id, comment.id), method: :delete, class: 'del-com-lnk-reply' %>
+    <%= link_to 'Delete', [commentable, comment], method: :delete, class: 'del-com-lnk' %>
+  <% end %>
+  <% if comment.childs %>
+    <div class='replies'>
+      <ul class='list-com'>
+        <%= render partial: 'comments/reply', collection: comment.childs, as: :comment %>
+      </ul>
+    </div>
   <% end %>
 </li>

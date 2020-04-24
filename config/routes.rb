@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :claims do
     resources :comments, only: %i[new create destroy]
   end
+  resources :comments, only: %i[new create destroy]
   resources :users, only: %i[index] do
     member do
       patch 'lock'
@@ -15,6 +16,5 @@ Rails.application.routes.draw do
       patch 'change_role'
     end
   end
-  resources :claims
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

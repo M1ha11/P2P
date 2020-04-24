@@ -66,6 +66,8 @@
   font-size: 16px;
   color: var(--bootstrap-black);
   margin-left: 28px;
+  max-width: 500px;
+  overflow-wrap: break-word;
 }
 
 .replies {
