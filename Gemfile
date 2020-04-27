@@ -61,6 +61,8 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootstrap', '~> 4.4'
 gem 'devise', '~> 4.7'
 gem 'dotenv', '~> 2.7'
+gem 'elasticsearch-model', '~> 7.1'
+gem 'elasticsearch-rails', '~> 7.1'
 gem 'font-awesome-rails', '~> 4.7'
 gem 'httparty', '~> 0.18.0'
 gem 'jquery-rails', '~> 4.3'

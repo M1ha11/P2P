@@ -15,6 +15,9 @@
 #  user_id           :bigint           not null
 #
 class Claim < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
   belongs_to :user
 
   enum status: %i[publicly privatly archive]
