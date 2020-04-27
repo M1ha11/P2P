@@ -14,12 +14,12 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :commentable, polymorphic: true
-  belongs_to :parent, optional: true, class_name: "Comment"
+  belongs_to :parent, optional: true, class_name: 'Comment'
   has_many :childs, class_name: 'Comment', foreign_key: :parent_id, dependent: :destroy
   has_one :profile, through: :user
 
   delegate :avatar, to: :profile
-  
+
   validates :text, presence: true
 
   scope :top_level_comment, -> { where(parent_id: nil) }
