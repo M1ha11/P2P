@@ -1,23 +1,21 @@
 class CommentsController < ApplicationController
-  before_action :commentable, only: [:create, :destroy, :new]
-
   def new
-    @comment = Comment.new
+    @comment = commentable.comments.new
     authorize @comment
   end
 
   def create
-    @comment = @commentable.comments.new(comment_params)
+    @comment = commentable.comments.new(comment_params)
     authorize @comment
     @comment.save
-    respond_with @comment, location: -> { @path }
+    respond_with @comment, location: -> { polymorphic_path([commentable]) }
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     authorize @comment
     @comment.destroy
-    respond_with @comment, location: -> { @path }
+    respond_with @comment, location: -> { polymorphic_path([commentable]) }
   end
 
   private
@@ -25,7 +23,6 @@ class CommentsController < ApplicationController
   def commentable
     if params[:claim_id]
       @commentable = Claim.find(params[:claim_id])
-      @path = claim_path(params[:claim_id])
     end
   end
 

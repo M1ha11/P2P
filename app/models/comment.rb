@@ -22,5 +22,7 @@ class Comment < ApplicationRecord
   
   validates :text, presence: true
 
-  scope :main_comment, -> { where(parent_id: nil) }
+  scope :top_level_comment, -> { where(parent_id: nil) }
+
+  MAX_LEVEL = 3
 end

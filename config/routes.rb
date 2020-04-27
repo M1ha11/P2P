@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :claims do
     resources :comments, only: %i[new create destroy]
   end
-  resources :comments, only: %i[new create destroy]
   resources :users, only: %i[index] do
     member do
       patch 'lock'
