@@ -1,0 +1,6 @@
+<%= form_with(url: search_path, method: 'get', local: true, enforce_utf8: false) do |f| %>
+  <div class='inner-addon left'>
+    <%= fa_icon 'search', class: 'search-icon' %>
+    <%= f.text_field :q, placeholder: 'Search', class: 'search-form' %>
+  </div>
+<% end %>

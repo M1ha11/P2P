@@ -36,4 +36,22 @@ class Claim < ApplicationRecord
   validates :interest_rate, presence: true
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :amount, analyzer: 'simple', search_analyzer: 'simple'
+      indexes :currency, analyzer: 'simple', search_analyzer: 'simple'
+    end
+  end
+
+  after_commit :index_document, if: :persisted?
+  after_commit on: [:destroy] do
+    __elasticsearch__.delete_document
+  end
+
+  private
+
+  def index_document
+    __elasticsearch__.index_document
+  end
 end

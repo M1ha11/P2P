@@ -1,3 +1,33 @@
 // Place all the styles related to the Search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search-form {
+  width: 40em;
+  min-width: 20em;
+  height: 2.2em;
+  border-radius: 1em;
+}
+
+.search-form:focus {
+  outline: 0;
+  box-shadow: 0 0 8px var(--azure);
+}
+
+.inner-addon {
+  position: relative;
+}
+
+.inner-addon .search-icon {
+  position: absolute;
+  pointer-events: none;
+  padding: 10px;
+}
+
+.left .search-icon {
+  left: 0px;
+}
+
+.left .search-form {
+  padding-left: 2em;
+}
