@@ -1,4 +1,25 @@
 <div class='index-claim-container'>
+
+    <div class='row justify-content-center'>
+      <div class='col sort'>
+        <div class='input-group'>
+          <div class="input-group-prepend label">
+            <label class="input-group-text sort-label">Sort by</label>
+          </div>
+          <%= form_with(url: claims_path, method: :get, local: true, id: 'sort') do |f| %>
+            <%= f.select :sort, raw("
+                                      <option value=''></option>
+                                      <option value='amount'>Amount</option>
+                                      <option value='currency'>Currency</option>
+                                      <option value='repayment_period'>Repayment period</option>
+                                      <option value='payment_frequency'>Payment frequency</option>
+                                    "), {},
+                         {onchange: 'this.form.submit();', class: 'custom-select' } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   <div class='row'>
       <%= render partial: 'claims', collection: @claims, as: :claim %>
   </div>
