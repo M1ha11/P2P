@@ -44,7 +44,7 @@ class ClaimsController < ApplicationController
   def set_service
     @currencies = Claims::Currency.new.list
     @rates = Claims::Rate.new.list
-    @statuses = Claim.statuses.keys[0...-1]
+    @statuses = Claim.statuses.keys[0..1]
   end
 
   def claim

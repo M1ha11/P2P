@@ -16,8 +16,9 @@
 #
 class Claim < ApplicationRecord
   belongs_to :user
+  has_many :loan_participants
 
-  enum status: %i[publicly privatly archive]
+  enum status: %i[publicly privatly archive confirmed]
   enum payment_frequency: { 'twice a month': 'twice a month', 'once a month': 'once a month',
                             'once a 3 month': 'once a 3 month', 'once a 4 month': 'once a 4 month',
                             'once a 6 month': 'once a 6 month', 'once a year': 'once a year' }
