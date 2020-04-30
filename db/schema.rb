@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_082712) do
+ActiveRecord::Schema.define(version: 2020_04_21_151224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,19 +59,6 @@ ActiveRecord::Schema.define(version: 2020_04_22_082712) do
     t.index ["user_id"], name: "index_claims_on_user_id"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.string "text"
-    t.integer "parent_id"
-    t.bigint "user_id", null: false
-    t.string "commentable_type"
-    t.bigint "commentable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
-    t.index ["parent_id"], name: "index_comments_on_parent_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
   create_table "profiles", force: :cascade do |t|
     t.integer "success_credit_project", default: 0
     t.integer "success_lend_project", default: 0
@@ -84,20 +71,13 @@ ActiveRecord::Schema.define(version: 2020_04_22_082712) do
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
-  create_table "taggings", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "tag_id"
-    t.string "taggable_type"
-    t.bigint "taggable_id"
-    t.index ["tag_id"], name: "index_taggings_on_tag_id"
-    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id"
-  end
-
   create_table "tags", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", limit: 50
+    t.string "tagging_type"
+    t.bigint "tagging_id"
+    t.index ["tagging_type", "tagging_id"], name: "index_tags_on_tagging_type_and_tagging_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -127,6 +107,5 @@ ActiveRecord::Schema.define(version: 2020_04_22_082712) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cards", "users"
   add_foreign_key "claims", "users"
-  add_foreign_key "comments", "users"
   add_foreign_key "profiles", "users"
 end

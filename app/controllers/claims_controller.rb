@@ -58,6 +58,6 @@ class ClaimsController < ApplicationController
 
   def claim_params
     params.require(:claim).permit(:amount, :currency, :goal, :interest_rate, :repayment_period, :payment_frequency,
-                                  :status, user: [:id])
+                                  :status, user: [:id], :tag_list)
   end
 end

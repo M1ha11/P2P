@@ -1,4 +1,5 @@
 class Tag < ApplicationRecord
-  has_many :taggings
-  has_many :claims, through: :tagging, source: :taggable, source_type: 'Claim'
+  belongs_to :tagging, polymorphic: true
+
+  validates :name, presence: true, uniqueness: true
 end
