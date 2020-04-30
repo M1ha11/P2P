@@ -41,6 +41,7 @@ class Claim < ApplicationRecord
     mappings dynamic: 'false' do
       indexes :amount, analyzer: 'simple', search_analyzer: 'simple'
       indexes :currency, analyzer: 'simple', search_analyzer: 'simple'
+      indexes :goal
     end
   end
 
@@ -48,7 +49,7 @@ class Claim < ApplicationRecord
   after_commit on: [:destroy] do
     __elasticsearch__.delete_document
   end
-
+  
   private
 
   def index_document

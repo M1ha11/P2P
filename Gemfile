@@ -58,6 +58,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'active_model_serializers', '~> 0.10.10'
 gem 'bootstrap', '~> 4.4'
 gem 'devise', '~> 4.7'
 gem 'dotenv', '~> 2.7'
@@ -73,3 +74,4 @@ gem 'omniauth-oauth2', '~> 1.6'
 gem 'omniauth-twitter', '~> 1.4'
 gem 'pundit', '~> 2.1'
 gem 'responders', '~> 3.0'
+gem 'twitter-typeahead-rails', '~> 0.11.1'

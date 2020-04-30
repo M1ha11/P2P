@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   end
   resources :claims
   get 'search', to: 'search#search'
+  get 'autocomplete', to: 'search#autocomplete'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
