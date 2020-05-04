@@ -163,3 +163,19 @@ hr.solid {
   color: var(--mint);
   font-style: italic;
 }
+
+.tagcloud {
+  background-color: var(--bootstrap-black);
+  border-radius: 1em;
+  padding: 1em;
+  margin-top: -1.2em;
+  font-size: 1.2em;
+}
+
+.tag-btn {
+  margin-top: -1.2em;
+}
+
+.tag-down {
+  background-color: var(--bootstrap-black);
+}

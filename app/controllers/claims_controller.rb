@@ -2,7 +2,11 @@ class ClaimsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @claims = policy_scope(Claim)
+    if params[:tag]
+      @claims = policy_scope(Claim).joins(:tags).where(tags: {name: params[:tag]})
+    else
+      @claims = policy_scope(Claim)
+    end
     respond_with @claims, location: -> { claims_path }
   end
 

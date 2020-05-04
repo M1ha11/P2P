@@ -1,5 +1,5 @@
 <div>
   <% tag_cloud(model_class).each do |tag| %>
-    <%= link_to tag.name %>
+    <%= link_to tag.name, claims_path(tag: tag.name), class: 'tagcloud-link' %>
   <%end %>
 </div>
