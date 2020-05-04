@@ -1,14 +1,15 @@
 class LoanParticipantsController < ApplicationController
-  before_action :set_claim
-
   def create
-    @participant = current_user.loan_participants.new(loan_participant_params)
-    @participant.money = check_wanting_sum
+    @participant = LoanParticipant.new(loan_participant_params)
+    # @participant.money = check_wanting_sum
+    @participant.save
+    respond_with @participant, location: -> { claim_path(@participant.claim_id) }
   end
 
   def destroy
-    @participant = loan_participants.find(params[:id])
+    @participant = LoanParticipant.find(params[:id])
     @participant.destroy
+    respond_with @participant, location: -> { claims_path }
   end
 
   private
@@ -21,11 +22,7 @@ class LoanParticipantsController < ApplicationController
     end
   end
 
-  def set_claim
-    @claim = Claim.find(params[:claim_id])
-  end
-
   def loan_participant_params
-    params.require(:loan_participants).permit(:money, :user_id, :claim_id)
+    params.require(:loan_participant).permit(:money, :claim_id).merge(user_id: current_user.id)
   end
 end

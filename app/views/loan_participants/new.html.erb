@@ -1,0 +1,11 @@
+<%= form_for LoanParticipant.new do |f| %>
+  <div class='row'>
+    <%= f.hidden_field :claim_id, value: claim[:id] %>
+    <%= f.text_field :money, class: 'part-field' %>
+    <button type="button" class="btn btn-outline-success" disabled>
+      <span class='cur-info'><%= claim[:currency]%></span>
+    </button>
+    <%= f.submit 'Confirm', class: 'btn btn-success' %>
+  </div>
+  <a href="" id='participant-not' class='close-part'>Close</a>
+<% end %>
