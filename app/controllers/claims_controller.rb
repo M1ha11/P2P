@@ -26,7 +26,7 @@ class ClaimsController < ApplicationController
   def edit; end
 
   def update
-    claim.update(claim_params)
+    claim.update(tag_params)
     respond_with claim, location: -> { claim_path(claim.id) }
   end
 
@@ -56,8 +56,12 @@ class ClaimsController < ApplicationController
     { resource_errors: claim.errors.full_messages.join(',') }
   end
 
+  def tag_params
+    params.require(:claim).permit(:tag_list)
+  end
+
   def claim_params
     params.require(:claim).permit(:amount, :currency, :goal, :interest_rate, :repayment_period, :payment_frequency,
-                                  :status, user: [:id], :tag_list)
+                                  :status, user: [:id])
   end
 end

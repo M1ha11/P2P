@@ -41,7 +41,6 @@
 }
 
 .card-ind {
-  height: 150px;
   min-width: 200px;
   margin-top: 25px;
 }
@@ -127,4 +126,40 @@ hr.solid {
 
 .del-but {
   margin-top: 20px;
+}
+
+.edit-tag-form {
+  display: none;
+}
+
+.close-tag {
+  color: var(--custom-red);
+}
+
+.close-tag:hover {
+  color: white;
+}
+
+.tag-field {
+  border-radius: 0.5em;
+}
+
+.tag-field:focus {
+  outline: 0;
+  box-shadow: 0 0 8px var(--azure);
+}
+
+.tags-info {
+  margin-top: 4em;
+  margin-left: 10px;
+}
+
+.tags-info-text {
+  color: white;
+  font-size: 18px;
+}
+
+.tags-text {
+  color: var(--mint);
+  font-style: italic;
 }

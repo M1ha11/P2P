@@ -35,13 +35,20 @@ class Claim < ApplicationRecord
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
 
-  def tas_list
+  def tag_list
     self.tags.map(&:name).join(', ')
   end
 
   def tag_list=(names)
+    destroy_tag
     self.tags = names.split(', ').map do |name|
-      Tag.where(name: name.strip).first_or_create!
+      Tag.where(name: name.strip, tagging: self).first_or_create!
+    end
+  end
+
+  def destroy_tag
+    Tag.where(tagging_type: self.class.to_s).each do |tag|
+      tag.destroy! if tag[:tagging_id].nil?
     end
   end
 

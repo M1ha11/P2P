@@ -28,6 +28,16 @@
                     <%= @claim.goal %>
                   </p>
                 </div>
+                <% if @claim.tags.present? %>
+                  <div class='tags-info'>
+                    <p class='tags-info-text'>
+                      Tags:
+                      <% @claim.tags.each do |tag| %>
+                        <span class='tags-text'><%= tag.name %></span>
+                      <% end %>
+                    </p>
+                  </div>
+                <% end %>
               </div>
               <div class='col-4'>
                 <div class='other-info'>
@@ -53,6 +63,15 @@
                   </div>
                 <% end %>
               </div>
+            </div>
+
+            <div class='row justify-content-md-start'>
+              <button type='button' class='btn btn-outline-success'>
+                <a id='link-tag' href='#' class='nav-log-btn'>Add Tag</a> 
+              </button>
+            </div>
+            <div class='edit-tag-form' id='edit-tag-form'>
+              <%= render template: 'claims/edit' %>
             </div>
           </div>
         </div>

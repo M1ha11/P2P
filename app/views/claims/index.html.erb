@@ -1,5 +1,8 @@
 <div class='index-claim-container'>
   <div class='row'>
+    <%= render partial: 'tags/tags', locals: { model_class: Claim } %>
+  </div>
+  <div class='row'>
       <%= render partial: 'claims', collection: @claims, as: :claim %>
   </div>
 </div>
