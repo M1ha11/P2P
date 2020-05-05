@@ -1,0 +1,20 @@
+<div id='reply_from'>
+  <%= form_for [@commentable, Comment.new] do |f| %>
+    <%= f.hidden_field :parent_id, value: params[:parent_id] %>
+    <div class='row'>
+      <div class='col-10'> 
+        <div class='field'>
+          <%= f.text_field :text, autofocus: true, placeholder: 'Comment...', class: 'field-reply' %>
+        </div>
+      </div>
+      <div class='col-2'>
+        <div class="actions sub-com">
+          <%= f.submit "Reply", class: 'btn btn-dark' %>
+        </div>
+        <div id='closee'>
+          <%= link_to 'Back', :back %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

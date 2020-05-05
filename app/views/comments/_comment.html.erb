@@ -1,0 +1,24 @@
+<li>
+  <p>
+    <%= image_tag(comment_user_avatar(comment), class: 'rounded-circle com-ava') %>
+    <span class='com-user'><%= comment.user.email %></span>
+  </p>
+  <p class='text-com'><%= comment.text %></p>
+  <div id=<%= "reply_id_#{comment.id}"%>>
+    <% if nesting < Comment::MAX_LEVEL %>
+      <% if policy(comment).new? %>
+        <%= link_to 'Reply', polymorphic_url([:new, commentable, comment], parent_id: comment.id), remote: true, class: 'lnk-rep' %>
+      <% end %>
+    <% end %>
+    <% if policy(comment).destroy? %>
+      <%= link_to 'Delete', [commentable, comment], method: :delete, class: 'del-com-lnk' %>
+    <% end %>
+  </div>
+  <% if comment.childs && nesting <= Comment::MAX_LEVEL %>
+    <div class='replies'>
+      <ul class='list-com'>
+        <%= render partial: 'comments/comment', collection: comment.childs, as: :comment, locals: {commentable: commentable, nesting: (nesting + 1)} %>
+      </ul>
+    </div>
+  <% end %>
+</li>
