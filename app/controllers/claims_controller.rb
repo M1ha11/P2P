@@ -2,7 +2,7 @@ class ClaimsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @claims = Claims::SortClaim.new(policy_scope(Claim), params[:sort]).sort
+    @claims = Claims::Sort.new.call(policy_scope(Claim), params[:sort], params[:direction])
     respond_with @claims, location: -> { claims_path }
   end
 
