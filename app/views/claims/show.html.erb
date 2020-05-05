@@ -79,16 +79,18 @@
             </div>
           <% end %>
 
-          <div class='become-part'>
-            <div class='row justify-content-md-center'>
-              <button type='button' class='btn btn-outline-success'>
-                <a href="" id='participant-new' class='nav-log-btn'>Become a Participant</a>
-              </button>
-              <div class='part-form' id='part-form'>
-                <%= render template: 'loan_participants/new', locals: {claim: @claim} %>
+          <% if not_collected_amount_of_money? %>
+            <div class='become-part'>
+              <div class='row justify-content-md-center'>
+                <button type='button' class='btn btn-outline-success'>
+                  <a href="" id='participant-new' class='nav-log-btn'>Become a Participant</a>
+                </button>
+                <div class='part-form' id='part-form'>
+                  <%= render template: 'loan_participants/new', locals: {claim: @claim} %>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
 
         </div>
       </div>
