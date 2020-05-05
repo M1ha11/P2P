@@ -1,0 +1,10 @@
+<div class='new-comment'>
+  <%= form_for [commentable, Comment.new] do |f| %>
+    <div class='field'>
+      <%= f.text_area :text, rows: 5, autofocus: true, placeholder: 'Comment...', class: 'field-comment' %>
+    </div>
+    <div class="actions sub-com">
+      <%= f.submit "Add comment", class: 'btn btn-light' %>
+    </div>
+  <% end %>
+</div>

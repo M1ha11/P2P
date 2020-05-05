@@ -16,6 +16,7 @@
 #
 class Claim < ApplicationRecord
   belongs_to :user
+  has_many :comments, as: :commentable, dependent: :destroy
 
   enum status: %i[publicly privatly archive]
   enum payment_frequency: { 'twice a month': '0.5.month', 'once a month': '1.month',

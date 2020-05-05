@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :profiles, only: %i[show edit update]
   resources :cards, only: %i[index new create destroy]
+  resources :claims do
+    resources :comments, only: %i[new create destroy]
+  end
   resources :users, only: %i[index] do
     member do
       patch 'lock'
@@ -12,6 +15,5 @@ Rails.application.routes.draw do
       patch 'change_role'
     end
   end
-  resources :claims
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
