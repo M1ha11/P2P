@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_114506) do
+ActiveRecord::Schema.define(version: 2020_04_30_145808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,16 @@ ActiveRecord::Schema.define(version: 2020_04_13_114506) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "loan_participants", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "claim_id"
+    t.float "money"
+    t.index ["claim_id"], name: "index_loan_participants_on_claim_id"
+    t.index ["user_id"], name: "index_loan_participants_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.integer "success_credit_project", default: 0
     t.integer "success_lend_project", default: 0
@@ -82,6 +92,15 @@ ActiveRecord::Schema.define(version: 2020_04_13_114506) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", limit: 50
+    t.string "tagging_type"
+    t.bigint "tagging_id"
+    t.index ["tagging_type", "tagging_id"], name: "index_tags_on_tagging_type_and_tagging_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -113,5 +132,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_114506) do
   add_foreign_key "claims", "users"
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "users"
+  add_foreign_key "loan_participants", "claims"
+  add_foreign_key "loan_participants", "users"
   add_foreign_key "profiles", "users"
 end

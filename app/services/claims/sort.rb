@@ -1,6 +1,6 @@
 module Claims
   class Sort
-    DIRECTION = %i(asc desc).freeze
+    DIRECTION = %w(asc desc).freeze
     COLUMNS = %i(created_at amount currency).freeze
 
     def call(claims, options = {}, direction = {})
@@ -16,7 +16,7 @@ module Claims
     end
 
     def check_direction(direction)
-      DIRECTION.include?(direction.to_sym) ? direction.to_sym : DIRECTION[1]
+      DIRECTION.include?(direction) ? direction.to_sym : DIRECTION[1]
     end
   end
 end
