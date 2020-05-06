@@ -1,0 +1,6 @@
+<span class='del-rec'>
+  <%= tag.name %>
+  <%= link_to [taggable, tag], method: :delete, remote: true do %>
+    <%= fa_icon 'times-circle', class: 'icon-rem' %>
+  <% end %>
+</span>

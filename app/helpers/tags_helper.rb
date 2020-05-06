@@ -1,5 +1,5 @@
 module TagsHelper
-  def tag_cloud(model_class)
-    Tag.where(tagging_type: model_class.to_s)
-  end
+  # def tag_list
+  #   @tags.map(&:name).join(',  ')
+  # end
 end

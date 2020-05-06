@@ -1,6 +1,6 @@
-<%= form_for @claim do |f| %>
+<%= form_for [taggable, Tag.new] do |f| %>
   <div class='row'>
-    <%= f.text_field :tag_list, class: 'tag-field' %>
+    <%= f.text_field :name, class: 'tag-field' %>
     <%= f.submit 'Submit', class: 'btn btn-dark'%>
   </div>
   <a id='close-tag' href='#' class='close-tag'>Close</a>

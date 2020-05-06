@@ -130,6 +130,7 @@ hr.solid {
 
 .edit-tag-form {
   display: none;
+  margin-top: 0.5em;
 }
 
 .close-tag {
@@ -138,15 +139,6 @@ hr.solid {
 
 .close-tag:hover {
   color: white;
-}
-
-.tag-field {
-  border-radius: 0.5em;
-}
-
-.tag-field:focus {
-  outline: 0;
-  box-shadow: 0 0 8px var(--azure);
 }
 
 .tags-info {

@@ -16,7 +16,7 @@
 #
 class Claim < ApplicationRecord
   belongs_to :user
-  has_many :tags, as: :tagging
+  has_many :tags, as: :taggable
 
   enum status: %i[publicly privatly archive]
   enum payment_frequency: { 'twice a month': 'twice a month', 'once a month': 'once a month',
@@ -34,10 +34,6 @@ class Claim < ApplicationRecord
   validates :interest_rate, presence: true
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
-
-  def tag_list
-    self.tags.map(&:name).join(', ')
-  end
 
   def tag_list=(names)
     destroy_tag

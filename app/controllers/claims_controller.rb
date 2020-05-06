@@ -3,7 +3,7 @@ class ClaimsController < ApplicationController
 
   def index
     if params[:tag]
-      @claims = policy_scope(Claim).joins(:tags).where(tags: {name: params[:tag]})
+      @claims = policy_scope(Claim).includes(:tags).where(tags: {name: params[:tag]})
     else
       @claims = policy_scope(Claim)
     end

@@ -29,14 +29,7 @@
                   </p>
                 </div>
                 <% if @claim.tags.present? %>
-                  <div class='tags-info'>
-                    <p class='tags-info-text'>
-                      Tags:
-                      <% @claim.tags.each do |tag| %>
-                        <span class='tags-text'><%= tag.name %></span>
-                      <% end %>
-                    </p>
-                  </div>
+                  <%= render template: 'tags/index', locals: {claim: @claim} %>
                 <% end %>
               </div>
               <div class='col-4'>
@@ -65,14 +58,31 @@
               </div>
             </div>
 
-            <div class='row justify-content-md-start'>
-              <button type='button' class='btn btn-outline-success'>
-                <a id='link-tag' href='#' class='nav-log-btn'>Add Tag</a> 
-              </button>
-            </div>
-            <div class='edit-tag-form' id='edit-tag-form'>
-              <%= render template: 'claims/edit' %>
-            </div>
+            <% if policy(@claim.tags).create? %>
+              <div class='row justify-content-md-start'>
+                <button type='button' class='btn btn-outline-success'>
+                  <a id='link-tag' href='#' class='nav-log-btn'>Add Tag</a> 
+                </button>
+
+                <button type='button' class='btn btn-outline-danger'>
+                  <a id='remove-tag' href='#' class='nav-unlog-btn'>Remove Tag</a> 
+                </button>
+              </div>
+
+
+                <div class='edit-tag-form' id='edit-tag-form'>
+                  <%= render template: 'tags/new', locals: { taggable: @claim } %>
+                </div>
+
+                <div class='remove-tag-form' id='remove-tag-form'>
+                  <p>
+                    <%= render partial: 'tags/remove_tag', collection: @claim.tags, as: :tag, locals: {taggable: @claim}  %>
+                  </p>
+                  <a href="" id='close-rem' class='close-tag close-rem'>Close</a>
+                </div>
+
+            <% end %>
+
           </div>
         </div>
       </div>
