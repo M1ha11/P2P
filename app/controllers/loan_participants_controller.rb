@@ -15,7 +15,7 @@ class LoanParticipantsController < ApplicationController
   private
 
   def check_wanting_sum
-    if @partipant.money > claim.amount - claim.loan_participants.sum(:money)
+    if @participant.money > claim.amount - claim.loan_participants.sum(:money)
       @participant.money = claim.amount - claim.loan_participants.sum(:money)
     else
       @participant.money
@@ -23,7 +23,7 @@ class LoanParticipantsController < ApplicationController
   end
 
   def claim
-    @claim ||= Claim.find(params[:claim_id])
+    @claim ||= Claim.find(params[:loan_participant][:claim_id])
   end
 
   def loan_participant_params

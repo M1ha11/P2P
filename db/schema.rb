@@ -59,6 +59,19 @@ ActiveRecord::Schema.define(version: 2020_04_30_145808) do
     t.index ["user_id"], name: "index_claims_on_user_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "text", null: false
+    t.integer "parent_id"
+    t.bigint "user_id", null: false
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "loan_participants", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -79,6 +92,15 @@ ActiveRecord::Schema.define(version: 2020_04_30_145808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", limit: 50, null: false
+    t.string "taggable_type", null: false
+    t.bigint "taggable_id", null: false
+    t.index ["taggable_type", "taggable_id"], name: "index_tags_on_taggable_type_and_taggable_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -108,6 +130,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_145808) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cards", "users"
   add_foreign_key "claims", "users"
+  add_foreign_key "comments", "comments", column: "parent_id"
+  add_foreign_key "comments", "users"
   add_foreign_key "loan_participants", "claims"
   add_foreign_key "loan_participants", "users"
   add_foreign_key "profiles", "users"
