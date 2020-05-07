@@ -6,7 +6,7 @@ class SearchController < ApplicationController
       @search_result = []
     else
       @search_result = Elasticsearch::Model.search(params[:q], [Claim]).records.to_a
-      respond_with @search_result, location: -> { search_path }
+      render json: @search_result
     end
   end
 

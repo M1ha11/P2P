@@ -1,15 +1,16 @@
 $(document).on('turbolinks:load',function () {
-  search_result = new Bloodhound({
+  var search_result = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
-      url: '/autocomplete?q=%QUERY',
+      url: '/search?q=%QUERY',
       wildcard: '%QUERY'
     }
-  })
+  });
   $('#autocomplete').typeahead(null,
     {
       source: search_result,
+      limit: 10,
       templates: {
         empty: [
           '<div class="empty-typehead">',
@@ -17,7 +18,9 @@ $(document).on('turbolinks:load',function () {
           '</div>'
         ].join('\n'),
         suggestion: function(search_result) {
-          return ('<p class="hint">' + search_result.amount + ' ' + search_result.currency +'</p>');
+          return (
+            '<a href="/claims/' + search_result.id + '"><p class="hint">' + search_result.amount + ' ' + search_result.currency +'</p></a>'
+          );
         }
       }
     }
