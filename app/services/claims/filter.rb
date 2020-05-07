@@ -1,24 +1,24 @@
 module Claims
   class Filter
-    def initialize(claim, options = {})
-      @options = options
+    def initialize(claim, name = {})
+      @name = name
       @claim = claim
     end
 
     def call
-      default_claim.merge(with_tag)
+      default_claims.merge(with_tag)
     end
 
     private
 
-    def default_claim
-      @claim
+    def default_claims
+      @claim.includes(:tags)
     end
 
     def with_tag
-      return @claim unless @options[:tag].present?
+      return default_claims unless @name.present?
 
-      @claim.includes(:tags).where(tags: { name: @options[:tag] })
+      default_claims.joins(:tags).where(tags: { name: @name })
     end
   end
 end

@@ -2,12 +2,7 @@ class ClaimsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    # if params[:tag]
-    #   @claims = policy_scope(Claim).includes(:tags).where(tags: {name: params[:tag]})
-    # else
-    #   @claims = policy_scope(Claim)
-    # end
-    @claims = Claims::Filter.new(policy_scope(Claim), params).call
+    @claims = Claims::Filter.new(policy_scope(Claim), params[:tag]).call
     respond_with @claims, location: -> { claims_path }
   end
 
@@ -26,13 +21,6 @@ class ClaimsController < ApplicationController
       set_service
       respond_with @claim, location: -> { new_claim_path }
     end
-  end
-
-  def edit; end
-
-  def update
-    claim.update(tag_params)
-    respond_with claim, location: -> { claim_path(claim.id) }
   end
 
   def show
@@ -59,10 +47,6 @@ class ClaimsController < ApplicationController
 
   def flash_interpolation_options
     { resource_errors: claim.errors.full_messages.join(',') }
-  end
-
-  def tag_params
-    params.require(:claim).permit(:tag_list)
   end
 
   def claim_params

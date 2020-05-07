@@ -1,5 +1,5 @@
 <div>
-  <% Tags::TagCloud.new(model_class.to_s).show.each do |tag| %>
-    <%= link_to tag.name, claims_path(tag: tag.name), class: 'tagcloud-link' %>
+  <% cloud(model_class.to_s).each do |tag| %>
+    <%= link_to tag, claims_path(tag: tag), class: 'tagcloud-link' %>
   <% end %>
 </div>
