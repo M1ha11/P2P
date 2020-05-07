@@ -1,22 +1,21 @@
 module Claims
   class Sort
-    DIRECTION = %w[asc desc].freeze
-    COLUMNS = %i[created_at amount currency].freeze
+    AVAILIABLE_DIRECTION = %w[asc desc].freeze
 
-    def call(claims, options = {}, direction = {})
-      options = check_option(options)
+    def call(claims, sort_field = 'created_at', direction = 'asc')
+      sort_field = check_sort_field(sort_field)
       direction = check_direction(direction)
-      claims.order("#{options} #{direction}")
+      claims.order("#{sort_field} #{direction}")
     end
 
     private
 
-    def check_option(options)
-      Claim.column_names.include?(options) && COLUMNS.include?(options.to_sym) ? options.to_sym : COLUMNS[0]
+    def check_sort_field(sort_field)
+      Claim.column_names.include?(sort_field) ? sort_field : 'created_at'
     end
 
     def check_direction(direction)
-      DIRECTION.include?(direction) ? direction.to_sym : DIRECTION[1]
+      AVAILIABLE_DIRECTION.include?(direction) ? direction : 'asc'
     end
   end
 end
