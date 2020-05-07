@@ -8,8 +8,6 @@ class TagsController < ApplicationController
   def destroy
     @tag = taggable.tags.find(params[:id])
     @tag.destroy
-    # @tag = Tag.where(name: params[:name])
-    # @tag.destroy_all
     respond_with @tag, location: -> { polymorphic_path([taggable]) }
   end
 

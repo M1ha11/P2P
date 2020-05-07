@@ -1,15 +1,7 @@
 <div class='index-claim-container'>
   <div class='row'>
-    <div class='col-1 tag-btn'>
-      <div class='dropdown'>
-        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tags</button>
-        <div class='tag-down dropdown-menu' role='menu'>
-          <%= render partial: 'tags/tags', locals: { model_class: Claim }, class: 'tag-down' %>
-        </div>
-      </div>
-    </div>
-    <div class='col-7 tagcloud'>
-      
+    <div class='col-6 tagcloud'>
+      <%= render partial: 'tags/tags', locals: { model_class: Claim }, class: 'tag-down' %>
     </div>
   </div>
   <div class='row'>

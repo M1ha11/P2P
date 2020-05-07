@@ -29,7 +29,7 @@
                   </p>
                 </div>
                 <% if @claim.tags.present? %>
-                  <%= render template: 'tags/index', locals: {claim: @claim} %>
+                  <%= render partial: 'tags/show_tags', locals: {claim: @claim} %>
                 <% end %>
               </div>
               <div class='col-4'>
@@ -64,7 +64,7 @@
                   <a id='link-tag' href='#' class='nav-log-btn'>Add Tag</a> 
                 </button>
 
-                <button type='button' class='btn btn-outline-danger'>
+                <button type='button' class='btn btn-outline-danger rem-but'>
                   <a id='remove-tag' href='#' class='nav-unlog-btn'>Remove Tag</a> 
                 </button>
               </div>
