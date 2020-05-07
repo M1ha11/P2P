@@ -71,6 +71,7 @@
 
 .bd-show {
   margin-top: 100px;
+  width: 100%;
 }
 
 .container-claim-show {
@@ -170,4 +171,49 @@ hr.solid {
 
 .tag-down {
   background-color: var(--bootstrap-black);
+}
+.comments {
+  margin-top: 4em;
+  margin-left: 7em;
+  display: grid;
+}
+
+.comment-title {
+  margin-left: 1em;
+}
+
+.title-com {
+  color: var(--bootstrap-black);
+  font-size: 30px;
+}
+
+.new-comment {
+  background-color: var(--bootstrap-black);
+  padding: 2em;
+  border-radius: 20px;
+}
+
+.field-comment {
+  width: 100%;
+  border-radius: 8px;
+  height: 80px;
+}
+
+.field-comment:focus {
+  outline: 0;
+  box-shadow: 0 0 8px var(--azure);
+}
+
+.sub-com {
+  width: 50%;
+}
+
+.all-comments {
+  margin-left: 7em;
+  margin-bottom: 5em;
+  display: grid;
+}
+
+.list-com {
+  list-style-type: none;
 }

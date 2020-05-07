@@ -19,9 +19,9 @@ class TagsController < ApplicationController
     end
   end
 
-  # def flash_interpolation_options
-  #   { resource_errors: @tag.errors.full_messages.join(',') }
-  # end
+  def flash_interpolation_options
+    { resource_errors: @tag.errors.full_messages.join(',') }
+  end
 
   def tag_params
     params.require(:tag).permit(:name, :taggable_type, :taggable_id)

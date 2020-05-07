@@ -17,7 +17,8 @@ module Claims
 
     def with_tag
       return @claim unless @options[:tag].present?
-      @claim.includes(:tags).where(tags: {name: @options[:tag]})
+
+      @claim.includes(:tags).where(tags: { name: @options[:tag] })
     end
   end
 end

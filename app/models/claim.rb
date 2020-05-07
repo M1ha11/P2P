@@ -17,6 +17,7 @@
 class Claim < ApplicationRecord
   belongs_to :user
   has_many :tags, as: :taggable
+  has_many :comments, as: :commentable, dependent: :destroy
 
   enum status: %i[publicly privatly archive]
   enum payment_frequency: { 'twice a month': 'twice a month', 'once a month': 'once a month',
@@ -34,21 +35,4 @@ class Claim < ApplicationRecord
   validates :interest_rate, presence: true
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
-
-  def tag_list=(names)
-    destroy_tag
-    self.tags = names.split(', ').map do |name|
-      Tag.where(name: name.strip, tagging: self).first_or_create!
-    end
-  end
-
-  def destroy_tag
-    Tag.where(tagging_type: self.class.to_s).each do |tag|
-      tag.destroy! if tag[:tagging_id].nil?
-    end
-  end
-
-  # def tagged_with(name)
-  #   Tag.find_by(name: name).taggings
-  # end
 end
