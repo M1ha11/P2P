@@ -48,7 +48,7 @@ class Claim < ApplicationRecord
   after_commit on: [:destroy] do
     __elasticsearch__.delete_document
   end
-  
+
   private
 
   def index_document
