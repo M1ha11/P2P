@@ -19,6 +19,7 @@ class Claim < ApplicationRecord
   include Elasticsearch::Model::Callbacks
   
   belongs_to :user
+  has_many :comments, as: :commentable, dependent: :destroy
 
   enum status: %i[publicly privatly archive]
   enum payment_frequency: { 'twice a month': 'twice a month', 'once a month': 'once a month',

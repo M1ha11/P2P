@@ -1,0 +1,109 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comments {
+  margin-top: 4em;
+  margin-left: 7em;
+  margin-bottom: 2em;
+  display: grid;
+}
+
+.comment-title {
+  margin-left: 1em;
+}
+
+.title-com {
+  color: var(--bootstrap-black);
+  font-size: 30px;
+}
+
+.new-comment {
+  background-color: var(--bootstrap-black);
+  padding: 2em;
+  border-radius: 20px;
+}
+
+.field-comment {
+  width: 100%;
+  border-radius: 8px;
+  height: 70px;
+}
+
+.field-comment:focus {
+  outline: 0;
+  box-shadow: 0 0 8px var(--azure);
+}
+
+.field-reply {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.field-reply:focus {
+  outline: 0;
+  box-shadow: 0 0 8px var(--bootstrap-black);
+}
+
+.sub-com {
+  width: 50%;
+}
+
+.com-ava {
+  width: 28px;
+  height: 28px;
+}
+
+.com-user {
+  font-size: 16px;
+  font-style: italic;
+  font-weight: bold;
+  color: var(--mega-dark-green);
+  margin-left: 10px;
+}
+
+.text-com {
+  font-size: 16px;
+  color: var(--bootstrap-black);
+  margin-left: 28px;
+  max-width: 500px;
+  overflow-wrap: break-word;
+}
+
+.replies {
+  margin-left: 30px;
+}
+
+.list-com {
+  list-style-type: none;
+}
+
+.lnk-rep {
+  margin-left: 28px;
+  color: var(--oliva);
+}
+
+.lnk-rep:hover {
+  color: var(--bootstrap-black);
+}
+
+.del-com-lnk {
+  color: var(--custom-red);
+}
+
+.del-com-lnk:hover {
+  color: var(--bootstrap-black);
+}
+
+.del-com-lnk-reply {
+  margin-left: 28px;
+  color: var(--custom-red);
+}
+
+.del-com-lnk-reply:hover {
+  color: var(--bootstrap-black);
+}
+
+.rep-form {
+  display: none;
+}

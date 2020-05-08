@@ -58,9 +58,24 @@
         </div>
       </div>
     </div>
+
+    <div class='comments'>
+      <div class="comment-title">
+        <h1 class='title-com'>Comments:</h1>
+      </div>
+      <% if policy(@claim.comments).new? %>
+        <%= render partial: 'comments/new', locals: {commentable: @claim } %>
+      <% end %>
+    </div>
+    <div class='all-comments' id='all-comments'>
+      <ul class='list-com'>
+        <%= render partial: 'comments/comment', collection: @claim.comments.top_level_comment, as: :comment, locals: {commentable: @claim, nesting: 1} %>
+      </ul>
+    </div>
+
   </div>
 
   <div class='col-4'>
-    
+
   </div>
 </div>
