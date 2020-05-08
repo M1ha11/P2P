@@ -39,9 +39,8 @@ class Claim < ApplicationRecord
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
-      indexes :amount, analyzer: 'simple', search_analyzer: 'simple'
+      indexes :amount
       indexes :currency, analyzer: 'simple', search_analyzer: 'simple'
-      indexes :goal
     end
   end
 
