@@ -1,12 +1,14 @@
 class TagsController < ApplicationController
   def create
-    @tag = taggable.tags.new(tag_params)
+    @tag = taggable.tags.build(tag_params)
+    authorize @tag
     @tag.save
     respond_with @tag, location: -> { polymorphic_path([taggable]) }
   end
 
   def destroy
     @tag = taggable.tags.find(params[:id])
+    authorize @tag
     @tag.destroy
     respond_with @tag, location: -> { polymorphic_path([taggable]) }
   end
