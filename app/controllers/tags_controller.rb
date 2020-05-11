@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
   def create
     @taggable_tag = Tag.find_or_create_by(tag_params)
-    @tag = @taggable_tag.tagging.build(tagging_params)
+    @tag = taggable.tagging.new(tag_id: @taggable_tag[:id])
     authorize @tag
     @tag.save
     respond_with @tag, location: -> { polymorphic_path([taggable]) }
@@ -22,13 +22,9 @@ class TagsController < ApplicationController
     end
   end
 
-  # def flash_interpolation_options
-  #   { resource_errors: @tag.errors.full_messages.join(',') }
-  #   respond_with @tag, location: -> { polymorphic_path([taggable]) }
-  # end
-
-  def tagging_params
-    params.permit(taggable_type: taggable.class, taggable_id: taggable[:id])
+  def flash_interpolation_options
+    { resource_errors: @tagable_tag.errors.full_messages.join(',') }
+    respond_with @tagable_tag, location: -> { polymorphic_path([taggable]) }
   end
 
   def tag_params
