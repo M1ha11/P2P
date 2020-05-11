@@ -79,6 +79,7 @@
             </div>
           <% end %>
 
+          <% if policy(@claim).dont_belongs_to_user? %>
           <% if not_collected_amount_of_money? %>
             <div class='become-part'>
               <div class='row justify-content-md-center'>
@@ -90,6 +91,7 @@
                 </div>
               </div>
             </div>
+          <% end %>
           <% end %>
 
         </div>

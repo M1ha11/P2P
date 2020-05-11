@@ -1,6 +1,7 @@
 class LoanParticipantsController < ApplicationController
   def create
     @participant = LoanParticipant.new(loan_participant_params)
+    authorize @participant
     check_wanting_sum
     @participant.save
     respond_with @participant, location: -> { claim_path(@participant.claim_id) }
@@ -8,6 +9,7 @@ class LoanParticipantsController < ApplicationController
 
   def destroy
     @participant = LoanParticipant.find(params[:id])
+    authorize @participant
     @participant.destroy
     respond_with @participant, location: -> { claims_path }
   end

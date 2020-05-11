@@ -35,6 +35,10 @@ class ClaimPolicy < ApplicationPolicy
     belongs_to_user?(claim) || admin?
   end
 
+  def dont_belongs_to_user?
+    !belongs_to_user?(claim)
+  end
+
   def show?
     true
   end
