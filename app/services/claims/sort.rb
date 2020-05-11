@@ -2,10 +2,14 @@ module Claims
   class Sort
     AVAILIABLE_DIRECTION = %w[asc desc].freeze
 
-    def call(claims, sort_field = 'created_at', direction = 'asc')
-      sort_field = check_sort_field(sort_field)
-      direction = check_direction(direction)
-      claims.order("#{sort_field} #{direction}")
+    def initialize(claims, sort_field = 'created_at', direction = 'asc')
+      @claims = claims
+      @sort_field = check_sort_field(sort_field)
+      @direction = check_direction(direction)
+    end
+
+    def call
+      @claims.order("#{@sort_field} #{@direction}")
     end
 
     private
