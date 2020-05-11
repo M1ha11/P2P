@@ -16,7 +16,8 @@
 #
 class Claim < ApplicationRecord
   belongs_to :user
-  has_many :tags, as: :taggable
+  has_many :tagging, as: :taggable
+  has_many :tags, through: :tagging
   has_many :comments, as: :commentable, dependent: :destroy
 
   enum status: %i[publicly privatly archive]

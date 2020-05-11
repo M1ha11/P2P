@@ -10,9 +10,10 @@
 #  taggable_id   :bigint           not null
 #
 class Tag < ApplicationRecord
-  belongs_to :taggable, polymorphic: true
+  has_many :tagging
+  has_many :taggable, through: :tagging
 
-  validates :name, presence: true, format: { with: /\A(#\w+)\z/ }
+  validates :name, presence: true, format: { with: /\A(#\w+)\z/ }, uniqueness: true
 
-  scope :for_entity, ->(taggable_type) { where(taggable_type: taggable_type) }
+  scope :for_entity, ->(taggable_type) { joins(:tagging).where(taggings: { taggable_type: taggable_type }) }
 end
