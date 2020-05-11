@@ -31,16 +31,28 @@ class ClaimPolicy < ApplicationPolicy
     belongs_to_user?(claim) || admin?
   end
 
+  def confirm?
+    belongs_to_user?(claim)
+  end
+
   def destroy?
     belongs_to_user?(claim) || admin?
   end
 
   def dont_belongs_to_user?
-    !belongs_to_user?(claim)
+    !belongs_to_user?(claim) && user.present?
   end
 
   def show?
     true
+  end
+
+  def can_confirmed?
+    claim.amount = claim.loan_participants.sum(:money)
+  end
+
+  def not_already_participant?
+    claim.loan_participants.find_by(user_id: user.id) ? false : true
   end
 
   private

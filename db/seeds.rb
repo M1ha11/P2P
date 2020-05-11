@@ -12,4 +12,5 @@ require 'factory_bot_rails'
   FactoryBot.create(:profile)
   FactoryBot.create(:card)
   FactoryBot.create(:claim)
+  FactoryBot.create(:comment)
 end

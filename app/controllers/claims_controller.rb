@@ -1,5 +1,5 @@
 class ClaimsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show confirm]
 
   def index
     @claims = policy_scope(Claim)
@@ -27,6 +27,11 @@ class ClaimsController < ApplicationController
 
   def update
     claim.update(claim_params)
+    respond_with claim, location: -> { claim_path(claim.id) }
+  end
+
+  def confirm
+    claim.update(status: 'confirmed')
     respond_with claim, location: -> { claim_path(claim.id) }
   end
 

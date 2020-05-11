@@ -14,4 +14,17 @@
       <span class='text-gr'>Amount of money:</span> <span class='part-sum'><%= participant.money %> <%= participant.claim.currency %></span>
     </p>
   </div>
+
+  <% if policy(participant).destroy? %>
+    <div class='row justify-content-between'>
+      <p class='income'>
+        <span class='text-gr'>Income:</span>
+        <span class='part-sum'><%= income(participant, participant.claim)%></span>
+      </p>
+      <button type='button' class='btn btn-outline-danger'>
+        <%= link_to 'Leave', loan_participant_path(participant.id), method: :delete, class: 'nav-unlog-btn' %>
+      </button>
+    </div>
+  <% end %>
+
 </div>

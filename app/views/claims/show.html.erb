@@ -58,6 +58,21 @@
         </div>
       </div>
     </div>
+
+    <div class='comments'>
+      <div class="comment-title">
+        <h1 class='title-com'>Comments:</h1>
+      </div>
+      <% if policy(@claim.comments).new? %>
+        <%= render partial: 'comments/new', locals: {commentable: @claim } %>
+      <% end %>
+    </div>
+    <div class='all-comments' id='all-comments'>
+      <ul class='list-com'>
+        <%= render partial: 'comments/comment', collection: @claim.comments.top_level_comment, as: :comment, locals: {commentable: @claim, nesting: 1} %>
+      </ul>
+    </div>
+
   </div>
 
   <div class='col-4 part'>
@@ -79,19 +94,31 @@
             </div>
           <% end %>
 
-          <% if policy(@claim).dont_belongs_to_user? %>
-          <% if not_collected_amount_of_money? %>
+          <% if policy(@claim).dont_belongs_to_user? && not_collected_amount_of_money? &&  %>
             <div class='become-part'>
               <div class='row justify-content-md-center'>
                 <button type='button' class='btn btn-outline-success'>
                   <a href="" id='participant-new' class='nav-log-btn'>Become a Participant</a>
                 </button>
-                <div class='part-form' id='part-form'>
-                  <%= render template: 'loan_participants/new', locals: {claim: @claim} %>
-                </div>
+                <%= render 'shared/flash' %>
+                <% if policy(@claim).not_already_participant? %>
+                  <div class='part-form' id='part-form'>
+                    <%= render template: 'loan_participants/new', locals: {claim: @claim} %>
+                  </div>
+                <% end %>
+
               </div>
             </div>
           <% end %>
+
+          <% if policy(@claim).confirm? && collected_amount? %>
+            <div class='become-part'>
+              <div class='row justify-content-md-end'>
+                <button type='button' class='btn btn-outline-success'>
+                  <%= link_to 'Confirm', confirm_claim(@claim.id), class: 'nav-log-btn' %>
+                </button>
+              </div>
+            </div>
           <% end %>
 
         </div>
