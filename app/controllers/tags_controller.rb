@@ -23,8 +23,7 @@ class TagsController < ApplicationController
   end
 
   def flash_interpolation_options
-    { resource_errors: @tagable_tag.errors.full_messages.join(',') }
-    respond_with @tagable_tag, location: -> { polymorphic_path([taggable]) }
+    { resource_errors: @taggable_tag.errors.full_messages.join(',') }
   end
 
   def tag_params
