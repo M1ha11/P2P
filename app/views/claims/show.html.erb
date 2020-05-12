@@ -76,7 +76,7 @@
 
                 <div class='remove-tag-form' id='remove-tag-form'>
                   <p>
-                    <%= render partial: 'tags/remove_tag', collection: @claim.tags, as: :tag, locals: {taggable: @claim}  %>
+                    <%= render partial: 'taggings/remove_tag', collection: @claim.tags, as: :tag, locals: {taggable: @claim}  %>
                   </p>
                   <a href="" id='close-rem' class='close-tag close-rem'>Close</a>
                 </div>

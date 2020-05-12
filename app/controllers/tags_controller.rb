@@ -1,17 +1,14 @@
 class TagsController < ApplicationController
   def create
-    @taggable_tag = Tag.find_or_create_by(tag_params)
-    @tag = taggable.tagging.new(tag_id: @taggable_tag[:id])
+    @tag = Tag.find_or_initialize_by(tag_params)
+    check_validation
+    @tagging = Tagging.new(tag: @tag, taggable: taggable)
     authorize @tag
-    @tag.save
-    respond_with @tag, location: -> { polymorphic_path([taggable]) }
-  end
-
-  def destroy
-    @tag = taggable.tagging.find_by(tag_id: params[:id])
-    authorize @tag
-    @tag.destroy
-    respond_with @tag, location: -> { polymorphic_path([taggable]) }
+    ActiveRecord::Base.transaction do
+      @tag.save
+      @tagging.save
+    end
+    respond_with @tagging, location: -> { polymorphic_path([taggable]) }
   end
 
   private
@@ -22,8 +19,10 @@ class TagsController < ApplicationController
     end
   end
 
-  def flash_interpolation_options
-    { resource_errors: @taggable_tag.errors.full_messages.join(',') }
+  def check_validation
+    unless @tag.valid?
+      redirect_to polymorphic_path([taggable]), flash: { error: @tag.errors.full_messages.join(',') }
+    end
   end
 
   def tag_params
