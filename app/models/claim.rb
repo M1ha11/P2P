@@ -28,7 +28,7 @@ class Claim < ApplicationRecord
                            '7 years': '84.month', '10 years': '120.month', '15 years': '180.month',
                            '20 years': '240.month' }
 
-  validates :amount, presence: true, numericality: true
+  validates :amount, presence: true, numericality: { greater_than: 0.0 }
   validates :currency, presence: true
   validates :goal, presence: true
   validates :interest_rate, presence: true

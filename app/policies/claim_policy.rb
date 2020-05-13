@@ -24,11 +24,11 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def edit?
-    belongs_to_user?(claim) || admin?
+    belongs_to_user?(claim)
   end
 
   def update?
-    belongs_to_user?(claim) || admin?
+    belongs_to_user?(claim)
   end
 
   def destroy?

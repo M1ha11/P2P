@@ -20,7 +20,7 @@ class Profile < ApplicationRecord
 
   validates :phone_number, presence: true, length: { minimum: 10, maximum: 25 },
                            format: {
-                             with: /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{2,3})?\)?[- ]?\d{3}[- ]?\d{4}\z/
+                             with: /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{2,3})?\)?[- ]?\d{3,4}[- ]?\d{4}\z/
                            }
   validates :address, presence: true
   validates :success_credit_project, numericality: true

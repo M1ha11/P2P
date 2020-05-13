@@ -1,0 +1,109 @@
+require 'rails_helper'
+
+RSpec.describe ClaimsController, type: :controller do
+  describe 'GET index' do
+    context 'when user role is user' do
+      let(:current_user) { create(:user, role: 'user') }
+      let!(:claims) { create(:claim, status: 'publicly') }
+
+      before do
+        sign_in current_user
+      end
+
+      it 'returns status 200' do
+        get :index
+        expect(response).to have_http_status(200)
+      end
+
+      it 'return claims' do
+        get :index
+        expect(assigns(:claims)).to eq([claims])
+      end
+    end
+  end
+
+  describe 'GET new' do
+    let(:claim) { create(:claim, user_id: current_user.id) }
+    let(:current_user) { create(:user, role: 'user') }
+
+    before do
+      sign_in current_user
+    end
+  
+    it 'returns assings to new claim' do
+      get :new
+      expect(assigns(:claim)).to be_a_new(Claim)
+    end
+  end
+
+  describe 'POST create' do
+    context 'when user authorize' do
+      let(:current_user) { create(:user) }
+
+      before do
+        sign_in current_user
+      end
+
+      context 'with valid params' do
+        let(:claim) { build(:claim, user_id: current_user.id) }
+        let(:valid_claim_params) { { claim: claim.attributes } }
+
+        it 'creates new claim' do
+          expect{ post :create, params: valid_claim_params }.to change{ Claim.count }.by(1)
+        end
+      end
+
+      context 'with invalid params' do
+        let(:invalid_claim) { build(:claim, amount: 'not work', user_id: current_user.id) }
+        let(:invalid_claim_params) { { claim: invalid_claim.attributes } }
+
+        it 'doesn\'t create new claim' do
+
+          expect{ post :create, params: invalid_claim_params }.to_not change{ Claim.count }
+        end
+      end 
+    end
+
+    context 'when user unauthorize' do
+      it 'returns moved status' do
+        post :create
+        expect(response).to have_http_status(302)
+      end
+    end
+  end
+
+  describe 'GET show' do
+    let(:current_user) { create(:user) }
+    let!(:claim) { create(:claim, user_id: current_user.id) }
+
+    it 'returns claim' do
+      get :show, params: { id: claim.id }
+      expect(assigns(:claim)).to eq(claim)
+    end
+  end
+
+  describe 'DELETE destroy' do
+    context 'when user authorize' do
+      let(:current_user) { create(:user) }
+      let!(:claim) { create(:claim, user_id: current_user.id) }
+      let(:claim_id) { { id: claim.id } }
+
+      before do
+        sign_in current_user
+      end
+
+      it 'destroys claim' do
+        expect{ delete :destroy, params: claim_id }.to change{ Claim.count }.by(-1)
+      end
+    end
+
+    context 'when user unauthorize' do
+      let!(:claim) { create(:claim) }
+      let(:claim_id) { { id: claim.id } }
+
+      it 'returns moved status' do
+        expect{ delete :destroy, params: claim_id }.to_not change{ Claim.count }
+      end
+    end
+  end
+end

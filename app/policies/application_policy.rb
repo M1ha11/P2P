@@ -36,7 +36,7 @@ class ApplicationPolicy
   end
 
   def belongs_to_user?(record)
-    record.user == user
+    user.present? && record.user == user
   end
 
   class Scope
