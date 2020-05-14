@@ -172,6 +172,30 @@ hr.solid {
 .tag-down {
   background-color: var(--bootstrap-black);
 }
+
+.sort-cloud {
+  min-width: 28em;
+}
+
+.clouds {
+  display: grid;
+}
+
+.sort {
+  width: 50em;
+}
+
+.opt-sel {
+  width: 20em;
+}
+
+.dir-sel {
+  width: 8em;
+}
+
+.sort-label {
+  width: 100%;
+}
 .comments {
   margin-top: 4em;
   margin-left: 7em;

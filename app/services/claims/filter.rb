@@ -1,7 +1,7 @@
 module Claims
   class Filter
-    def initialize(claim, name = {})
-      @name = name
+    def initialize(claim, options = {})
+      @options = options
       @claim = claim
     end
 
@@ -16,9 +16,9 @@ module Claims
     end
 
     def with_tag
-      return default_claims unless @name.present?
+      return default_claims unless @options[:tag].present?
 
-      default_claims.joins(:tags).where(tags: { name: @name })
+      default_claims.joins(:tags).where(tags: { name: @options[:tag] })
     end
   end
 end
