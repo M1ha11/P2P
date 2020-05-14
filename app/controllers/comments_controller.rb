@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   def new
+    binding.pry
     @comment = commentable.comments.new
     authorize @comment
   end
@@ -7,8 +8,13 @@ class CommentsController < ApplicationController
   def create
     @comment = commentable.comments.new(comment_params)
     authorize @comment
-    @comment.save
-    respond_with @comment, location: -> { polymorphic_path([commentable]) }
+    if !@comment.valid?
+      flash[:alert] = @comment.errors.full_messages.join(', ')
+      respond_with flash[:alert], location: -> { polymorphic_path([commentable]) }
+    else
+      @comment.save
+      respond_with @comment, location: -> { polymorphic_path([commentable]) }
+    end
   end
 
   def destroy
@@ -21,8 +27,10 @@ class CommentsController < ApplicationController
   private
 
   def commentable
-    if params[:claim_id]
-      @commentable = Claim.find(params[:claim_id])
+    @commentable ||= begin
+      if params[:claim_id]
+        Claim.find(params[:claim_id])
+      end
     end
   end
 

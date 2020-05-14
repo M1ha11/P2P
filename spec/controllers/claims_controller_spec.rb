@@ -4,7 +4,7 @@ RSpec.describe ClaimsController, type: :controller do
   describe 'GET index' do
     context 'when user role is user' do
       let(:current_user) { create(:user, role: 'user') }
-      let!(:claims) { create(:claim, status: 'publicly') }
+      let!(:claims) { create_list(:claim, 3, status: 'publicly') }
 
       before do
         sign_in current_user
@@ -17,7 +17,8 @@ RSpec.describe ClaimsController, type: :controller do
 
       it 'return claims' do
         get :index
-        expect(assigns(:claims)).to eq([claims])
+        expect(assigns(:claims)).to eq(claims)
+        expect(assigns(:claims).pluck(:amount)).to eq(claims.pluck(:amount))
       end
     end
   end
@@ -45,21 +46,18 @@ RSpec.describe ClaimsController, type: :controller do
       end
 
       context 'with valid params' do
-        let(:claim) { build(:claim, user_id: current_user.id) }
-        let(:valid_claim_params) { { claim: claim.attributes } }
+        let(:valid_claim_params) { attributes_for(:claim, user_id: current_user.id) }
 
         it 'creates new claim' do
-          expect{ post :create, params: valid_claim_params }.to change{ Claim.count }.by(1)
+          expect{ post :create, params: { claim: valid_claim_params } }.to change{ Claim.count }.by(1)
         end
       end
 
       context 'with invalid params' do
-        let(:invalid_claim) { build(:claim, amount: 'not work', user_id: current_user.id) }
-        let(:invalid_claim_params) { { claim: invalid_claim.attributes } }
+        let(:invalid_claim_params) { attributes_for(:claim, amount: 'not work', user_id: current_user.id) }
 
         it 'doesn\'t create new claim' do
-
-          expect{ post :create, params: invalid_claim_params }.to_not change{ Claim.count }
+          expect{ post :create, params: { claim: invalid_claim_params } }.to_not change{ Claim.count }
         end
       end 
     end
@@ -68,6 +66,7 @@ RSpec.describe ClaimsController, type: :controller do
       it 'returns moved status' do
         post :create
         expect(response).to have_http_status(302)
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
   end
@@ -79,6 +78,7 @@ RSpec.describe ClaimsController, type: :controller do
     it 'returns claim' do
       get :show, params: { id: claim.id }
       expect(assigns(:claim)).to eq(claim)
+      expect(assigns(:claim).currency).to eq(claim[:currency])
     end
   end
 
@@ -94,6 +94,7 @@ RSpec.describe ClaimsController, type: :controller do
 
       it 'destroys claim' do
         expect{ delete :destroy, params: claim_id }.to change{ Claim.count }.by(-1)
+        expect(response).to redirect_to('/claims')
       end
     end
 
@@ -101,8 +102,9 @@ RSpec.describe ClaimsController, type: :controller do
       let!(:claim) { create(:claim) }
       let(:claim_id) { { id: claim.id } }
 
-      it 'returns moved status' do
+      it 'returns doesn\'t destroy claim' do
         expect{ delete :destroy, params: claim_id }.to_not change{ Claim.count }
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
   end

@@ -4,7 +4,7 @@ RSpec.describe CardsController, type: :controller do
   let(:current_user) { create(:user) }
 
   describe 'GET index' do
-    let(:card) { create(:card, user_id: current_user.id) }
+    let(:cards) { create_list(:card, 2, user_id: current_user.id) }
 
     context 'when user authorized' do
       before do
@@ -15,7 +15,8 @@ RSpec.describe CardsController, type: :controller do
         get :index
 
         expect(response).to have_http_status(200)
-        expect(assigns(:cards)).to eq([card])
+        expect(assigns(:cards)).to eq(cards)
+        expect(assigns(:cards).pluck(:card_number)).to eq(cards.pluck(:card_number))
       end
     end
 
@@ -23,6 +24,7 @@ RSpec.describe CardsController, type: :controller do
       it 'returns moved status' do
         get :index
         expect(response).to have_http_status(302)
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
   end
@@ -50,6 +52,7 @@ RSpec.describe CardsController, type: :controller do
       it 'returns moved status' do
         get :new
         expect(response).to have_http_status(302)
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
   end
@@ -61,20 +64,18 @@ RSpec.describe CardsController, type: :controller do
       end
 
       context 'when params is valid' do
-        let(:card) { build(:card, user_id: current_user.id) }
-        let(:card_params) { { card: card.attributes } }
+        let(:card_params) { attributes_for(:card, user: current_user) }
 
         it 'creates new credit card' do
-          expect{ post :create, params: card_params }.to change{ Card.count }.by(1)
+          expect{ post :create, params: { card: card_params } }.to change{ Card.count }.by(1)
         end
       end
 
       context 'when params is invalid' do
-        let(:invalid_card) { build(:card, expire_date: '33/2000', user_id: current_user.id) }
-        let(:invalid_card_params) { { card: invalid_card.attributes } }
+        let(:invalid_card_params) { attributes_for(:card, expire_date: '33/2000', user_id: current_user.id) }
 
         it 'doesn\'t create credit card' do
-          expect{ post :create, params: invalid_card_params }.to_not change{ Card.count }
+          expect{ post :create, params: { card: invalid_card_params } }.to_not change{ Card.count }
         end
       end
     end
@@ -83,6 +84,7 @@ RSpec.describe CardsController, type: :controller do
       it 'returns moved status' do
         post :create
         expect(response).to have_http_status(302)
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
   end
@@ -99,12 +101,15 @@ RSpec.describe CardsController, type: :controller do
       it 'deletes credit card' do
         expect{ delete :destroy, params: user_card_id }.to change{ Card.count }.by(-1)
         expect(response).to have_http_status(302)
+        expect(response).to redirect_to('/cards')
       end
     end
 
     context 'when user unauthorized' do
-      it 'returns moved status' do
+      it 'returns doesn\'t destroy card' do
         expect{ delete :destroy, params: user_card_id }.to_not change{ Card.count }
+        expect(response).to redirect_to('/users/sign_in')
+        expect(response).to have_http_status(302)
       end
     end
   end

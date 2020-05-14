@@ -24,5 +24,20 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:user) }
+  let(:invalid_email) { build(:user, email: 'abc.com') }
+
+  it 'is valid with all valid params' do
+    expect(subject).to be_valid
+  end
+
+  it 'is invalid without attribute' do
+    subject[:email] = nil
+
+    expect(subject).not_to be_valid
+  end
+
+  it 'is invalid with wrong attributes' do
+    expect(invalid_email).not_to be_valid
+  end
 end

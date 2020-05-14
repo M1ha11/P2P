@@ -14,5 +14,21 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:comment) }
+  let(:invalid_text) { build(:comment, text: '') }
+
+  it 'is valid with all valid params' do
+    expect(subject).to be_valid
+  end
+
+  it 'is invalid without attribute' do
+    subject[:text] = nil
+    subject[:user_id] = nil
+
+    expect(subject).not_to be_valid
+  end
+
+  it 'is invalid with wrong attributes' do
+    expect(invalid_text).not_to be_valid
+  end
 end

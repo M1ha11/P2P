@@ -26,20 +26,20 @@ RSpec.describe UsersController, type: :controller do
       it 'returns moved status' do
         get :index
         expect(response).to have_http_status(302)
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
   end
 
   describe 'PATCH lock' do
     let(:user) { create(:user, role: 'user') }
-    let(:user_params) { { locked_at: Date.today } }
 
     before do
         sign_in current_user
     end
 
     it 'locks user' do
-      patch :lock, params: { id: user.id, user: user_params }
+      patch :lock, params: { id: user.id }
       expect(user.locked_at).not_to be_blank
     end
   end
@@ -61,9 +61,9 @@ RSpec.describe UsersController, type: :controller do
     let(:user) { create(:user, role: 'user') }
     let(:user_params) { { role: 'admin' } }
 
-     before do
-        sign_in current_user
-      end
+    before do
+      sign_in current_user
+    end
 
     it 'update user role' do
       patch :change_role, params: { id: user.id, user: user_params }
