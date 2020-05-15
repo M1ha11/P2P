@@ -12,7 +12,7 @@ module Claims
     private
 
     def default_claims
-      @claim.includes(:tags)
+      @claim
     end
 
     def with_tag
