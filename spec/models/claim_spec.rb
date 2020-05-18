@@ -17,37 +17,15 @@
 require 'rails_helper'
 
 RSpec.describe Claim, type: :model do
-  let(:user) { create(:user) }
-  subject { build(:claim, user: user) }
-  let(:invalid_amount) { build(:claim, amount: 'one') }
-  # let(:invalid_currency) { build(:claim, currency: 'one') }
-  # let(:invalid_interest_rate) { build(:claim, interest_rate: 'one') }
-  # let(:invalid_repayment_period) { build(:claim, repayment_period: 'one') }
-  # let(:invalid_status) { build(:claim, status: 'one') }
-  # let(:invalid_payment_frequency) { build(:claim, payment_frequency: 'one') }
+  subject { build(:claim) }
 
-
-  it 'is valid with all correct attributes' do
-    expect(subject).to be_valid
+  context 'with valid attributes' do
+    it 'is valid' do
+      expect(subject).to be_valid
+    end
   end
 
-  it 'is invalid without attributes' do
-    subject[:amount] = nil
-    subject[:currency] = nil
-    subject[:goal] = nil
-    subject[:interest_rate] = nil
-    subject[:repayment_period] = nil
-    subject[:status] = nil
-    subject[:payment_frequency] = nil
+  include_examples 'invalid without attributes', :amount, :goal
 
-    expect(subject).not_to be_valid
-  end
-
-  it 'is invalid with wrong attributes' do
-    expect(invalid_amount).not_to be_valid
-    # expect(invalid_currency).not_to be_valid
-    # expect(invalid_interest_rate).not_to be_valid
-    # expect(invalid_repayment_period).not_to be_valid
-    # expect(invalid_status).not_to be_valid
-  end
+  include_examples 'invalid with incorrect attributes', { field: :amount, params: 'one' }
 end

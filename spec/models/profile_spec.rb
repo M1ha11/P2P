@@ -16,29 +16,19 @@ require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
   subject { build(:profile) }
-  let(:invalid_phone_number) { build(:profile, phone_number: '+375') }
-  let(:invalid_address) { build(:profile, address: Faker::Lorem.sentence(word_count: 100)) }
 
-  it 'is valid with all valid params' do
-    expect(subject).to be_valid
+  context 'with valid attributes' do
+    it 'is valid with all valid params' do
+      expect(subject).to be_valid
+    end
   end
 
-  it 'is valid without avatar' do
-    subject[:avatar] = nil
+  include_examples 'valid without attributes', :avatar
 
-    expect(subject).to be_valid
-  end
+  include_examples 'invalid without attributes', :phone_number, :address
 
-  it 'is invalid without attribute' do
-    subject[:phone_number] = nil
-    subject[:address] = nil
-
-    expect(subject).not_to be_valid
-  end
-
-  it 'is invalid with wrong attributes' do
-    expect(invalid_phone_number).not_to be_valid
-    binding.pry
-    expect(invalid_address).not_to be_valid
-  end
+  include_examples 'invalid with incorrect attributes', { field: :phone_number, params: '+375' },
+                                                        { field: :phone_number,
+                                                          params: Faker::PhoneNumber.subscriber_number(length: 26) }
+                                                        { field: :address, params:Faker::Lorem.sentence(word_count: 100) }
 end

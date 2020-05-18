@@ -25,19 +25,14 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   subject { build(:user) }
-  let(:invalid_email) { build(:user, email: 'abc.com') }
 
-  it 'is valid with all valid params' do
-    expect(subject).to be_valid
+  context 'with valid params' do
+    it 'is valid' do
+      expect(subject).to be_valid
+    end
   end
 
-  it 'is invalid without attribute' do
-    subject[:email] = nil
+  include_examples 'invalid without attributes', :email
 
-    expect(subject).not_to be_valid
-  end
-
-  it 'is invalid with wrong attributes' do
-    expect(invalid_email).not_to be_valid
-  end
+  include_examples 'invalid with incorrect attributes', { field: :email, params: 'abc.com' }
 end

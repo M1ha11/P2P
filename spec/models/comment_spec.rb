@@ -15,20 +15,12 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   subject { build(:comment) }
-  let(:invalid_text) { build(:comment, text: '') }
 
-  it 'is valid with all valid params' do
-    expect(subject).to be_valid
+  context 'with valid attributtes' do
+    it 'is valid' do
+      expect(subject).to be_valid
+    end
   end
 
-  it 'is invalid without attribute' do
-    subject[:text] = nil
-    subject[:user_id] = nil
-
-    expect(subject).not_to be_valid
-  end
-
-  it 'is invalid with wrong attributes' do
-    expect(invalid_text).not_to be_valid
-  end
+  include_examples 'invalid without attributes', :text
 end
