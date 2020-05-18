@@ -11,7 +11,8 @@ RSpec.describe ProfilesController, type: :controller do
 
     it 'returns profile' do
       get :show, params: { id: profile.id }
-      expect(assigns(:profile)).to eq(profile)
+
+      expect(assigns(:profile)).to eq(profile).and
       expect(response).to have_http_status(200)
     end
   end
@@ -30,6 +31,7 @@ RSpec.describe ProfilesController, type: :controller do
 
         it 'return updated profile' do
           patch :update, params: { id: profile.id, profile: profile_params }
+
           expect(assigns(:profile).changed?).to eq(false)
         end
       end
@@ -39,6 +41,7 @@ RSpec.describe ProfilesController, type: :controller do
 
         it 'doesn\'t update profile' do
           patch :update, params: { id: profile.id, profile: profile_params }
+
           expect(assigns(:profile)).to eq(profile)
         end
       end
@@ -51,7 +54,8 @@ RSpec.describe ProfilesController, type: :controller do
 
       it 'moves to sing in' do
         patch :update, params: { id: profile.id, profile: profile_params }
-        expect(response).to have_http_status(302)
+
+        expect(response).to have_http_status(302).and
         expect(response).to redirect_to('/users/sign_in')
       end
     end

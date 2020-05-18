@@ -13,7 +13,7 @@ describe UserPolicy do
 
   context 'being an admin' do
     let(:current_user) { create(:user, role: 'admin') }
-    
+
     context 'when user is admin' do
       let(:user) { create(:user, role: 'admin') }
 
@@ -47,7 +47,6 @@ describe UserPolicy do
       end
 
       context 'when user not locked' do
-
         it { is_expected.to permit_actions(%i[index lock change_role]) }
       end
     end

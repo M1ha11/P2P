@@ -13,11 +13,13 @@ RSpec.describe UsersController, type: :controller do
 
       it 'returns users' do
         get :index
+
         expect(assigns(:users)).to eq(users)
       end
 
       it 'returns succes status' do
         get :index
+
         expect(response).to have_http_status(200)
       end
     end
@@ -25,7 +27,8 @@ RSpec.describe UsersController, type: :controller do
     context 'when user unauthorize' do
       it 'returns moved status' do
         get :index
-        expect(response).to have_http_status(302)
+
+        expect(response).to have_http_status(302).and
         expect(response).to redirect_to('/users/sign_in')
       end
     end
@@ -35,11 +38,12 @@ RSpec.describe UsersController, type: :controller do
     let(:user) { create(:user, role: 'user') }
 
     before do
-        sign_in current_user
+      sign_in current_user
     end
 
     it 'locks user' do
       patch :lock, params: { id: user.id }
+
       expect(user.locked_at).not_to be_blank
     end
   end
@@ -53,6 +57,7 @@ RSpec.describe UsersController, type: :controller do
 
     it 'locks user' do
       patch :unlock, params: { id: user.id }
+
       expect(user.locked_at).to be_blank
     end
   end
@@ -67,6 +72,7 @@ RSpec.describe UsersController, type: :controller do
 
     it 'update user role' do
       patch :change_role, params: { id: user.id, user: user_params }
+
       expect(assigns(:user).changed?).to eq(false)
     end
   end

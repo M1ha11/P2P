@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   def new
-    binding.pry
     @comment = commentable.comments.new
     authorize @comment
   end

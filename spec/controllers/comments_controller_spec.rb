@@ -4,39 +4,41 @@ RSpec.describe CommentsController, type: :controller do
   let(:current_user) { create(:user, role: 'user') }
   let(:commentable) { create(:claim, user: current_user) }
 
-  # describe 'GET new' do
-  #   before do
-  #     sign_in current_user
-  #   end
+  describe 'GET new' do
+    before do
+      sign_in current_user
+    end
 
-  #   it 'returns success status' do
-  #     get :new, params: { claim_id: commentable.id }
-  #     expect(response.content_type).to eq("text/html")
-  #   end
-  # end
+    it 'returns success status' do
+      get :new, params: { claim_id: commentable.id }
+      
+      expect(response.content_type).to eq('text/html')
+    end
+  end
 
-  describe 'POST create' do   
+  describe 'POST create' do
     before do
       sign_in current_user
     end
 
     context 'with valid params' do
       let(:comment_params) { attributes_for(:comment, commentable: commentable)
-                             .merge(commentable_id: commentable.id, commentable_type: commentable.class.name) }
+        .merge(commentable_id: commentable.id,
+               commentable_type: commentable.class.name) }
 
       it 'create new comment' do
         expect{ post :create, params: { comment: comment_params, claim_id: commentable.id } }
-                                        .to change{ Comment.count }.by(1)
+          .to change{ Comment.count }.by(1)
       end
     end
 
     context 'with invalid params' do
       let(:comment_params) { attributes_for(:comment, text: '', commentable: commentable)
-                      .merge(commentable_id: commentable.id, commentable_type: commentable.class.name) }
+        .merge(commentable_id: commentable.id, commentable_type: commentable.class.name) }
 
       it 'doesn\'t create comment' do
         expect{ post :create, params: { comment: comment_params, claim_id: commentable.id } }
-                .to_not change{ Comment.count }
+          .to_not change{ Comment.count }
       end
     end
   end
@@ -51,7 +53,7 @@ RSpec.describe CommentsController, type: :controller do
 
       it 'deletes comment' do
         expect{ delete :destroy, params: { id: comment.id, claim_id: commentable.id } }
-                                           .to change{ Comment.count }.by(-1)
+          .to change{ Comment.count }.by(-1)
       end
     end
 
@@ -65,7 +67,7 @@ RSpec.describe CommentsController, type: :controller do
 
       it 'doesn\'t delete comment' do
         expect{ delete :destroy, params: { id: comment.id, claim_id: commentable.id } }
-                                           .not_to change{ Comment.count }
+          .not_to change{ Comment.count }
       end
     end
   end

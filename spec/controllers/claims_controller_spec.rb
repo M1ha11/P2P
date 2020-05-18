@@ -17,7 +17,7 @@ RSpec.describe ClaimsController, type: :controller do
 
       it 'return claims' do
         get :index
-        expect(assigns(:claims)).to eq(claims)
+        expect(assigns(:claims)).to eq(claims).and
         expect(assigns(:claims).pluck(:amount)).to eq(claims.pluck(:amount))
       end
     end
@@ -65,7 +65,7 @@ RSpec.describe ClaimsController, type: :controller do
     context 'when user unauthorize' do
       it 'returns moved status' do
         post :create
-        expect(response).to have_http_status(302)
+        expect(response).to have_http_status(302).and
         expect(response).to redirect_to('/users/sign_in')
       end
     end
@@ -77,7 +77,8 @@ RSpec.describe ClaimsController, type: :controller do
 
     it 'returns claim' do
       get :show, params: { id: claim.id }
-      expect(assigns(:claim)).to eq(claim)
+
+      expect(assigns(:claim)).to eq(claim).and
       expect(assigns(:claim).currency).to eq(claim[:currency])
     end
   end
@@ -93,7 +94,7 @@ RSpec.describe ClaimsController, type: :controller do
       end
 
       it 'destroys claim' do
-        expect{ delete :destroy, params: claim_id }.to change{ Claim.count }.by(-1)
+        expect { delete :destroy, params: claim_id }.to change{ Claim.count }.by(-1).and
         expect(response).to redirect_to('/claims')
       end
     end
@@ -103,7 +104,7 @@ RSpec.describe ClaimsController, type: :controller do
       let(:claim_id) { { id: claim.id } }
 
       it 'returns doesn\'t destroy claim' do
-        expect{ delete :destroy, params: claim_id }.to_not change{ Claim.count }
+        expect { delete :destroy, params: claim_id }.to_not change{ Claim.count }.and
         expect(response).to redirect_to('/users/sign_in')
       end
     end
