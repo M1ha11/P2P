@@ -2,7 +2,7 @@
 
   <div class='row clouds justify-content-between'>
     <div class='col-6 tagcloud'>
-      <%= render partial: 'tags/tags', locals: { model_class: Claim }, class: 'tag-down' %>
+      <%= render partial: 'tags/tags', locals: { model_class: Claim, sort: params[:sort], direction: params[:direction] }, class: 'tag-down' %>
     </div>
     <div class='col-4 sort-cloud align-self-start'>
       
@@ -13,30 +13,7 @@
               <label class="input-group-text sort-label">Sort by</label>
             </div>
             <div class='col-10'>
-              
-              <%= form_with(model: Claim, method: :get, local: true, id: 'sort') do |f| %>
-                <div class='row'>
-                  <div class='without-padding col-4'>
-                    <%= f.select :sort, raw("
-                                              <option value=''></option>
-                                              <option value='amount' selected='selected'>Amount</option>
-                                              <option value='currency'>Currency</option>
-                                              <option value='created_at'>Date</option>
-                                            "), {},
-                                 { class: 'custom-select opt-sel' } %>
-                  </div>
-                  <div class='col-3 without-padding'>
-                    <%= f.select :direction, raw("
-                                                  <option value='asc'>A-Z0-9</option>
-                                                  <option value='desc'>Z-A9-0</option>
-                                                 "), {},
-                                 { class: 'custom-select dir-sel'}%>
-                  </div>
-                  <div class='col-2 without-padding'>
-                    <%= f.submit 'Sort', class: 'btn btn-dark' %>
-                  </div>  
-                </div>
-              <% end %>
+              <%= render partial: 'claims/sort', locals: { tag: params[:tag] } %>
             </div>
           </div>
         </div>
