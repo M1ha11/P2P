@@ -28,7 +28,7 @@ RSpec.describe UsersController, type: :controller do
       it 'returns moved status' do
         get :index
 
-        expect(response).to have_http_status(302).and
+        expect(response).to have_http_status(302)
         expect(response).to redirect_to('/users/sign_in')
       end
     end

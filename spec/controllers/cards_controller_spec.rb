@@ -14,8 +14,8 @@ RSpec.describe CardsController, type: :controller do
       it 'returns user credit cards' do
         get :index
 
-        expect(response).to have_http_status(200).and
-        expect(assigns(:cards)).to eq(cards).and
+        expect(response).to have_http_status(200)
+        expect(assigns(:cards)).to eq(cards)
         expect(assigns(:cards).pluck(:card_number)).to eq(cards.pluck(:card_number))
       end
     end
@@ -23,7 +23,7 @@ RSpec.describe CardsController, type: :controller do
     context 'when user unauthorized' do
       it 'returns moved status' do
         get :index
-        expect(response).to have_http_status(302).and
+        expect(response).to have_http_status(302)
         expect(response).to redirect_to('/users/sign_in')
       end
     end
@@ -51,7 +51,7 @@ RSpec.describe CardsController, type: :controller do
     context 'when user unauthorized' do
       it 'returns moved status' do
         get :new
-        expect(response).to have_http_status(302).and
+        expect(response).to have_http_status(302)
         expect(response).to redirect_to('/users/sign_in')
       end
     end
@@ -83,7 +83,7 @@ RSpec.describe CardsController, type: :controller do
     context 'when user unauthorized' do
       it 'returns moved status' do
         post :create
-        expect(response).to have_http_status(302).and
+        expect(response).to have_http_status(302)
         expect(response).to redirect_to('/users/sign_in')
       end
     end
@@ -99,16 +99,16 @@ RSpec.describe CardsController, type: :controller do
       end
 
       it 'deletes credit card' do
-        expect { delete :destroy, params: user_card_id }.to change{ Card.count }.by(-1).and
-        expect(response).to have_http_status(302).and
+        expect { delete :destroy, params: user_card_id }.to change{ Card.count }.by(-1)
+        expect(response).to have_http_status(302)
         expect(response).to redirect_to('/cards')
       end
     end
 
     context 'when user unauthorized' do
       it 'returns doesn\'t destroy card' do
-        expect { delete :destroy, params: user_card_id }.to_not change{ Card.count }.and
-        expect(response).to redirect_to('/users/sign_in').and
+        expect { delete :destroy, params: user_card_id }.to_not change{ Card.count }
+        expect(response).to redirect_to('/users/sign_in')
         expect(response).to have_http_status(302)
       end
     end
