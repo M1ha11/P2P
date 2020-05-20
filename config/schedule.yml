@@ -1,0 +1,3 @@
+archive_job:
+  cron: '0 14 * * *'
+  class: 'ArchiveWorker'
