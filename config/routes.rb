@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :cards, only: %i[index new create destroy]
   resources :claims do
     member do
-      patch 'confirm'
+      put 'confirm'
     end
     resources :comments, only: %i[new create destroy]
   end
