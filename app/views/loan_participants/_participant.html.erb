@@ -17,10 +17,12 @@
 
   <% if policy(participant).destroy? %>
     <div class='row justify-content-between'>
-      <p class='income'>
-        <span class='text-gr'>Income:</span>
-        <span class='part-sum'><%= income(participant, participant.claim)%></span>
-      </p>
+      <% if policy(participant).user_is_participant? %>
+        <p class='income'>
+          <span class='text-gr'>Income:</span>
+          <span class='part-sum'><%= income(participant, participant.claim)%></span>
+        </p>
+      <% end %>
       <button type='button' class='btn btn-outline-danger'>
         <%= link_to 'Leave', loan_participant_path(participant.id), method: :delete, class: 'nav-unlog-btn' %>
       </button>

@@ -14,17 +14,13 @@ class LoanParticipantsController < ApplicationController
     @participant = LoanParticipant.find(params[:id])
     authorize @participant
     @participant.destroy
-    respond_with @participant, location: -> { claims_path }
+    respond_with @participant, location: -> { claim_path }
   end
 
   private
 
   def claim
     @claim ||= Claim.find(params[:loan_participant][:claim_id])
-  end
-
-  def flash_interpolation_options
-    { resource_errors: claim.errors.full_messages.join(',') }
   end
 
   def loan_participant_params

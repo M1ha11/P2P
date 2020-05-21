@@ -94,19 +94,16 @@
             </div>
           <% end %>
 
-          <% if policy(@claim).dont_belongs_to_user? && not_collected_amount_of_money? &&  %>
+          <% if policy(@claim).dont_belongs_to_user? && not_collected_amount_of_money? && policy(@claim).not_already_participant? %>
             <div class='become-part'>
               <div class='row justify-content-md-center'>
                 <button type='button' class='btn btn-outline-success'>
                   <a href="" id='participant-new' class='nav-log-btn'>Become a Participant</a>
                 </button>
                 <%= render 'shared/flash' %>
-                <% if policy(@claim).not_already_participant? %>
-                  <div class='part-form' id='part-form'>
-                    <%= render template: 'loan_participants/new', locals: {claim: @claim} %>
-                  </div>
-                <% end %>
-
+                <div class='part-form' id='part-form'>
+                  <%= render template: 'loan_participants/new', locals: {claim: @claim} %>
+                </div>
               </div>
             </div>
           <% end %>

@@ -4,7 +4,11 @@ class LoanParticipantPolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin? || user || claim_owner? && claim_not_confirmed?
+    admin? || belongs_to_user?(participant) || claim_owner? && claim_not_confirmed?
+  end
+
+  def user_is_participant?
+    participant.user == user
   end
 
   private
@@ -26,6 +30,6 @@ class LoanParticipantPolicy < ApplicationPolicy
   end
 
   def claim_owner?
-    participant.claim.user
+    participant.claim.user == user
   end
 end
