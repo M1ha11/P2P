@@ -18,7 +18,7 @@ class LoanParticipantPolicy < ApplicationPolicy
   end
 
   def exists?
-    user.present? && 
+    user.present?
   end
 
   def claim_not_confirmed?
