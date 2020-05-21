@@ -2,3 +2,11 @@ archive_job:
   cron: '10 13 * * *'
   class: 'ArchiveWorker'
   queue: 'default'
+pay_notification_job:
+  cron: '00 06 * * *'
+  class: 'PayNotification'
+  queue: 'default'
+success_claim_job:
+  cron: '00 17 * * *'
+  class: 'SuccessClaim'
+  queue: 'default'

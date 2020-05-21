@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, <%= @user.name %></h1>
+    <p>
+      New participant <%= @participant.user %> agreed to participate in your claim "Credit on <%= @claim.amount%> <%= @claim.currency%>".<br>
+      He can gives you <%= @participant.money %> <%= @claim.currency%>.<br>
+    </p>
+    <p>Glad to see you on P2P!</p>
+  </body>
+</html>
