@@ -3,7 +3,7 @@
   <div class='participant-main-info'>
     <div class='row '>
       <p class='part-name'>
-        <span><%= participant.user.profile.success_credit_project %>/<%= participant.user.profile.success_lend_project%></span>
+        <span><%= participant.success_credit_project %>/<%= participant.success_lend_project%></span>
         <span><%= image_tag loan_participant_avatar(participant), class: 'rounded-circle rounded-loan-ava' %></span>
         <span><%= participant.user.email %></span>
       </p>
@@ -20,7 +20,7 @@
       <% if policy(participant).user_is_participant? %>
         <p class='income'>
           <span class='text-gr'>Income:</span>
-          <span class='part-sum'><%= income(participant, participant.claim)%></span>
+          <span class='part-sum'><%= income(participant)%></span>
         </p>
       <% end %>
       <button type='button' class='btn btn-outline-danger'>

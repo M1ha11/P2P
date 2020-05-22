@@ -94,7 +94,7 @@
             </div>
           <% end %>
 
-          <% if policy(@claim).dont_belongs_to_user? && not_collected_amount_of_money? && policy(@claim).not_already_participant? %>
+          <% if policy(@claim).doesnt_belong_to_user? && not_collected_amount_of_money? && policy(@claim).not_already_participant? %>
             <div class='become-part'>
               <div class='row justify-content-md-center'>
                 <button type='button' class='btn btn-outline-success'>

@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_05_08_183302) do
-=======
-ActiveRecord::Schema.define(version: 2020_04_30_145808) do
->>>>>>> f54a50c940abdce12da2384d0aaf156dcd3c2eb6
+ActiveRecord::Schema.define(version: 2020_05_22_085151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,8 +54,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_145808) do
     t.float "interest_rate", null: false
     t.string "repayment_period", null: false
     t.string "payment_frequency", null: false
-    t.integer "status", default: 0, null: false
     t.bigint "user_id", null: false
+    t.string "status", default: "publicly", null: false
     t.index ["user_id"], name: "index_claims_on_user_id"
   end
 

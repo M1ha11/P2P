@@ -1,10 +1,10 @@
 class LoanParticipantPolicy < ApplicationPolicy
   def create?
-    user_not_locked? && exists?
+    user_not_locked? && user_exists?
   end
 
   def destroy?
-    admin? || belongs_to_user?(participant) || claim_owner? && claim_not_confirmed?
+    admin? || belongs_to_user?(participant) || claim_owner?
   end
 
   def user_is_participant?
@@ -21,12 +21,8 @@ class LoanParticipantPolicy < ApplicationPolicy
     !user.access_locked?
   end
 
-  def exists?
+  def user_exists?
     user.present?
-  end
-
-  def claim_not_confirmed?
-    participant.claim.status != 'confirmed'
   end
 
   def claim_owner?

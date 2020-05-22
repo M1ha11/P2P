@@ -20,7 +20,7 @@ class LoanParticipantsController < ApplicationController
   private
 
   def claim
-    @claim ||= Claim.find(params[:loan_participant][:claim_id])
+    @claim ||= Claim.find(params.dig(:loan_participant, :claim_id))
   end
 
   def loan_participant_params

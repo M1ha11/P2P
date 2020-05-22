@@ -39,7 +39,7 @@ class ClaimPolicy < ApplicationPolicy
     belongs_to_user?(claim) || admin?
   end
 
-  def dont_belongs_to_user?
+  def doesnt_belong_to_user?
     !belongs_to_user?(claim) && user.present?
   end
 
@@ -47,12 +47,8 @@ class ClaimPolicy < ApplicationPolicy
     true
   end
 
-  def can_confirmed?
-    claim.amount = claim.loan_participants.sum(:money)
-  end
-
   def not_already_participant?
-    claim.loan_participants.find_by(user_id: user.id) ? false : true
+    !claim.loan_participants.find_by(user_id: user.id) ? true : false
   end
 
   private
