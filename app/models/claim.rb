@@ -46,11 +46,11 @@ class Claim < ApplicationRecord
     state :successfull
 
     event :archive do
-      transitions from: [:publicly, :privatly], to: :archived
+      transitions from: %i[publicly privatly], to: :archived
     end
 
     event :confirm do
-      transitions from: [:publicly, :privatly], to: :confirmed
+      transitions from: %i[publicly privatly], to: :confirmed
     end
 
     event :success do

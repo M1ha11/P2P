@@ -3,12 +3,12 @@ class ArchiveWorker
   sidekiq_options retry: false, queue: 'archive'
 
   ARCHIVE_DAY = 14.days.ago
-  AVALIABLE_STATUSES = %w(publicly privatly).map { |status| Claim.statuses[status] }
+  AVALIABLE_STATUSES = %w[publicly privatly].map { |status| Claim.statuses[status] }
 
   def perform
-    Claim.where(status: AVALIABLE_STATUSES).where("created_at < ?", ARCHIVE_DAY).find_each do |claim|
+    Claim.where(status: AVALIABLE_STATUSES).where('created_at < ?', ARCHIVE_DAY).find_each do |claim|
       next unless claim.loan_participants.nil?
-      
+
       claim.archive!
     end
   end

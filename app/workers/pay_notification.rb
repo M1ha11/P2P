@@ -3,7 +3,7 @@ class PayNotification
   sidekiq_options retry: false, queue: 'notification'
 
   def perform
-    Claim.where(status: 'confirmed').each do |claim|  
+    Claim.where(status: 'confirmed').each do |claim|
       if Time.zone.today < confirm_date(claim) + repayment_period_value(claim)
         notificate(claim)
       end
@@ -12,11 +12,12 @@ class PayNotification
 
   def notificate(claim)
     period = 1
-    while Time.zone.today <= notification_date(claim, period) do
+    while Time.zone.today <= notification_date(claim, period)
       if Time.zone.today == notification_date(claim, period)
         return PayMailer.pay_notification(claim).deliver_later!
       end
-      period = period + 1
+
+      period += 1
     end
   end
 
