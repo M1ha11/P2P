@@ -23,12 +23,8 @@ class ClaimPolicy < ApplicationPolicy
     belongs_to_user?(claim)
   end
 
-  def edit?
-    belongs_to_user?(claim) || admin?
-  end
-
-  def update?
-    belongs_to_user?(claim) || admin?
+  def can_see_participants?
+    user.present?
   end
 
   def confirm?

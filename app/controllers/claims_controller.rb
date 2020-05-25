@@ -23,13 +23,6 @@ class ClaimsController < ApplicationController
     end
   end
 
-  def edit; end
-
-  def update
-    claim.update(claim_params)
-    respond_with claim, location: -> { claim_path(claim.id) }
-  end
-
   def confirm
     ActiveRecord::Base.transaction do
       claim.update(status: 'confirmed')
@@ -38,6 +31,7 @@ class ClaimsController < ApplicationController
         participant.user.profile.update(success_lend_project: participant.user.profile.success_lend_project + 1)
       end
     end
+    # claim.confirm!
     respond_with claim, location: -> { claim_path(claim.id) }
   end
 
@@ -55,7 +49,8 @@ class ClaimsController < ApplicationController
   def set_service
     @currencies = Claims::Currency.new.list
     @rates = Claims::Rate.new.list
-    @statuses = Claim.statuses.keys[0..1]
+    @statuses = []
+    @statuses < Claim.statuses[:publicly] << Claim.statuses[:privatly]
   end
 
   def claim
