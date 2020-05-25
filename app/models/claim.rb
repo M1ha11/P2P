@@ -18,7 +18,10 @@ class Claim < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
 
-  enum status: %i[publicly privatly archive complited successful]
+  include AASM
+
+  enum status: { publicly: 'publicly', privatly: 'privatly', archived: 'archived',
+                 confirmed: 'confirmed', successful: 'successful' }
   enum payment_frequency: { 'twice a month': '0.5.month', 'once a month': '1.month',
                             'once a 3 month': '3.month', 'once a 4 month': '4.month',
                             'once a 6 month': '6.month', 'once a year': '12.month' }
@@ -34,4 +37,51 @@ class Claim < ApplicationRecord
   validates :interest_rate, presence: true
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
+
+  aasm column: :status, enum: true do
+    state :publicly, initial: true
+    state :privatly, initial: true
+    state :archived
+    state :confirmed
+    state :successfull
+
+    event :archive do
+      transitions from: [:publicly, :privatly], to: :archived
+    end
+
+    event :confirm do
+      transitions from: [:publicly, :privatly], to: :confirmed
+    end
+
+    event :success do
+      after do
+        update_profile
+      end
+
+      transitions from: :confirmed, to: :successfull
+    end
+  end
+
+  def confirm_date(claim)
+    claim.updated_at
+  end
+
+  def repayment_period_value(claim)
+    Claim.repayment_periods[claim.repayment_period]
+  end
+
+  def payment_frequency_value(claim)
+    Claim.payment_frequencies[claim.payment_frequency]
+  end
+
+  private
+
+  def update_profile
+    ActiveRecord::Base.transaction do
+      self.user.profile.update(success_credit_project: self.user.profile.success_credit_project + 1)
+      self.loan_participants.find_each do |participant|
+        participant.user.profile.update(success_lend_project: participant.user.profile.success_lend_project + 1)
+      end
+    end
+  end
 end

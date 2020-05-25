@@ -24,11 +24,11 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def edit?
-    belongs_to_user?(claim) || admin? && not_complete_or_archive
+    belongs_to_user?(claim) || admin?
   end
 
   def update?
-    belongs_to_user?(claim) || admin? && not_complete_or_archive
+    belongs_to_user?(claim) || admin?
   end
 
   def destroy?
@@ -36,20 +36,12 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def show?
-    if not_complete_or_archive
-      true
-    else
-      belongs_to_user?(claim) || admin?
-    end
+    true
   end
 
   private
 
   def claim
     record
-  end
-
-  def not_complete_or_archive
-    claim.status != 'completed' || claim.status != 'archive'
   end
 end

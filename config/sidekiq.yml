@@ -1,0 +1,4 @@
+:queues:
+  - archive
+  - notification
+  - success
