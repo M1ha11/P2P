@@ -72,16 +72,6 @@ ActiveRecord::Schema.define(version: 2020_05_08_183302) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "loan_participants", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "claim_id"
-    t.float "money"
-    t.index ["claim_id"], name: "index_loan_participants_on_claim_id"
-    t.index ["user_id"], name: "index_loan_participants_on_user_id"
-  end
-
   create_table "profiles", force: :cascade do |t|
     t.integer "success_credit_project", default: 0
     t.integer "success_lend_project", default: 0
