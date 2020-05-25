@@ -1,6 +1,6 @@
 class PayNotification
   include Sidekiq::Worker
-  sidekiq_options retry: false
+  sidekiq_options retry: false, queue: 'notification'
 
   def perform
     Claim.where(status: 'confirmed').each do |claim|  

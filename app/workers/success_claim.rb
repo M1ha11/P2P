@@ -1,6 +1,6 @@
 class SuccessClaim
   include Sidekiq::Worker
-  sidekiq_options retry: false
+  sidekiq_options retry: false, queue: 'success'
 
   def perform
     Claim.where(status: 'confirmed').each do |claim|
