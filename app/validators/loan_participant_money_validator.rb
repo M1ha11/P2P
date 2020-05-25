@@ -3,10 +3,9 @@ class LoanParticipantMoneyValidator < ActiveModel::Validator
     return unless loan_participant.money.present?
 
     residual_amount = claim_amount(loan_participant) - avaliable_amount_of_money(loan_participant)
-    if loan_participant.money > residual_amount
-      loan_participant.errors.add(:base, "You have entered sum bigger than needed.
-                                          Please enter #{residual_amount}")
-    end
+    return if loan_participant.money < residual_amount
+
+    loan_participant.errors.add(:base, I18n.t('loan_participants.create.alert', residual_amount: residual_amount))
   end
 
   private
