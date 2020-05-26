@@ -11,12 +11,12 @@
 #  interest_rate     :float            not null
 #  repayment_period  :string           not null
 #  payment_frequency :string           not null
-#  status            :integer          default("0"), not null
 #  user_id           :bigint           not null
+#  status            :string           default("publicly"), not null
 #
 class Claim < ApplicationRecord
   belongs_to :user
-  has_many :loan_participants
+  has_many :loan_participants, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
 
   enum status: { publicly: 'publicly', privatly: 'privatly', archive: 'archive',
@@ -36,4 +36,8 @@ class Claim < ApplicationRecord
   validates :interest_rate, presence: true
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
+
+  def repayment_period_value
+    Claim.repayment_periods[repayment_period]
+  end
 end

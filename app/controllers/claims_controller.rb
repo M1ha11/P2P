@@ -49,8 +49,7 @@ class ClaimsController < ApplicationController
   def set_service
     @currencies = Claims::Currency.new.list
     @rates = Claims::Rate.new.list
-    @statuses = []
-    @statuses < Claim.statuses[:publicly] << Claim.statuses[:privatly]
+    @statuses = Claim.statuses.slice(:privatly, :publicly).keys
   end
 
   def claim

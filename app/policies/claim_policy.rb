@@ -20,7 +20,7 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def create?
-    belongs_to_user?(claim)
+    belongs_to_user?
   end
 
   def can_see_participants?
@@ -28,15 +28,15 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def confirm?
-    belongs_to_user?(claim)
+    belongs_to_user?
   end
 
   def destroy?
-    belongs_to_user?(claim) || admin?
+    belongs_to_user? || admin?
   end
 
   def doesnt_belong_to_user?
-    !belongs_to_user?(claim) && user.present?
+    user.present? && !belongs_to_user?
   end
 
   def show?
@@ -44,7 +44,7 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def not_already_participant?
-    !claim.loan_participants.find_by(user_id: user.id) ? true : false
+    !claim.loan_participants.find_by(user_id: user.id)
   end
 
   private

@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   resources :profiles, only: %i[show edit update]
   resources :cards, only: %i[index new create destroy]
-  resources :claims do
+  resources :claims, except: %i[edit update] do
     member do
-      put 'confirm'
+      patch 'confirm'
     end
     resources :comments, only: %i[new create destroy]
   end
