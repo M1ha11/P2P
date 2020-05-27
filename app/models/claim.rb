@@ -54,29 +54,21 @@ class Claim < ApplicationRecord
     end
 
     event :success do
-      after do
-        update_profile
-      end
-
-      transitions from: :confirmed, to: :successfull
+      transitions from: :confirmed, to: :successfull, after: :update_users_projects_statistics
     end
   end
 
-  def confirm_date(claim)
-    claim.updated_at
+  def repayment_period_value
+    Claim.repayment_periods[repayment_period]
   end
 
-  def repayment_period_value(claim)
-    Claim.repayment_periods[claim.repayment_period]
-  end
-
-  def payment_frequency_value(claim)
-    Claim.payment_frequencies[claim.payment_frequency]
+  def payment_frequency_value
+    Claim.payment_frequencies[payment_frequency]
   end
 
   private
 
-  def update_profile
+  def update_users_projects_statistics
     ActiveRecord::Base.transaction do
       self.user.profile.update(success_credit_project: self.user.profile.success_credit_project + 1)
       self.loan_participants.find_each do |participant|

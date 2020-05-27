@@ -4,7 +4,7 @@ class SuccessClaim
 
   def perform
     Claim.where(status: 'confirmed').each do |claim|
-      next if Time.zone.today < confirm_date(claim) + repayment_period_value(claim)
+      next if Time.zone.today < claim.updated_at + repayment_period_value(claim)
 
       claim.success!
     end
