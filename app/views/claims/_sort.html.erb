@@ -1,4 +1,5 @@
 <%= form_with(url: claims_path(tag: tag), method: :get, local: true, id: 'sort') do |f| %>
+  <%= hidden_field_tag :tag, tag %>
   <div class='row'>
     <div class='without-padding col-4'>
       <%= f.select :sort, options_for_select({
