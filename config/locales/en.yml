@@ -30,4 +30,70 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  global:
+    delete: 'Delete'
+    create: 'Create'
+    back: 'Back'
+  card:
+    new: 
+      link: 'New Card'
+      title: 'New Card'
+      placeholder:
+        card_number: 'Card Number'
+    index:
+      title: 'Credit card'
+  claim:
+    title: 'Credit on'
+    sort:
+      title: 'Sort by'
+      amount: 'Amount'
+      currency: 'Currency'
+      date: 'Date'
+      asc_direction: 'A-Z0-9'
+      desc_direction: 'Z-A9-0'
+      submit: 'Sort'
+    new:
+      title: 'New Credit Claim'
+      placeholder:
+        amount: 'Amount'
+        goal: 'Goal'
+    show:
+      interest_rate: 'Interest rate:'
+      payment_frequency: 'Payment frequency:'
+      repayment_period: 'Repayment period:'
+      comments: 'Comments:'
+  comment:
+    reply_link: 'Reply'
+    new:
+      placeholder: 'Comment...'
+      submit: 'Add comment'
+  devise:
+  layout:
+    login: 'Log In'
+    signup: 'Sign Up'
+    logout: 'Log Out'
+    users: 'Users' 
+    profile: 'Profile'
+    edit_profile: 'Edit Profile'
+  profile:
+    show:
+      phone: 'Phone:'
+      address: 'Address:'
+      credit_card_link: 'Credit Cards'
+      success_credit_projects: 'Success credit projects:'
+      succes_lend_projects: 'Success lend projects:'
+      new_claim_link: 'New Credit Claim'
+    edit:
+      title: 'Edit Profile'
+      placeholder:
+        phone: 'Phone number'
+        address: 'Address'
+      submit: 'Update'
+  user:
+    index:
+      status: 'Status'
+      email: 'Email'
+      phone: 'Phone number'
+      address: 'Address'
+      role: 'Role'
+      credit_history: 'Credit history'

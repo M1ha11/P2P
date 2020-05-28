@@ -6,7 +6,7 @@
           <div class='card-title'>
             <div class='row justify-content-md-center'>
               <h1 class='login-title sh'>
-                Credit on <%= @claim.amount %> <%= @claim.currency %>
+                <%= t('claim.title')%> <%= @claim.amount %> <%= @claim.currency %>
               </h1>
             </div>
           </div>
@@ -32,22 +32,22 @@
               <div class='col-4'>
                 <div class='other-info'>
                   <p class='txt-other-info'>
-                    Interest rate: <span class='info'><%= @claim.interest_rate %></span>
+                    <%= t('claim.show.interest_rate')%> <span class='info'><%= @claim.interest_rate %></span>
                   </p>
                   <hr class='solid'>
                   <p class='txt-other-info'>
-                    Payment frequency: <span class='info'><%= @claim.payment_frequency %></span>
+                    <%= t('claim.show.payment_frequency')%> <span class='info'><%= @claim.payment_frequency %></span>
                   </p>
                   <hr class='solid'>
                   <p class='txt-other-info'>
-                    Repayment period: <span class='info'><%= @claim.repayment_period %></span>
+                    <%= t('claim.show.repayment_period') %> <span class='info'><%= @claim.repayment_period %></span>
                   </p>
                 </div>
                 <% if policy(@claim).destroy? %>
                   <div class='row justify-content-md-end'>
                     <div class='del-but'>
                       <button type='button' class='btn btn-outline-danger'>
-                        <%= link_to 'Delete', claim_path, method: :delete, class: 'nav-unlog-btn' %>
+                        <%= link_to t('global.delete'), claim_path, method: :delete, class: 'nav-unlog-btn' %>
                       </button>
                     </div>
                   </div>

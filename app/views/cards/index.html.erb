@@ -1,6 +1,6 @@
 <div class='card-main'>
   <div class='new-lnk-cr'>
-    <%= link_to 'New Card', new_card_path, class: 'new-cr-btn' %>
+    <%= link_to t('card.new.link'), new_card_path, class: 'new-cr-btn' %>
   </div>
   <div class='cards'>
     <% @cards.each do |card| %>
@@ -8,7 +8,7 @@
         <div class='cr-card-main'>
           <div class='crd-body'>
             <div class='card-title crd-title-main'>
-              <h1 class='crd-card-title-main'>Credit Card</h1>
+              <h1 class='crd-card-title-main'><%= t('card.index.title')%></h1>
             </div>
             <div class='card-info '>
               <div class='row'>
@@ -21,7 +21,7 @@
                   </p>
                   <% if policy(card).destroy? %>
                     <p class='crd-dt'>
-                      <%= link_to 'Delete', card_path(card), method: :delete, class: 'crd-del' %>
+                      <%= link_to t('global.delete'), card_path(card), method: :delete, class: 'crd-del' %>
                     </p>
                   <% end %>
                 </div>

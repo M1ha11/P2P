@@ -7,11 +7,11 @@
   <div id=<%= "reply_id_#{comment.id}"%>>
     <% if nesting < Comment::MAX_LEVEL %>
       <% if policy(comment).new? %>
-        <%= link_to 'Reply', polymorphic_url([:new, commentable, comment], parent_id: comment.id), remote: true, class: 'lnk-rep' %>
+        <%= link_to t('comment.reply_link'), polymorphic_url([:new, commentable, comment], parent_id: comment.id), remote: true, class: 'lnk-rep' %>
       <% end %>
     <% end %>
     <% if policy(comment).destroy? %>
-      <%= link_to 'Delete', [commentable, comment], method: :delete, class: 'del-com-lnk' %>
+      <%= link_to t('global.delete'), [commentable, comment], method: :delete, class: 'del-com-lnk' %>
     <% end %>
   </div>
   <% if comment.childs && nesting <= Comment::MAX_LEVEL %>

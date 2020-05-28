@@ -1,0 +1,67 @@
+ru:
+  en:
+  global:
+    delete: 'Удалить'
+    create: 'Создать'
+    back: 'Назад'
+  card:
+    new: 
+      link: 'Новая карта'
+      title: 'Новая карта'
+    index:
+      title: 'Кредитная карта'
+  claim:
+    title: 'Кредит на'
+    sort:
+      title: 'Сортировать по'
+      amount: 'Сумма'
+      currency: 'Валюта'
+      date: 'Дата'
+      asc_direction: 'А-Я0-9'
+      desc_direction: 'Я-А9-0'
+      submit: 'Сортировать'
+    new:
+      title: 'Новая заявка на кредит'
+      placeholder:
+        amount: 'Сумма'
+        goal: 'Цель'
+    show:
+      interest_rate: 'Процентная ставка:'
+      payment_frequency: 'Частота платежей:'
+      repayment_period: 'Срок погашения:'
+      comments: 'Комментарии:'
+  comment:
+    reply_link: 'Ответить'
+    new:
+      placeholder: 'Комментарий...'
+      submit: 'Добавить комментарий'
+  devise:
+  layout:
+    login: 'Войти'
+    signup: 'Зарегистрироваться'
+    logout: 'Выйти'
+    users: 'Пользователи' 
+    profile: 'Профиль'
+    edit_profile: 'Редактировать профиль'
+  profile:
+    show:
+      phone: 'Мобильный телефон:'
+      address: 'Адрес:'
+      credit_card_link: 'Кредитные карточки'
+      success_credit_projects: 'Успешные кредитные проекты:'
+      succes_lend_projects: 'Успешные прокредитованные проекты:'
+      new_claim_link: 'Новая Заявка на крудит'
+    edit:
+      title: 'Редактировать профиль'
+      placeholder:
+        phone: 'Мобильный телефон'
+        address: 'Адерес'
+      submit: 'Обновить'
+  user:
+    index:
+      status: 'Статус'
+      email: 'Почта'
+      phone: 'Мобильный телефон'
+      address: 'Адрес'
+      role: 'Роль'
+      credit_history: 'Кредитная история'

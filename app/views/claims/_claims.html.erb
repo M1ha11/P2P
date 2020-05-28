@@ -2,7 +2,7 @@
   <div class='card-body cl-body'>
     <div class='card-title'>
       <h1 class='cl-title'>
-        <%= link_to "Credit #{claim.amount} #{claim.currency}", claim_path(claim.id), class: 'cl-name' %>
+        <%= link_to "#{t('claim.title')} #{claim.amount} #{claim.currency}", claim_path(claim.id), class: 'cl-name' %>
       </h1>
     </div>
     <div class='card-txt'>

@@ -2,7 +2,7 @@
   <div class="card login-card">
     <div class='card-body'>
       <div class='card-title'>
-        <h1 class='login-title'>Edit Profile</h1>       
+        <h1 class='login-title'><%= t('profile.edit.title')%></h1>       
       </div>
       <div class='login-card-f'>
         <%= form_for(@profile, url: profile_path(@profile.id), html: { method: :put }) do |f| %>
@@ -14,12 +14,12 @@
             <%= f.label :phone_number, class: 'label-login' %>
             
             <br />
-            <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: 'Phone Number', class: 'field-login' %>
+            <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: t('profile.edit.placeholder.phone'), class: 'field-login' %>
           </div>
 
           <div class="field">
             <%= f.label :address, class: 'label-login' %><br />
-            <%= f.text_area :address, rows: 3, autofocus: true, autocomplete: "address", placeholder: 'Address', class: 'field-login area' %>
+            <%= f.text_area :address, rows: 3, autofocus: true, autocomplete: "address", placeholder: t('profile.edit.placeholder.address'), class: 'field-login area' %>
           </div>
 
            <div class='field'>
@@ -28,11 +28,11 @@
             </div>
 
           <div class="actions submit-btn">
-            <%= f.submit "Update", class: 'btn log-btn btn-lg btn-login' %>
+            <%= f.submit t('profile.edit.submit'), class: 'btn log-btn btn-lg btn-login' %>
           </div>
         <% end %>
 
-        <%= link_to "Back", :back, class: 'thd-lnk' %>
+        <%= link_to t('global.back'), :back, class: 'thd-lnk' %>
       </div>
     </div>
   </div>

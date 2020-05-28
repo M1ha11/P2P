@@ -4,7 +4,7 @@
       <div class='sort'>
         <div class='input-group'>
           <div class="col-2 without-padding-right input-group-prepend label">
-            <label class="input-group-text sort-label">Sort by</label>
+            <label class="input-group-text sort-label"><%= t('claim.sort.title')%></label>
           </div>
           <div class='col-6'>
             
@@ -13,21 +13,21 @@
               <div class='without-padding col-6'>
                 <%= f.select :sort, raw("
                                           <option value=''></option>
-                                          <option value='amount'>Amount</option>
-                                          <option value='currency'>Currency</option>
-                                          <option value='created_at'>Date</option>
+                                          <option value='amount'>#{t('claim.sort.amount')}</option>
+                                          <option value='currency'>#{t('claim.sort.currency')}</option>
+                                          <option value='created_at'>#{t('claim.sort.date')}</option>
                                         "), {},
                              { class: 'custom-select opt-sel' } %>
 </div>
 <div class='col-3 without-padding'>
                 <%= f.select :direction, raw("
-                                              <option value='asc'>A-Z0-9</option>
-                                              <option value='desc'>Z-A9-0</option>
+                                              <option value='asc'>#{t('claim.sort.asc_direction')}</option>
+                                              <option value='desc'>#{t('claim.sort.desc_direction')}</option>
                                              "), {},
                              { class: 'custom-select dir-sel'}%>
 </div>
 <div class='col-2 without-padding'>
-              <%= f.submit 'Sort', class: 'btn btn-dark' %>
+              <%= f.submit t('claim.sort.submit'), class: 'btn btn-dark' %>
 </div>  
             </div>
             <% end %>
