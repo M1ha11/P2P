@@ -15,12 +15,16 @@
     
     <div class='card-info col'>
       <% if policy(@profile).belongs_to_user?(@profile) %>
-        <%= link_to t('ptofile.show.credit_card_link') ,cards_path, class: 'nav-log-btn'%>
+        <%= link_to t('profile.show.credit_card_link') ,cards_path, class: 'nav-log-btn'%>
       <% end %>
     </div>
-    <div class='claims-info col col-2'>
-      <h5 class='wh-cl success'><%= t('profile.show.success_credit_project') %> <span class='gr-cl'><%= @profile.success_credit_project %></span></p>
-      <h5 class='wh-cl success'><%= t('profile.show.success_lend_project')%> <span class='gr-cl'><%= @profile.success_lend_project %></span></p>
+    <div class='claims-info col col-3'>
+      <div class='row justify-content-md-start'>
+      <h5 class='wh-cl success'><%= t('profile.show.success_credit_projects') %> <span class='gr-cl'><%= @profile.success_credit_project %></span></p>
+      </div>
+      <div class='row justify-content-md-start'>
+      <h5 class='wh-cl success'><%= t('profile.show.success_lend_projects')%> <span class='gr-cl'><%= @profile.success_lend_project %></span></p>
+      </div>
     </div>
   </div>
   <div class='profile-body'>

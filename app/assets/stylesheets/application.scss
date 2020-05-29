@@ -128,7 +128,6 @@
 
 .submit-btn {
   margin-top: 20px;
-  margin-left: 100px;
   margin-right: 60px;
 }
 
@@ -137,6 +136,7 @@
   width: 50%;
   background-color: var(--oliva);
   justify-content: center;
+  margin-left: 4em;
 }
 
 .btn-login:hover {
@@ -214,4 +214,8 @@
 
 .without-padding-right {
   padding-right: 0em;
+}
+
+.menu-prof {
+  margin-right: 1em;
 }

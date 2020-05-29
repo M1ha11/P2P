@@ -30,6 +30,67 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    models:
+      card: 'Card'
+      claim: 'Claim'
+      comment: 'Comment'
+      profile: 'Profile'
+      user: 'User'
+    attributes:
+      card:
+        card_number: 'Card number'
+        expire_date: 'Expire date'
+      claim:
+        amount: 'Amount'
+        currency: 'Currency'
+        goal: 'Goal'
+        interest_rate: 'Interest rate'
+        repayment_period: 'Repayment period'
+        payment_frequency: 'Payment frequency'
+      profile:
+        success_credit_project: 'Success credit projects'
+        success_lend_project: 'Success lend projects'
+        phone_number: 'Phone number'
+        address: 'Address'
+        avatar: 'Avatar'
+      user:
+        email: 'Email'
+        password: 'Password'
+        remember_me: 'Remember me'
+    errors:
+      format: "%{attribute} %{message}"
+      messages:
+        accepted: must be accepted
+        blank: can't be blank
+        confirmation: doesn't match %{attribute}
+        empty: can't be empty
+        equal_to: must be equal to %{count}
+        even: must be even
+        exclusion: is reserved
+        greater_than: must be greater than %{count}
+        greater_than_or_equal_to: must be greater than or equal to %{count}
+        inclusion: is not included in the list
+        invalid: is invalid
+        less_than: must be less than %{count}
+        less_than_or_equal_to: must be less than or equal to %{count}
+        model_invalid: 'Validation failed: %{errors}'
+        not_a_number: is not a number
+        not_an_integer: must be an integer
+        odd: must be odd
+        other_than: must be other than %{count}
+        present: must be blank
+        required: must exist
+        taken: has already been taken
+        too_long:
+          one: is too long (maximum is 1 character)
+          other: is too long (maximum is %{count} characters)
+        too_short:
+          one: is too short (minimum is 1 character)
+          other: is too short (minimum is %{count} characters)
+        wrong_length:
+          one: is the wrong length (should be 1 character)
+          other: is the wrong length (should be %{count} characters)
   global:
     delete: 'Delete'
     create: 'Create'
@@ -74,14 +135,14 @@ en:
     logout: 'Log Out'
     users: 'Users' 
     profile: 'Profile'
-    edit_profile: 'Edit Profile'
+    edit_profile: 'Edit'
   profile:
     show:
       phone: 'Phone:'
       address: 'Address:'
       credit_card_link: 'Credit Cards'
       success_credit_projects: 'Success credit projects:'
-      succes_lend_projects: 'Success lend projects:'
+      success_lend_projects: 'Success lend projects:'
       new_claim_link: 'New Credit Claim'
     edit:
       title: 'Edit Profile'
@@ -97,3 +158,21 @@ en:
       address: 'Address'
       role: 'Role'
       credit_history: 'Credit history'
+  devise:
+    omni_title: 'Sign In With'
+    sessions:
+      title: 'Log In'
+      submit: 'Log In'
+      placeholder:
+        email: 'Email'
+        password: 'Password'
+    registrations:
+      title: 'Sign Up'
+      submit: 'Sign Up'
+      placeholder:
+        email: 'Email'
+        phone: 'Phone number'
+        address: 'Address'
+        password: 'Password'
+        confirm_password: 'Confirm password'
+        min_character: 'character minimum'

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'callbacks', registrations: 'registrations' }
   
-  scope "(:locale)", locale: /en|ru/ do  
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do  
     root 'claims#index'
 
     resources :profiles, only: %i[show edit update]

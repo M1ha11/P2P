@@ -7,7 +7,7 @@ module Claims
     end
 
     def list
-      url = "#{API}?onDate=#{Date.today.strftime('%Y-%m-%d')}"
+      url = "#{API}?onDate=#{Date.today.strftime('%Y-%m')}"
       response = HTTParty.get(url)
       JSON.parse(response.body).each do |data|
         @rate << data['Value']
