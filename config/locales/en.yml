@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  loan_participants:
+    create:
+      alert: "You have entered sum bigger than needed. Please enter %{residual_amount}"

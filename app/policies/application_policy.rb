@@ -35,7 +35,7 @@ class ApplicationPolicy
     false
   end
 
-  def belongs_to_user?(record)
+  def belongs_to_user?
     record.user == user
   end
 
@@ -52,7 +52,7 @@ class ApplicationPolicy
       scope.all
     end
 
-    def belongs_to_user?(scope)
+    def belongs_to_user?
       scope.user == user
     end
   end

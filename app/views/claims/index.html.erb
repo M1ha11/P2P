@@ -1,4 +1,24 @@
 <div class='index-claim-container'>
+  <div class='row clouds justify-content-between'>
+    <div class='col-6 tagcloud'>
+      <%= render partial: 'tags/tags', locals: { model_class: Claim, sort: @sort, direction: @direction }, class: 'tag-down' %>
+    </div>
+    <div class='col-4 sort-cloud align-self-start'>
+      
+      <div class='row justify-content-end'>
+      <div class='sort'>
+          <div class='input-group'>
+            <div class="col-2 without-padding-right input-group-prepend label">
+              <label class="input-group-text sort-label">Sort by</label>
+            </div>
+            <div class='col-10'>
+              <%= render partial: 'claims/sort', locals: { tag: @tag } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class='row'>
       <%= render partial: 'claims', collection: @claims, as: :claim %>
   </div>

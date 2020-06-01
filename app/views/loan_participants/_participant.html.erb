@@ -1,0 +1,32 @@
+<div class='participant-info'>
+  <hr class='solid'>
+  <div class='participant-main-info'>
+    <div class='row '>
+      <p class='part-name'>
+        <span><%= participant.success_credit_project %>/<%= participant.success_lend_project%></span>
+        <span><%= image_tag loan_participant_avatar(participant), class: 'rounded-circle rounded-loan-ava' %></span>
+        <span><%= participant.user.email %></span>
+      </p>
+    </div>
+  </div>
+  <div class='sum-info'>
+    <p>
+      <span class='text-gr'>Amount of money:</span> <span class='part-sum'><%= participant.money %> <%= participant.claim.currency %></span>
+    </p>
+  </div>
+
+  <% if policy(participant).destroy? %>
+    <div class='row justify-content-between'>
+      <% if policy(participant).user_is_participant? %>
+        <p class='income'>
+          <span class='text-gr'>Income:</span>
+          <span class='part-sum'><%= income(participant)%></span>
+        </p>
+      <% end %>
+      <button type='button' class='btn btn-outline-danger'>
+        <%= link_to 'Leave', loan_participant_path(participant.id), method: :delete, class: 'nav-unlog-btn' %>
+      </button>
+    </div>
+  <% end %>
+
+</div>

@@ -18,7 +18,7 @@ class CardPolicy < ApplicationPolicy
   end
 
   def destroy?
-    belongs_to_user?(card)
+    belongs_to_user?
   end
 
   private
