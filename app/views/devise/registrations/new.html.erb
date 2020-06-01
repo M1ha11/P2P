@@ -70,8 +70,8 @@
           <ul class='list-group list-group-horizontal nodots'>
             <% resource_class.omniauth_providers.each do |provider| %>
               <li class='thd-li'>
-                <%= link_to image_tag("/third_party_service/#{provider}.png", class: 'img-thd'), omniauth_authorize_path(resource_name, provider) %><br>
-                <%= link_to "#{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'thd-lnk' %><br />
+                <%= link_to image_tag("/third_party_service/#{provider}.png", class: 'img-thd'),                 user_twitter_omniauth_callback_path %><br>
+                <%= link_to "#{OmniAuth::Utils.camelize(provider)}",  user_twitter_omniauth_callback_path, class: 'thd-lnk' %><br />
               </li>
             <% end %>
           </ul>
