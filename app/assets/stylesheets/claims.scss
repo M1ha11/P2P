@@ -41,7 +41,6 @@
 }
 
 .card-ind {
-  height: 150px;
   min-width: 200px;
   margin-top: 25px;
 }
@@ -128,6 +127,90 @@ hr.solid {
 
 .del-but {
   margin-top: 20px;
+}
+
+.container-participants {
+  max-width: 30em;
+  min-width: 20em;
+  display: grid;
+}
+
+.part {
+  margin-left: 10em;
+}
+
+.card-participants-show {
+  background-color: var(--bootstrap-black);
+  border-radius: 2em;
+  padding: 2.5em;
+}
+
+.part-title {
+  color: var(--mint);
+}
+
+.card-title-paticipants {
+  font-size: 26px;
+}
+
+.become-part {
+  margin-top: 3em;
+}
+
+.part-form {
+  margin-top: 1em;
+  display: none;
+}
+.edit-tag-form {
+  display: none;
+  margin-top: 0.5em;
+}
+
+.close-tag {
+  color: var(--custom-red);
+}
+
+.close-tag:hover {
+  color: white;
+}
+
+.tags-info {
+  margin-top: 4em;
+  margin-left: 10px;
+}
+
+.tags-info-text {
+  color: white;
+  font-size: 18px;
+}
+
+.tags-text {
+  color: var(--mint);
+  font-style: italic;
+}
+
+.tagcloud {
+  background-color: var(--bootstrap-black);
+  border-radius: 1em;
+  padding: 1em;
+  margin-top: -1.2em;
+  font-size: 1.2em;
+}
+
+.tag-btn {
+  margin-top: -1.2em;
+}
+
+.tag-down {
+  background-color: var(--bootstrap-black);
+}
+
+.sort-cloud {
+  min-width: 28em;
+}
+
+.clouds {
+  display: grid;
 }
 
 .sort {
