@@ -14,7 +14,7 @@ module LoanParticipantsHelper
     rate = (loan_participant.claim.interest_rate / (PERCENT * MONTHES))
     month = claim_repayment_period(loan_participant)
     month = 1 if month < 1
-    (loan_participant.money * (rate + (rate / (((1 + rate) ** month) - 1))) - loan_participant.money).round(2)
+    (loan_participant.money * (rate + (rate / (((1 + rate)**month) - 1))) - loan_participant.money).round(2)
   end
 
   private
