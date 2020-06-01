@@ -11,7 +11,7 @@ $(document).on('turbolinks:load',function () {
     {
       source: search_result,
       limit: 10,
-      display: `${search_result.amount} {search_result.currency}`,
+      display: `${search_result}`,
       templates: {
         empty: [
           '<div class="empty-typehead">',
@@ -19,25 +19,21 @@ $(document).on('turbolinks:load',function () {
           '</div>'
         ].join('\n'),
         suggestion: function(search_result) {
-          return (
-            `<a href="${search_result.url}" class="auto-lnk">
-              <p class="hint">Credit on ${search_result.amount} ${search_result.currency}</p>
-            </a>`
-          );
+          if (search_result.model_name == 'Claim'){
+            return (
+              `<a href="${search_result.url}" class="auto-lnk">
+                <p class="hint">Credit on ${search_result.amount} ${search_result.currency}</p>
+              </a>`
+            );
+          } else if (search_result.model_name == 'Tag') {
+            return (
+              `<a href="${search_result.url}" class="auto-lnk">
+                <p class="hint">${search_result.name}</p>
+              </a>`
+            );
+          }
         }
       }
     }
   )
 });
-
-// $('#search-form').submit(function(event) {
-//   event.preventDefault();
-//   var q = $(this).find('input[name="q"]').val(),
-//   $.ajax({
-//     url: '/search?q=%'+ q,
-//     type: 'GET',
-
-//   }).done(function(response){
-//     $('body').html(response)
-//   })
-// });

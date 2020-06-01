@@ -5,7 +5,7 @@ class SearchController < ApplicationController
     if params[:q].empty?
       Claim.none
     else
-      @search_result = Elasticsearch::Model.search(params[:q] + '*', [Claim]).records.to_a
+      @search_result = Elasticsearch::Model.search(params[:q] + '*', [Claim, Tag]).records.to_a
       render json: @search_result
     end
   end
