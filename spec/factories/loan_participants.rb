@@ -1,13 +1,15 @@
 # == Schema Information
 #
-# Table name: tags
+# Table name: loan_participants
 #
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  name       :string(50)       not null
+#  user_id    :bigint
+#  claim_id   :bigint
+#  money      :float
 #
 FactoryBot.define do
-  factory :tag do
+  factory :loan_participant do
   end
 end

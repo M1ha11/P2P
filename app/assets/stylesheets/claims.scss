@@ -129,6 +129,38 @@ hr.solid {
   margin-top: 20px;
 }
 
+.container-participants {
+  max-width: 30em;
+  min-width: 20em;
+  display: grid;
+}
+
+.part {
+  margin-left: 10em;
+}
+
+.card-participants-show {
+  background-color: var(--bootstrap-black);
+  border-radius: 2em;
+  padding: 2.5em;
+}
+
+.part-title {
+  color: var(--mint);
+}
+
+.card-title-paticipants {
+  font-size: 26px;
+}
+
+.become-part {
+  margin-top: 3em;
+}
+
+.part-form {
+  margin-top: 1em;
+  display: none;
+}
 .edit-tag-form {
   display: none;
   margin-top: 0.5em;

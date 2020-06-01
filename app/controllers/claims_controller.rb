@@ -1,5 +1,5 @@
 class ClaimsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show confirm]
 
   def index
     @tag ||= params[:tag]
@@ -27,6 +27,18 @@ class ClaimsController < ApplicationController
     end
   end
 
+  def confirm
+    ActiveRecord::Base.transaction do
+      claim.update(status: 'confirmed')
+      claim.user.profile.update(success_credit_project: claim.user.profile.success_credit_project + 1)
+      claim.loan_participants.each do |participant|
+        participant.user.profile.update(success_lend_project: participant.user.profile.success_lend_project + 1)
+      end
+    end
+    # claim.confirm!
+    respond_with claim, location: -> { claim_path(claim.id) }
+  end
+
   def show
     respond_with claim, location: -> { claim_path(claim.id) }
   end
@@ -41,7 +53,7 @@ class ClaimsController < ApplicationController
   def set_service
     @currencies = Claims::Currency.new.list
     @rates = Claims::Rate.new.list
-    @statuses = Claim.statuses.keys[0...-1]
+    @statuses = Claim.statuses.slice(:privatly, :publicly).keys
   end
 
   def claim
