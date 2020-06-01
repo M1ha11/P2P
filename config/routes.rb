@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :cards, only: %i[index new create destroy]
   resources :claims do
     resources :comments, only: %i[new create destroy]
+    resources :tags, only: %i[create]
+    resources :taggings, only: %i[destroy]
   end
   resources :users, only: %i[index] do
     member do

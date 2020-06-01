@@ -2,7 +2,11 @@ class ClaimsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @claims = Claims::Sort.new(policy_scope(Claim), params[:sort], params[:direction]).call
+    @tag ||= params[:tag]
+    @sort = params[:sort]
+    @direction = params[:direction]
+    claims = Claims::Filter.new(policy_scope(Claim), params).call
+    @claims = Claims::Sort.new(claims, params[:sort], params[:direction]).call
     respond_with @claims, location: -> { claims_path }
   end
 
@@ -21,13 +25,6 @@ class ClaimsController < ApplicationController
       set_service
       respond_with @claim, location: -> { new_claim_path }
     end
-  end
-
-  def edit; end
-
-  def update
-    claim.update(claim_params)
-    respond_with claim, location: -> { claim_path(claim.id) }
   end
 
   def show
