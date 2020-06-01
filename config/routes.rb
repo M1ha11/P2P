@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       patch 'confirm'
     end
     resources :comments, only: %i[new create destroy]
+    resources :tags, only: %i[create]
+    resources :taggings, only: %i[destroy]
   end
   resources :users, only: %i[index] do
     member do

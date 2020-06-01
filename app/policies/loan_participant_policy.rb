@@ -1,6 +1,6 @@
 class LoanParticipantPolicy < ApplicationPolicy
   def create?
-    user? && user_not_locked?
+    user.present? && user_not_locked?
   end
 
   def destroy?

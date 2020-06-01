@@ -28,6 +28,9 @@
                     <%= @claim.goal %>
                   </p>
                 </div>
+                <% if @claim.tags.present? %>
+                  <%= render partial: 'tags/show_tags', locals: {claim: @claim} %>
+                <% end %>
               </div>
               <div class='col-4'>
                 <div class='other-info'>
@@ -54,6 +57,32 @@
                 <% end %>
               </div>
             </div>
+
+            <% if policy(@claim.tags).create? %>
+              <div class='row justify-content-md-start'>
+                <button type='button' class='btn btn-outline-success'>
+                  <a id='link-tag' href='#' class='nav-log-btn'>Add Tag</a> 
+                </button>
+
+                <button type='button' class='btn btn-outline-danger rem-but'>
+                  <a id='remove-tag' href='#' class='nav-unlog-btn'>Remove Tag</a> 
+                </button>
+              </div>
+
+
+                <div class='edit-tag-form' id='edit-tag-form'>
+                  <%= render template: 'tags/new', locals: { taggable: @claim } %>
+                </div>
+
+                <div class='remove-tag-form' id='remove-tag-form'>
+                  <p>
+                    <%= render partial: 'taggings/remove_tag', collection: @claim.taggings, as: :tagging, locals: {taggable: @claim}  %>
+                  </p>
+                  <a href="" id='close-rem' class='close-tag close-rem'>Close</a>
+                </div>
+
+            <% end %>
+
           </div>
         </div>
       </div>

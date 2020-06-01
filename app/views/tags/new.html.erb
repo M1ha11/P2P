@@ -1,0 +1,9 @@
+<% @taggable ||= taggable %>
+<%= render 'shared/flash' %>
+<%= form_for [@taggable, Tag.new] do |f| %>
+  <div class='row'>
+    <%= f.text_field :name, class: 'tag-field' %>
+    <%= f.submit 'Submit', class: 'btn btn-dark'%>
+  </div>
+  <a id='close-tag' href='#' class='close-tag'>Close</a>
+<% end %>

@@ -1,0 +1,35 @@
+.tagcloud-link {
+  color: var(--oliva);
+}
+
+.tagcloud-link:hover {
+  color: var(--dark-green);
+}
+
+.remove-tag-form {
+  margin-left: 2em;
+  margin-top: 2em;
+  width: 20em;
+  display: none;
+}
+
+.icon-rem:hover {
+  color: var(--oliva);
+}
+
+.tag-field {
+  border-radius: 0.5em;
+}
+
+.tag-field:focus {
+  outline: 0;
+  box-shadow: 0 0 8px var(--azure);
+}
+
+.rem-but {
+  margin-left: 0.5em;
+}
+
+.tagcloud {
+  margin-left: 2em;
+}
