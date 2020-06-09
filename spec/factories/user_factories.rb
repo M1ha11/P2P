@@ -4,5 +4,9 @@ FactoryBot.define do
     role { rand(0..1) }
     password { '123456' }
     confirmed_at { Time.now.utc }
+    # profile
+    # claim
+    # comment
+    # card
   end
 end

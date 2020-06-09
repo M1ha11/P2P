@@ -14,7 +14,7 @@ class LoanParticipantsController < ApplicationController
     @participant = LoanParticipant.find(params[:id])
     authorize @participant
     @participant.destroy
-    respond_with @participant, location: -> { claim_path }
+    respond_with @participant, location: -> { claims_path }
   end
 
   private

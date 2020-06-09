@@ -35,7 +35,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'PATCH lock' do
-    let(:user) { create(:user, role: 'user') }
+    let!(:user) { create(:user, role: 'user') }
 
     before do
       sign_in current_user
@@ -49,7 +49,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'PATCH unlock' do
-    let(:user) { create(:user, role: 'user', locked_at: Date.today) }
+    let!(:user) { create(:user, role: 'user', locked_at: Date.today) }
 
     before do
       sign_in current_user

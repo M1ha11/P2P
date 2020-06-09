@@ -12,7 +12,8 @@
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
-  subject { build(:card) }
+  let(:user) { create(:user) }
+  subject { build(:card, user_id: user.id) }
 
   context 'with valid attributes' do
     it 'is valid with all valid params' do

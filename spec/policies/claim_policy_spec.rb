@@ -26,7 +26,7 @@ describe ClaimPolicy do
         end
       end
 
-      it { is_expected.to permit_actions(%i[index show new create destroy edit update]) }
+      it { is_expected.to permit_actions(%i[index show new create destroy]) }
     end
 
     context 'when claim doesn\'t belongs to user' do
@@ -50,7 +50,7 @@ describe ClaimPolicy do
       end
 
       it { is_expected.to permit_actions(%i[index show]) }
-      it { is_expected.to forbid_actions(%i[create destroy edit update]) }
+      it { is_expected.to forbid_actions(%i[create destroy]) }
     end
   end
 
@@ -76,7 +76,7 @@ describe ClaimPolicy do
         end
       end
 
-      it { is_expected.to permit_actions(%i[index show new create destroy edit update]) }
+      it { is_expected.to permit_actions(%i[index show new create destroy]) }
     end
 
     context 'when claim doesn\'t belongs to admin' do
@@ -125,6 +125,6 @@ describe ClaimPolicy do
     end
 
     it { is_expected.to permit_actions(%i[index show]) }
-    it { is_expected.to forbid_actions(%i[destroy new create edit update]) }
+    it { is_expected.to forbid_actions(%i[destroy new create]) }
   end
 end
