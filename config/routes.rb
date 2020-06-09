@@ -4,18 +4,23 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do  
     root 'claims#index'
 
-    resources :profiles, only: %i[show edit update]
-    resources :cards, only: %i[index new create destroy]
-    resources :claims do
-      resources :comments, only: %i[new create destroy]
+  resources :profiles, only: %i[show edit update]
+  resources :cards, only: %i[index new create destroy]
+  resources :claims, except: %i[edit update] do
+    member do
+      patch 'confirm'
     end
-    resources :users, only: %i[index] do
-      member do
-        patch 'lock'
-        patch 'unlock'
-        patch 'change_role'
-      end
+    resources :comments, only: %i[new create destroy]
+    resources :tags, only: %i[create]
+    resources :taggings, only: %i[destroy]
+  end
+  resources :users, only: %i[index] do
+    member do
+      patch 'lock'
+      patch 'unlock'
+      patch 'change_role'
     end
   end
+  resources :loan_participants, only: %i[create destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

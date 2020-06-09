@@ -9,7 +9,7 @@ module Claims
     end
 
     def call
-      @claims.order("#{@sort_field} #{@direction}")
+      @claims.order("claims.#{@sort_field} #{@direction}")
     end
 
     private

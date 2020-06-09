@@ -1,41 +1,24 @@
 <div class='index-claim-container'>
-
-    <div class='row justify-content-md-start'>
+  <div class='row clouds justify-content-between'>
+    <div class='col-6 tagcloud'>
+      <%= render partial: 'tags/tags', locals: { model_class: Claim, sort: @sort, direction: @direction }, class: 'tag-down' %>
+    </div>
+    <div class='col-4 sort-cloud align-self-start'>
+      
+      <div class='row justify-content-end'>
       <div class='sort'>
-        <div class='input-group'>
-          <div class="col-2 without-padding-right input-group-prepend label">
-            <label class="input-group-text sort-label"><%= t('claim.sort.title')%></label>
-          </div>
-          <div class='col-6'>
-            
-            <%= form_with(url: claims_path, method: :get, local: true, id: 'sort') do |f| %>
-            <div class='row'>
-              <div class='without-padding col-6'>
-                <%= f.select :sort, raw("
-                                          <option value=''></option>
-                                          <option value='amount'>#{t('claim.sort.amount')}</option>
-                                          <option value='currency'>#{t('claim.sort.currency')}</option>
-                                          <option value='created_at'>#{t('claim.sort.date')}</option>
-                                        "), {},
-                             { class: 'custom-select opt-sel' } %>
-</div>
-<div class='col-3 without-padding'>
-                <%= f.select :direction, raw("
-                                              <option value='asc'>#{t('claim.sort.asc_direction')}</option>
-                                              <option value='desc'>#{t('claim.sort.desc_direction')}</option>
-                                             "), {},
-                             { class: 'custom-select dir-sel'}%>
-</div>
-<div class='col-2 without-padding'>
-              <%= f.submit t('claim.sort.submit'), class: 'btn btn-dark' %>
-</div>  
+          <div class='input-group'>
+            <div class="col-2 without-padding-right input-group-prepend label">
+              <label class="input-group-text sort-label">Sort by</label>
             </div>
-            <% end %>
+            <div class='col-10'>
+              <%= render partial: 'claims/sort', locals: { tag: @tag } %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
   <div class='row'>
       <%= render partial: 'claims', collection: @claims, as: :claim %>
   </div>

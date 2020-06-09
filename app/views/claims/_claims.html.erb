@@ -9,6 +9,14 @@
       <p class='cl-goal'>
         <%= claim.goal.truncate(100) %>
       </p>
+      <% if claim.tags.present? %>
+        <p class='tags-info-text'>
+          Tags:
+            <% claim.tags.each do |tag| %>
+              <span class='tags-text'><%= tag.name %></span>
+            <% end %>
+        </p>
+      <% end %>
     </div>
   </div>
 </div>
