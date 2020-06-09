@@ -22,10 +22,10 @@
             <%= f.text_area :address, rows: 3, autofocus: true, autocomplete: "address", placeholder: t('profile.edit.placeholder.address'), class: 'field-login area' %>
           </div>
 
-           <div class='field'>
-              <%= f.label :avatar, class: 'label-login' %>
-              <%= f.file_field :avatar, class: 'image-ch' %>
-            </div>
+          <div class='field'>
+            <%= f.label :avatar, class: 'label-login' %>
+            <%= f.file_field :avatar, class: 'image-ch' %>
+          </div>
 
           <div class="actions submit-btn">
             <%= f.submit t('profile.edit.submit'), class: 'btn log-btn btn-lg btn-login' %>

@@ -13,16 +13,6 @@
         <%= link_to 'P2P', root_path, class: 'title' %>
       </h1>
       <ul class='nav justify-content-center'>
-        <li class='nav-item'>
-          <button type='button' class='btn btn-outline-success'>
-            <%= link_to 'En', root_path(locale: :en), class: 'nav-log-btn' %>
-          </button>
-        </li>
-        <li class='nav-item'>
-          <button type='button' class='btn btn-outline-success'>
-            <%= link_to 'Ru', root_path(locale: :ru), class: 'nav-log-btn' %>
-          </button>
-        </li>
         <% unless current_user %>
           <li class='nav-item'>
             <button type='button' class='btn btn-outline-success'>
