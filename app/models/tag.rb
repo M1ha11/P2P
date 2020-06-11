@@ -8,10 +8,9 @@
 #  name       :string(50)       not null
 #
 class Tag < ApplicationRecord
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  include Searchable
 
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :taggable, through: :taggings
 
   validates :name, presence: true, format: { with: /\A(#\w+)\z/ }, uniqueness: true
@@ -22,16 +21,5 @@ class Tag < ApplicationRecord
     mappings dynamic: 'false' do
       indexes :name, analyzer: 'simple', search_analyzer: 'simple'
     end
-  end
-
-  after_commit :index_document, if: :persisted?
-  after_commit on: [:destroy] do
-    __elasticsearch__.delete_document
-  end
-
-  private
-
-  def index_document
-    __elasticsearch__.index_document
   end
 end

@@ -15,13 +15,12 @@
 #  status            :string           default("publicly"), not null
 #
 class Claim < ApplicationRecord
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  include Searchable
   
   belongs_to :user
   has_many :loan_participants, dependent: :destroy
   has_many :taggings, as: :taggable
-  has_many :tags, through: :taggings
+  has_many :tags, -> { distinct }, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
 
   enum status: { publicly: 'publicly', privatly: 'privatly', archive: 'archive',
@@ -49,18 +48,7 @@ class Claim < ApplicationRecord
     end
   end
 
-  after_commit :index_document, if: :persisted?
-  after_commit on: [:destroy] do
-    __elasticsearch__.delete_document
-  end
-
   def repayment_period_value
     Claim.repayment_periods[repayment_period]
-  end
-
-  private
-
-  def index_document
-    __elasticsearch__.index_document
   end
 end
