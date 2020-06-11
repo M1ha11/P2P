@@ -62,11 +62,17 @@ class Claim < ApplicationRecord
   end
 
   def repayment_period_value
-    Claim.repayment_periods[repayment_period]
+    period = Claim.repayment_periods[repayment_period]
+    return 2.week if period == '0.5.month'
+
+    modify_period(period)
   end
 
   def payment_frequency_value
-    Claim.payment_frequencies[payment_frequency]
+    period = Claim.payment_frequencies[payment_frequency]
+    return 2.week if period == '0.5.month'
+
+    modify_period(period)
   end
 
   private
@@ -78,5 +84,10 @@ class Claim < ApplicationRecord
         participant.user.profile.update(success_lend_project: participant.user.profile.success_lend_project + 1)
       end
     end
+  end
+
+  def modify_period(period)
+    values = period.split('.')
+    values.first.to_i.send(value.last)
   end
 end
