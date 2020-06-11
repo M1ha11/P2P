@@ -24,7 +24,7 @@ RSpec.describe CardsController, type: :controller do
       it 'returns moved status' do
         get :index
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to('/users/sign_in')
+                        .and redirect_to('/users/sign_in')
       end
     end
   end
@@ -52,7 +52,7 @@ RSpec.describe CardsController, type: :controller do
       it 'returns moved status' do
         get :new
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to('/users/sign_in')
+                        .and redirect_to('/users/sign_in')
       end
     end
   end
@@ -84,7 +84,7 @@ RSpec.describe CardsController, type: :controller do
       it 'returns moved status' do
         post :create
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to('/users/sign_in')
+                        .and redirect_to('/users/sign_in')
       end
     end
   end
@@ -101,7 +101,7 @@ RSpec.describe CardsController, type: :controller do
       it 'deletes credit card' do
         expect { delete :destroy, params: user_card_id }.to change{ Card.count }.by(-1)
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to('/cards')
+                        .and redirect_to('/cards')
       end
     end
 
@@ -109,7 +109,7 @@ RSpec.describe CardsController, type: :controller do
       it 'returns doesn\'t destroy card' do
         expect { delete :destroy, params: user_card_id }.to_not change{ Card.count }
         expect(response).to redirect_to('/users/sign_in')
-        expect(response).to have_http_status(302)
+                        .and have_http_status(302)
       end
     end
   end

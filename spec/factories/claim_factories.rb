@@ -7,8 +7,10 @@ FactoryBot.define do
     repayment_period { Claim.repayment_periods.values.sample }
     payment_frequency { Claim.payment_frequencies.values.sample }
     status { 'publicly' }
-    # loan_participant
-    # tagging
     user
+    # after :create do |claim|
+    #   create :tagging, taggable: claim
+    #   create :loan_participant, claim: claim
+    # end
   end
 end

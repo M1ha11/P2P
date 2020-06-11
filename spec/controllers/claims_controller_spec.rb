@@ -66,7 +66,7 @@ RSpec.describe ClaimsController, type: :controller do
       it 'returns moved status' do
         post :create
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to('/users/sign_in')
+                        .and redirect_to('/users/sign_in')
       end
     end
   end

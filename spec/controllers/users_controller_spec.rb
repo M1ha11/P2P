@@ -29,7 +29,7 @@ RSpec.describe UsersController, type: :controller do
         get :index
 
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to('/users/sign_in')
+                        .and redirect_to('/users/sign_in')
       end
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe UsersController, type: :controller do
     it 'locks user' do
       patch :lock, params: { id: user.id }
 
-      expect(user.locked_at).not_to be_blank
+      expect(assigns(:user).locked_at).not_to be_blank
     end
   end
 
@@ -58,7 +58,7 @@ RSpec.describe UsersController, type: :controller do
     it 'locks user' do
       patch :unlock, params: { id: user.id }
 
-      expect(user.locked_at).to be_blank
+      expect(assigns(:user).locked_at).to be_blank
     end
   end
 

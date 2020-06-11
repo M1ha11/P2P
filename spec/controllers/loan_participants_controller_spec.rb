@@ -33,7 +33,7 @@ RSpec.describe LoanParticipantsController, type: :controller do
       it 'returns moved status' do
         post :create, params: { loan_participant: loan_participant_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to('/users/sign_in')
+                        .and redirect_to('/users/sign_in')
       end
     end
   end

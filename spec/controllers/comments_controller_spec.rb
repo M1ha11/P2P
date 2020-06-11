@@ -11,8 +11,7 @@ RSpec.describe CommentsController, type: :controller do
 
     it 'returns success status' do
       get :new, params: { claim_id: commentable.id }
-      
-      expect(response.content_type).to eq('text/html')
+      expect(response).to have_http_status(200)
     end
   end
 
