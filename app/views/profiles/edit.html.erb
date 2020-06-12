@@ -30,6 +30,10 @@
           <div class="actions submit-btn">
             <%= f.submit t('profile.edit.submit'), class: 'btn log-btn btn-lg btn-login' %>
           </div>
+
+          <div>
+            <%= select_tag 'locale', options_from_collection_for_select(I18n.available_locales) %>
+          </div>
         <% end %>
 
         <%= link_to t('global.back'), :back, class: 'thd-lnk' %>

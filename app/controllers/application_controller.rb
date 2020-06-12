@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   before_action :set_locale
-  around_action :switch_locale
 
   include Pundit
   protect_from_forgery
@@ -19,12 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
-  def switch_locale(&action)
-    # locale = current_user.try(:locale) || I18n.default_locale
-    locale = params[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &action)
-  end
 
   def set_locale
     if current_user
