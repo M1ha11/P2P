@@ -5,9 +5,20 @@ describe CommentPolicy do
 
   context 'being a user' do
     let(:current_user) { create(:user, role: 'user') }
-    let(:comment) { build(:comment, user: current_user) }
 
-    it { is_expected.to permit_actions(%i[new create destroy]) }
+    context 'when comment belongs to user' do
+      let(:comment) { build(:comment, user: current_user) }
+
+      it { is_expected.to permit_actions(%i[new create destroy]) }
+    end
+
+    context 'when comment doesn\'t belong to user' do
+      let(:another_user) { create(:user, role: 'user') }
+      let(:comment) { build(:comment, user: another_user) }
+      
+      it { is_expected.to permit_actions(%i[new create]) }
+      it { is_expected.to forbid_actions(%i[destroy]) }
+    end
   end
 
   context 'being an admin' do
@@ -21,6 +32,6 @@ describe CommentPolicy do
     let(:current_user) { nil }
     let(:comment) { build(:comment, user: current_user) }
 
-    it { is_expected.to forbid_actions(%i[new create destroy]) }
+    it { is_expected.to forbid_actions(%i[new create]) }
   end
 end
