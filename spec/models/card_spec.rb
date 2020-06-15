@@ -25,5 +25,6 @@ RSpec.describe Card, type: :model do
 
   include_examples 'invalid with incorrect attributes', { field: :card_number,
                                                           params: Faker::Number.leading_zero_number(digits: 17) },
-                                                        { field: :expire_date, params: '30/2020' }
+                                                        { field: :expire_date,
+                                                          params: '30/2020' }
 end

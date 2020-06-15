@@ -5,7 +5,7 @@ describe LoanParticipantPolicy do
 
   context 'being a user' do
     let(:current_user) { create(:user, role: 'user') }
- 
+
     context 'when current user is not claim owner' do
       let(:another_user) { create(:user) }
       let(:claim) { create(:claim, user: another_user) }
@@ -27,7 +27,6 @@ describe LoanParticipantPolicy do
 
       it { is_expected.to permit_actions(%i[destroy]) }
     end
-
   end
 
   context 'being an admin' do

@@ -30,7 +30,7 @@ RSpec.describe ClaimsController, type: :controller do
     before do
       sign_in current_user
     end
-  
+
     it 'returns assings to new claim' do
       get :new
       expect(assigns(:claim)).to be_a_new(Claim)
@@ -49,7 +49,7 @@ RSpec.describe ClaimsController, type: :controller do
         let(:valid_claim_params) { attributes_for(:claim, user_id: current_user.id) }
 
         it 'creates new claim' do
-          expect{ post :create, params: { claim: valid_claim_params } }.to change{ Claim.count }.by(1)
+          expect { post :create, params: { claim: valid_claim_params } }.to change { Claim.count }.by(1)
         end
       end
 
@@ -57,16 +57,16 @@ RSpec.describe ClaimsController, type: :controller do
         let(:invalid_claim_params) { attributes_for(:claim, amount: 'not work', user_id: current_user.id) }
 
         it 'doesn\'t create new claim' do
-          expect{ post :create, params: { claim: invalid_claim_params } }.to_not change{ Claim.count }
+          expect { post :create, params: { claim: invalid_claim_params } }.to_not change { Claim.count }
         end
-      end 
+      end
     end
 
     context 'when user unauthorize' do
       it 'returns moved status' do
         post :create
         expect(response).to have_http_status(302)
-                        .and redirect_to('/users/sign_in')
+          .and redirect_to('/users/sign_in')
       end
     end
   end
@@ -94,7 +94,7 @@ RSpec.describe ClaimsController, type: :controller do
       end
 
       it 'destroys claim' do
-        expect { delete :destroy, params: claim_id }.to change{ Claim.count }.by(-1)
+        expect { delete :destroy, params: claim_id }.to change { Claim.count }.by(-1)
         expect(response).to redirect_to('/claims')
       end
     end
@@ -104,7 +104,7 @@ RSpec.describe ClaimsController, type: :controller do
       let(:claim_id) { { id: claim.id } }
 
       it 'returns doesn\'t destroy claim' do
-        expect { delete :destroy, params: claim_id }.to_not change{ Claim.count }
+        expect { delete :destroy, params: claim_id }.to_not change { Claim.count }
         expect(response).to redirect_to('/users/sign_in')
       end
     end

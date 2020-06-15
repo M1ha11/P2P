@@ -13,7 +13,7 @@ RSpec.describe TagsController, type: :controller do
       let(:valid_params) { attributes_for(:tag, taggable: taggable) }
 
       it 'creates new tag' do
-        expect { post :create, params: {tag: valid_params, claim_id: taggable.id} }.to change{ Tag.count }.by(1)
+        expect { post :create, params: { tag: valid_params, claim_id: taggable.id } }.to change { Tag.count }.by(1)
       end
     end
 
@@ -21,7 +21,7 @@ RSpec.describe TagsController, type: :controller do
       let(:invalid_tag_params) { attributes_for(:tag, name: 'example', taggable: taggable) }
 
       it 'doesn\'t create tag' do
-        expect { post :create, params: {tag: invalid_tag_params, claim_id: taggable.id} }.not_to change{ Tag.count }
+        expect { post :create, params: { tag: invalid_tag_params, claim_id: taggable.id } }.not_to change { Tag.count }
       end
     end
   end

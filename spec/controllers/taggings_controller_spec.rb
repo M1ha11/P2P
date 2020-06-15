@@ -12,7 +12,7 @@ RSpec.describe TaggingsController, type: :controller do
     end
 
     it 'destroys tagging' do
-      expect{ delete :destroy, params: { id: tagging.id, claim_id: claim.id } }.to change{ Tagging.count }.by(-1)
+      expect { delete :destroy, params: { id: tagging.id, claim_id: claim.id } }.to change { Tagging.count }.by(-1)
     end
   end
 end

@@ -6,11 +6,11 @@ class CardPolicy < ApplicationPolicy
   end
 
   def index?
-     user? || admin?
+    user? || admin?
   end
 
   def create?
-     user? || admin?
+    user? || admin?
   end
 
   def new?

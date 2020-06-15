@@ -26,8 +26,8 @@ RSpec.describe CommentsController, type: :controller do
                commentable_type: commentable.class.name) }
 
       it 'create new comment' do
-        expect{ post :create, params: { comment: comment_params, claim_id: commentable.id } }
-          .to change{ Comment.count }.by(1)
+        expect { post :create, params: { comment: comment_params, claim_id: commentable.id } }
+          .to change { Comment.count }.by(1)
       end
     end
 
@@ -36,8 +36,8 @@ RSpec.describe CommentsController, type: :controller do
         .merge(commentable_id: commentable.id, commentable_type: commentable.class.name) }
 
       it 'doesn\'t create comment' do
-        expect{ post :create, params: { comment: comment_params, claim_id: commentable.id } }
-          .to_not change{ Comment.count }
+        expect { post :create, params: { comment: comment_params, claim_id: commentable.id } }
+          .to_not change { Comment.count }
       end
     end
   end
@@ -51,8 +51,8 @@ RSpec.describe CommentsController, type: :controller do
       end
 
       it 'deletes comment' do
-        expect{ delete :destroy, params: { id: comment.id, claim_id: commentable.id } }
-          .to change{ Comment.count }.by(-1)
+        expect { delete :destroy, params: { id: comment.id, claim_id: commentable.id } }
+          .to change { Comment.count }.by(-1)
       end
     end
 
@@ -65,8 +65,8 @@ RSpec.describe CommentsController, type: :controller do
       end
 
       it 'doesn\'t delete comment' do
-        expect{ delete :destroy, params: { id: comment.id, claim_id: commentable.id } }
-          .not_to change{ Comment.count }
+        expect { delete :destroy, params: { id: comment.id, claim_id: commentable.id } }
+          .not_to change { Comment.count }
       end
     end
   end

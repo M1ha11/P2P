@@ -56,7 +56,7 @@ RSpec.describe ProfilesController, type: :controller do
         patch :update, params: { id: profile.id, profile: profile_params }
 
         expect(response).to have_http_status(302)
-                        .and redirect_to('/users/sign_in')
+          .and redirect_to('/users/sign_in')
       end
     end
   end

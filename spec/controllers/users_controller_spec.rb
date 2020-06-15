@@ -29,7 +29,7 @@ RSpec.describe UsersController, type: :controller do
         get :index
 
         expect(response).to have_http_status(302)
-                        .and redirect_to('/users/sign_in')
+          .and redirect_to('/users/sign_in')
       end
     end
   end

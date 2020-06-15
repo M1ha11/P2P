@@ -15,7 +15,7 @@ describe CommentPolicy do
     context 'when comment doesn\'t belong to user' do
       let(:another_user) { create(:user, role: 'user') }
       let(:comment) { build(:comment, user: another_user) }
-      
+
       it { is_expected.to permit_actions(%i[new create]) }
       it { is_expected.to forbid_actions(%i[destroy]) }
     end
