@@ -11,7 +11,7 @@
   </div>
   <div class='sum-info'>
     <p>
-      <span class='text-gr'>Amount of money:</span> <span class='part-sum'><%= participant.money %> <%= participant.claim.currency %></span>
+      <span class='text-gr'><%= t('loan_participant.amount') %></span> <span class='part-sum'><%= participant.money %> <%= participant.claim.currency %></span>
     </p>
   </div>
 
@@ -19,12 +19,12 @@
     <div class='row justify-content-between'>
       <% if policy(participant).user_is_participant? %>
         <p class='income'>
-          <span class='text-gr'>Income:</span>
+          <span class='text-gr'><%= t('loan_participant.income') %></span>
           <span class='part-sum'><%= income(participant)%></span>
         </p>
       <% end %>
       <button type='button' class='btn btn-outline-danger'>
-        <%= link_to 'Leave', loan_participant_path(participant.id), method: :delete, class: 'nav-unlog-btn' %>
+        <%= link_to t('loan_participant.leave'), loan_participant_path(participant.id), method: :delete, class: 'nav-unlog-btn' %>
       </button>
     </div>
   <% end %>

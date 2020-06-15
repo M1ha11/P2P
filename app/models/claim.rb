@@ -24,26 +24,26 @@ class Claim < ApplicationRecord
   enum status: { publicly: 'publicly', privatly: 'privatly', archive: 'archive',
                  confirmed: 'confirmed' }
                  
-  enum payment_frequency: { "#{I18n.t('activerecord.attributes.claim.payment_frequencies.twice_a_month')}": '0.5.month',
-                            "#{I18n.t('activerecord.attributes.claim.payment_frequencies.once_a_month')}": '1.month',
-                            "#{I18n.t('activerecord.attributes.claim.payment_frequencies.once_a_3_month')}": '3.month',
-                            "#{I18n.t('activerecord.attributes.claim.payment_frequencies.once_a_4_month')}": '4.month',
-                            "#{I18n.t('activerecord.attributes.claim.payment_frequencies.once_a_6_month')}": '6.month',
-                            "#{I18n.t('activerecord.attributes.claim.payment_frequencies.once_a_year')}": '12.month' }
+  enum payment_frequency: { 'twice a month': '0.5.month',
+                            'once a month': '1.month',
+                            'once a 3 month': '3.month',
+                            'once a 4 month': '4.month',
+                            'once a 6 month': '6.month',
+                            'once a year': '12.month' }
 
-  enum repayment_period: { "#{I18n.t('activerecord.attributes.claim.repayment_periods.2_week')}": '0.5.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.1_month')}": '1.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.3_month')}": '3.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.6_month')}": '6.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.1_year')}": '12.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.year_and_a_half')}": '18.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.2_years')}": '24.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.3_years')}": '32.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.5_years')}": '60.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.7_years')}": '84.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.10_years')}": '120.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.15_years')}": '180.month',
-                           "#{I18n.t('activerecord.attributes.claim.repayment_periods.20_years')}": '240.month' }
+  enum repayment_period: { '2 week': '0.5.month',
+                           '1 month': '1.month',
+                           '3 month': '3.month',
+                           '6 month': '6.month',
+                           '1 year': '12.month',
+                           'year and a half': '18.month',
+                           '2 years': '24.month',
+                           '3 years': '32.month',
+                           '5 years': '60.month',
+                           '7 years': '84.month',
+                           '10 years': '120.month',
+                           '15 years': '180.month',
+                           '20 years': '240.month' }
 
   validates :amount, presence: true, numericality: true
   validates :currency, presence: true

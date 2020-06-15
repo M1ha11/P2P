@@ -28,12 +28,12 @@
           <div class='row'>
             <div class="field col-5">
               <%= f.label :repayment_period, class: 'label-login' %><br />
-              <%= f.select :repayment_period, Claim.repayment_periods, size: 8, autofocus: true, class: 'field-login-cl' %>
+              <%= f.select :repayment_period, enum_options_for_select(Claim, :repayment_period), size: 8, autofocus: true, class: 'field-login-cl' %>
             </div>
 
             <div class="field col-5">
               <%= f.label :payment_frequency, class: 'label-login' %><br />
-              <%= f.select :payment_frequency, Claim.payment_frequencies, size: 8, autofocus: true, class: 'field-login-cl' %>
+              <%= f.select :payment_frequency, enum_options_for_select(Claim, :payment_frequency), size: 8, autofocus: true, class: 'field-login-cl' %>
             </div>
           </div>
 

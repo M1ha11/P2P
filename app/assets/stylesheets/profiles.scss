@@ -129,3 +129,15 @@
   width: 100%;
   display: grid;
 }
+
+.language {
+  background-color: var(--bootstrap-black);
+  color: var(--mint);
+  margin-left: 0.5em;
+  width: 4em;
+}
+
+.language:focus {
+  outline: 0;
+  box-shadow: 0 0 8px var(--azure);
+}

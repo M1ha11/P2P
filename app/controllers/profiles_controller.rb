@@ -25,6 +25,6 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:success_credit_project, :success_lend_project,
-                                    :phone_number, :address, :avatar)
+                                    :phone_number, :address, :avatar, :locale)
   end
 end

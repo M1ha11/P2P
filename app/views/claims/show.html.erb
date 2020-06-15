@@ -39,11 +39,11 @@
                   </p>
                   <hr class='solid'>
                   <p class='txt-other-info'>
-                    <%= t('claim.show.payment_frequency')%> <span class='info'><%= @claim.payment_frequency %></span>
+                    <%= t('claim.show.payment_frequency')%> <span class='info'><br><%= enum_locale(Claim, :payment_frequency, @claim.payment_frequency) %></span>
                   </p>
                   <hr class='solid'>
                   <p class='txt-other-info'>
-                    <%= t('claim.show.repayment_period') %> <span class='info'><%= @claim.repayment_period %></span>
+                    <%= t('claim.show.repayment_period') %> <span class='info'><br><%= enum_locale(Claim, :repayment_period, @claim.repayment_period) %></span>
                   </p>
                 </div>
                 <% if policy(@claim).destroy? %>
@@ -61,11 +61,11 @@
             <% if policy(@claim.tags).create? %>
               <div class='row justify-content-md-start'>
                 <button type='button' class='btn btn-outline-success'>
-                  <a id='link-tag' href='#' class='nav-log-btn'>Add Tag</a> 
+                  <a id='link-tag' href='#' class='nav-log-btn'><%= t('claim.show.add_tag') %></a> 
                 </button>
 
                 <button type='button' class='btn btn-outline-danger rem-but'>
-                  <a id='remove-tag' href='#' class='nav-unlog-btn'>Remove Tag</a> 
+                  <a id='remove-tag' href='#' class='nav-unlog-btn'><%= t('claim.show.remove_tag') %></a> 
                 </button>
               </div>
 
@@ -113,7 +113,7 @@
             <div class='card-title-paticipants'>
               <div class='row justify-content-md-center'>
                 <h1 class='part-title'>
-                  Participants
+                  <%= t('claim.show.participant.title') %>
                 </h1>
               </div>
             </div>
@@ -128,7 +128,7 @@
               <div class='become-part'>
                 <div class='row justify-content-md-center'>
                   <button type='button' class='btn btn-outline-success'>
-                    <a href="" id='participant-new' class='nav-log-btn'>Become a Participant</a>
+                    <a href="" id='participant-new' class='nav-log-btn'><%= t('claim.show.participant.become') %></a>
                   </button>
                   <%= render 'shared/flash' %>
                   <div class='part-form' id='part-form'>
@@ -142,7 +142,7 @@
               <div class='become-part'>
                 <div class='row justify-content-md-center'>
                   <button type='button' class='btn btn-outline-success'>
-                    <%= link_to 'Confirm', confirm_claim_path(@claim.id), method: :patch, class: 'nav-log-btn' %>
+                    <%= link_to t('claim.show.participant.confirm'), confirm_claim_path(@claim.id), method: :patch, class: 'nav-log-btn' %>
                   </button>
                 </div>
               </div>

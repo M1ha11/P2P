@@ -26,13 +26,15 @@
             <%= f.label :avatar, class: 'label-login' %>
             <%= f.file_field :avatar, class: 'image-ch' %>
           </div>
+          <br>
+          <div class='field'>
+            <%= f.label :language, class: 'label-login' %>
+            
+            <%= f.select :locale, (I18n.available_locales), {}, class: 'language' %>
+          </div>
 
           <div class="actions submit-btn">
             <%= f.submit t('profile.edit.submit'), class: 'btn log-btn btn-lg btn-login' %>
-          </div>
-
-          <div>
-            <%= select_tag 'locale', options_from_collection_for_select(I18n.available_locales) %>
           </div>
         <% end %>
 

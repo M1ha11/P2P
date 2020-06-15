@@ -18,26 +18,26 @@ ru:
         repayment_period: 'Срок погашения'
         payment_frequency: 'Частота платежей'
         payment_frequencies:
-          twice_a_month: 'дважды в месяц'
-          once_a_month: 'раз в месяц'
-          once_a_3_month: 'раз в 3 месяца'
-          once_a_4_month: 'раз в 4 месяца'
-          once_a_6_month: 'раз в полгода'
-          once_a_year: 'раз в год'
+          twice a month: 'дважды в месяц'
+          once a month: 'раз в месяц'
+          once a 3 month: 'раз в 3 месяца'
+          once a 4 month: 'раз в 4 месяца'
+          once a 6 month: 'раз в полгода'
+          once a year: 'раз в год'
         repayment_periods:
-          2_week: '2 недели'
-          1_month: '1 месяц'
-          3_month: '3 месяца'
-          6_month: '6 месяцев'
-          1_year: '1 год'
-          year_and_a_half: 'полтора года'
-          2_years: '2 года'
-          3_years: '3 года'
-          5_years: '5 лет'
-          7_years: '7 лет'
-          10_years: '10 лет'
-          15_years: '15 лет'
-          20_years: '20 лет'
+          2 week: '2 недели'
+          1 month: '1 месяц'
+          3 month: '3 месяца'
+          6 month: '6 месяцев'
+          1 year: '1 год'
+          year and a half: '1,5 года'
+          2 years: '2 года'
+          3 years: '3 года'
+          5 years: '5 лет'
+          7 years: '7 лет'
+          10 years: '10 лет'
+          15 years: '15 лет'
+          20 years: '20 лет'
       profile:
         success_credit_project: 'Успешные кредитные проекты'
         success_lend_project: 'Успешные прокредитованные проекты'
@@ -100,7 +100,7 @@ ru:
   claim:
     title: 'Кредит на'
     sort:
-      title: 'Сортировать'
+      title: 'Сортировать по'
       amount: 'Сумма'
       currency: 'Валюта'
       date: 'Дата'
@@ -117,6 +117,13 @@ ru:
       payment_frequency: 'Частота платежей:'
       repayment_period: 'Срок погашения:'
       comments: 'Комментарии:'
+      add_tag: 'Добавить тег'
+      remove_tag: 'Убрать тег'
+      close: 'Закрыть'
+      participant:
+        title: 'Участники'
+        become: 'Стать участником'
+        confirm: 'Подтвердить'
   comment:
     reply_link: 'Ответить'
     new:
@@ -170,3 +177,15 @@ ru:
         password: 'Пароль'
         confirm_password: 'Подтверждение пароля'
         min_character: 'минимально символов'
+  tag:
+    title: 'Теги:'
+    new:
+      submit: 'Подтвердить'
+      close: 'Закрыть'
+  loan_participant:
+    amount: 'Сумма денег:'
+    income: 'Доход:'
+    leave: 'Покинуть'
+    new:
+      confirm: 'Подтвердить'
+
