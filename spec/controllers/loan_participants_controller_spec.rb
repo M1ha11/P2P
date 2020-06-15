@@ -21,8 +21,7 @@ RSpec.describe LoanParticipantsController, type: :controller do
 
       context 'with invalid params' do
         let(:invalid_loan_participant_params) { attributes_for(:loan_participant, money: '',
-                                                claim_id: claim.id, user: user)
-                                               }
+                                                claim_id: claim.id, user: user) }
 
         it 'doesn\'t create new loan participant' do
           expect { post :create, params: { loan_participant: invalid_loan_participant_params } }

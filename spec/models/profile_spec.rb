@@ -32,5 +32,5 @@ RSpec.describe Profile, type: :model do
                                                         { field: :phone_number,
                                                           params: Faker::PhoneNumber.subscriber_number(length: 26) },
                                                         { field: :address,
-                                                          params: Faker::Lorem.sentence(word_count: 100) }
+                                                          params: Faker::Lorem.sentence(word_count: 200) }
 end

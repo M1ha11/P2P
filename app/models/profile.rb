@@ -22,7 +22,7 @@ class Profile < ApplicationRecord
                            format: {
                              with: /\A(?:\+?\d{1,3}\s*-?)?\(?(?:\d{2,3})?\)?[- ]?\d{3,4}[- ]?\d{4}\z/
                            }
-  validates :address, presence: true
+  validates :address, presence: true, length: { maximum: 150 }
   validates :success_credit_project, numericality: true
   validates :success_lend_project, numericality: true
 end
