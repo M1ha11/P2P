@@ -14,11 +14,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def lock?
-    admin? && editable_user_not_admin?
+    admin? && editable_user_not_admin? && editable_user_not_locked?
   end
 
   def unlock?
-    admin? && editable_user_not_admin?
+    admin? && editable_user_not_admin? && editable_user_locked?
   end
 
   def change_role?
@@ -31,5 +31,9 @@ class UserPolicy < ApplicationPolicy
 
   def editable_user_not_locked?
     !record.access_locked?
+  end
+
+  def editable_user_locked?
+    record.access_locked?
   end
 end

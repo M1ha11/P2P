@@ -17,7 +17,7 @@
 
   <% if policy(participant).destroy? %>
     <div class='row justify-content-between'>
-      <% if policy(participant).user_is_participant? %>
+      <% if policy(participant).belongs_to_user? %>
         <p class='income'>
           <span class='text-gr'><%= t('loan_participant.income') %></span>
           <span class='part-sum'><%= income(participant)%></span>

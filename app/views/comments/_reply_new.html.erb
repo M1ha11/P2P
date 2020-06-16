@@ -1,4 +1,5 @@
-<div id='reply_from'>
+<% @commentable ||= commentable %>
+<div id='reply_from' class='reply_form'>
   <%= form_for [@commentable, Comment.new] do |f| %>
     <%= f.hidden_field :parent_id, value: params[:parent_id] %>
     <div class='row'>

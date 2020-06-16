@@ -17,5 +17,15 @@
 require 'rails_helper'
 
 RSpec.describe Claim, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:claim) }
+
+  context 'with valid attributes' do
+    it 'is valid' do
+      expect(subject).to be_valid
+    end
+  end
+
+  include_examples 'invalid without attributes', :amount, :goal
+
+  include_examples 'invalid with incorrect attributes', { field: :amount, params: 'one' }
 end
