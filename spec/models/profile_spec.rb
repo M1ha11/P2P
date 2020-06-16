@@ -15,5 +15,22 @@
 require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:profile) }
+
+  context 'with valid attributes' do
+    it 'is valid with all valid params' do
+      expect(subject).to be_valid
+    end
+  end
+
+  include_examples 'valid without attributes', :avatar
+
+  include_examples 'invalid without attributes', :phone_number, :address
+
+  include_examples 'invalid with incorrect attributes', { field: :phone_number,
+                                                          params: '+375' },
+                                                        { field: :phone_number,
+                                                          params: Faker::PhoneNumber.subscriber_number(length: 26) },
+                                                        { field: :address,
+                                                          params: Faker::Lorem.sentence(word_count: 200) }
 end

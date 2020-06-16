@@ -41,7 +41,10 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 5.1'
   gem 'faker', '~> 2.10'
   gem 'pry', '~> 0.12.2'
+  gem 'pundit-matchers', '~> 1.6.0'
+  gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-rails', '~> 3.9'
+  gem 'simplecov', '~> 0.18.5'
 end
 
 group :development do

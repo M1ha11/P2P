@@ -6,15 +6,15 @@ class CardPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    user? || admin?
   end
 
   def create?
-    true
+    user? || admin?
   end
 
   def new?
-    true
+    user? || admin?
   end
 
   def destroy?
@@ -25,5 +25,9 @@ class CardPolicy < ApplicationPolicy
 
   def card
     record
+  end
+
+  def user_exist?
+    user.present?
   end
 end
