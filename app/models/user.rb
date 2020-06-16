@@ -24,9 +24,12 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :timeoutable, :trackable and :omniauthable
+  DEFAULT_EMAIL = 'p2p@p2p.com'.freeze
+  DEFAULT_ADDRESS = 'Coruscant'.freeze
+  DEFAULT_PHONE_NUMBER = '+880 (05) 5535355'.freeze
 
   devise :database_authenticatable, :registerable, :lockable,
-         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:twitter]
+         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: %i[twitter facebook]
 
   has_one :profile, dependent: :destroy
   has_many :cards, dependent: :destroy
@@ -40,8 +43,12 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
+      user.email = auth.info.email || DEFAULT_EMAIL
       user.password = Devise.friendly_token[0, 20]
+      user.build_profile(
+        address: auth.info.location || DEFAULT_ADDRESS,
+        phone_number: DEFAULT_PHONE_NUMBER
+      )
       user.skip_confirmation!
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_30_145808) do
+ActiveRecord::Schema.define(version: 2020_06_15_142815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,8 +54,9 @@ ActiveRecord::Schema.define(version: 2020_04_30_145808) do
     t.float "interest_rate", null: false
     t.string "repayment_period", null: false
     t.string "payment_frequency", null: false
-    t.integer "status", default: 0, null: false
     t.bigint "user_id", null: false
+    t.string "status", default: "publicly", null: false
+    t.datetime "confirmed_at"
     t.index ["user_id"], name: "index_claims_on_user_id"
   end
 
@@ -72,6 +73,16 @@ ActiveRecord::Schema.define(version: 2020_04_30_145808) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "loan_participants", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "claim_id"
+    t.float "money"
+    t.index ["claim_id"], name: "index_loan_participants_on_claim_id"
+    t.index ["user_id"], name: "index_loan_participants_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.integer "success_credit_project", default: 0
     t.integer "success_lend_project", default: 0
@@ -81,7 +92,34 @@ ActiveRecord::Schema.define(version: 2020_04_30_145808) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "locale", limit: 10, default: "en", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
+  end
+
+  create_table "taggables", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tags_id", null: false
+    t.string "taggable_type", null: false
+    t.bigint "taggable_id", null: false
+    t.index ["taggable_type", "taggable_id"], name: "index_taggables_on_taggable_type_and_taggable_id"
+    t.index ["tags_id"], name: "index_taggables_on_tags_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tag_id", null: false
+    t.string "taggable_type", null: false
+    t.bigint "taggable_id", null: false
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", limit: 50, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,7 +137,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_145808) do
     t.datetime "locked_at"
     t.integer "role", default: 0
     t.string "provider", limit: 150
-    t.string "uid", limit: 10
+    t.string "uid", limit: 50
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -113,5 +151,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_145808) do
   add_foreign_key "claims", "users"
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "users"
+  add_foreign_key "loan_participants", "claims"
+  add_foreign_key "loan_participants", "users"
   add_foreign_key "profiles", "users"
 end
