@@ -15,10 +15,12 @@
 #  status            :string           default("publicly"), not null
 #
 class Claim < ApplicationRecord
+  include Searchable
+  
   belongs_to :user
   has_many :loan_participants, dependent: :destroy
   has_many :taggings, as: :taggable
-  has_many :tags, through: :taggings
+  has_many :tags, -> { distinct }, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
 
   include AASM
@@ -34,7 +36,7 @@ class Claim < ApplicationRecord
                            '7 years': '84.month', '10 years': '120.month', '15 years': '180.month',
                            '20 years': '240.month' }
 
-  validates :amount, presence: true, numericality: true
+  validates :amount, presence: true, numericality: { greater_than: 0.0 }
   validates :currency, presence: true
   validates :goal, presence: true
   validates :interest_rate, presence: true
@@ -58,6 +60,13 @@ class Claim < ApplicationRecord
 
     event :success do
       transitions from: :confirmed, to: :successfull, after: :update_users_projects_statistics
+    end
+  end
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :amount
+      indexes :currency, analyzer: 'simple', search_analyzer: 'simple'
     end
   end
 

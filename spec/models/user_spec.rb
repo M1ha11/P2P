@@ -24,5 +24,15 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:user) }
+
+  context 'with valid params' do
+    it 'is valid' do
+      expect(subject).to be_valid
+    end
+  end
+
+  include_examples 'invalid without attributes', :email
+
+  include_examples 'invalid with incorrect attributes', { field: :email, params: 'abc.com' }
 end

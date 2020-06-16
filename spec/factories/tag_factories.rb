@@ -9,5 +9,6 @@
 #
 FactoryBot.define do
   factory :tag do
+    name { '#example' }
   end
 end

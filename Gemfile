@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -41,7 +41,10 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 5.1'
   gem 'faker', '~> 2.10'
   gem 'pry', '~> 0.12.2'
+  gem 'pundit-matchers', '~> 1.6.0'
+  gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-rails', '~> 3.9'
+  gem 'simplecov', '~> 0.18.5'
 end
 
 group :development do
@@ -60,12 +63,16 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'aasm', '~> 5.0'
 gem 'after_commit_everywhere', '~> 0.1.5'
+gem 'active_model_serializers', '~> 0.10.10'
 gem 'bootstrap', '~> 4.4'
 gem 'devise', '~> 4.7'
 gem 'dotenv', '~> 2.7'
+gem 'elasticsearch-model', '~> 7.1'
+gem 'elasticsearch-rails', '~> 7.1'
 gem 'font-awesome-rails', '~> 4.7'
 gem 'httparty', '~> 0.18.0'
 gem 'jquery-rails', '~> 4.3'
+gem 'jquery-ui-rails', '~> 6.0'
 gem 'jwt', '~> 2.2'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-oauth2', '~> 1.6'
@@ -75,3 +82,4 @@ gem 'redis', '~> 4.1'
 gem 'responders', '~> 3.0'
 gem 'sidekiq', '~> 6.0'
 gem 'sidekiq-cron', '~> 1.2'
+gem 'twitter-typeahead-rails', '~> 0.11.1'

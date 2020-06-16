@@ -112,7 +112,7 @@
         <h1 class='title-com'>Comments:</h1>
       </div>
       <% if policy(@claim.comments).new? %>
-        <%= render partial: 'comments/new', locals: {commentable: @claim } %>
+        <%= render template: 'comments/new', locals: {commentable: @claim } %>
       <% end %>
     </div>
     <div class='all-comments' id='all-comments'>

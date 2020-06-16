@@ -10,5 +10,15 @@
 require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:tag) }
+
+  context 'with valid attributtes' do
+    it 'is valid' do
+      expect(subject).to be_valid
+    end
+  end
+
+  include_examples 'invalid without attributes', :name
+
+  include_examples 'invalid with incorrect attributes', { field: :name, params: 'one' }
 end

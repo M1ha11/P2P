@@ -14,5 +14,13 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject { build(:comment) }
+
+  context 'with valid attributtes' do
+    it 'is valid' do
+      expect(subject).to be_valid
+    end
+  end
+
+  include_examples 'invalid without attributes', :text
 end

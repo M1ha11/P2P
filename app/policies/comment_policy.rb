@@ -10,10 +10,4 @@ class CommentPolicy < ApplicationPolicy
   def destroy?
     belongs_to_user? || admin?
   end
-
-  private
-
-  def comment
-    record
-  end
 end
