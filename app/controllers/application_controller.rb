@@ -3,10 +3,10 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
-  # around_action :set_locale
+  around_action :set_locale
 
   include Pundit
-  protect_from_forgery
+  # protect_from_forgery
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   self.responder = ApplicationResponder
@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
                                           phone_number
                                           address
                                           avatar
+                                          locale
                                         ]
                                       ])
   end
