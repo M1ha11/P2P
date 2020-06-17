@@ -15,7 +15,11 @@
     
     <div class='card-info col'>
       <% if policy(@profile).belongs_to_user? %>
-        <%= link_to t('profile.show.credit_card_link') ,cards_path, class: 'nav-log-btn'%>
+        <div class='row justify-content-center'>
+          <button class="btn btn-dark">
+            <%= link_to t('profile.show.credit_card_link') ,cards_path, class: 'nav-log-btn card-lnk'%>
+          </button>
+        </div>
       <% end %>
     </div>
     <div class='claims-info col col-3'>

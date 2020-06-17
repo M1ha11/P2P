@@ -101,7 +101,7 @@ RSpec.describe CardsController, type: :controller do
       it 'deletes credit card' do
         expect { delete :destroy, params: user_card_id }.to change { Card.count }.by(-1)
         expect(response).to have_http_status(302)
-          .and redirect_to('/cards')
+          .and redirect_to(cards_path(locale: I18n.default_locale))
       end
     end
 

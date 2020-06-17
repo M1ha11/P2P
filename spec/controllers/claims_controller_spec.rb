@@ -95,7 +95,7 @@ RSpec.describe ClaimsController, type: :controller do
 
       it 'destroys claim' do
         expect { delete :destroy, params: claim_id }.to change { Claim.count }.by(-1)
-        expect(response).to redirect_to('/claims')
+        expect(response).to redirect_to(claims_path(locale: I18n.default_locale))
       end
     end
 

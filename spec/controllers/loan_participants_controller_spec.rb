@@ -52,7 +52,7 @@ RSpec.describe LoanParticipantsController, type: :controller do
 
       it 'destroys loan participant' do
         expect { delete :destroy, params: loan_participant_id }.to change { LoanParticipant.count }.by(-1)
-        expect(response).to redirect_to('/claims')
+        expect(response).to redirect_to(claims_path(locale: I18n.default_locale))
       end
     end
 

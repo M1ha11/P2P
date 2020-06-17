@@ -9,7 +9,7 @@ ru:
     attributes:
       card:
         card_number: 'Номер карты'
-        expire_date: 'Годен до'
+        expire_date: 'Срок действия'
       claim:
         amount: 'Сумма'
         currency: 'Валюта'
@@ -188,4 +188,6 @@ ru:
     leave: 'Покинуть'
     new:
       confirm: 'Подтвердить'
+  search:
+    title: 'Поиск...'
 

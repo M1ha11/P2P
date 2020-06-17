@@ -215,3 +215,5 @@ en:
     leave: 'Leave'
     new:
       confirm: 'Confirm'
+  search:
+    title: 'Search...'

@@ -28,4 +28,13 @@ RSpec.describe Claim, type: :model do
   include_examples 'invalid without attributes', :amount, :goal
 
   include_examples 'invalid with incorrect attributes', { field: :amount, params: 'one' }
+
+  context 'elasticsearch' do
+    let!(:claim) { create(:claim) }
+
+    it 'returns requested results' do
+      Claim.__elasticsearch__.refresh_index!
+      expect(Claim.search(claim.currency).records.length).to eq(1)
+    end
+  end
 end
