@@ -32,7 +32,7 @@
                 <td class="us-wh-rec"><%= user.profile.address%></td>
                 <td class="us-gr-rec">
                   <%= form_for(user, url: change_role_user_path(user.id), html: { method: :patch }) do |f| %>
-                    <%= f.select :role, User.roles.keys, {}, { onchange: 'this.form.submit();', class: 'role' } %>
+                    <%= f.select :role, enum_options_for_select(User, :role), {}, { onchange: 'this.form.submit();', class: 'role' } %>
                   <% end %>
                 </td>
                 <td class="us-gr-rec">

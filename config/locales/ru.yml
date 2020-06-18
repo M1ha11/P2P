@@ -48,6 +48,9 @@ ru:
         email: 'Почта'
         password: 'Пароль'
         remember_me: 'Запомнить меня'
+        roles:
+          user: 'пользователь'
+          admin: 'администратор'
     errors:
       format: "%{attribute} %{message}"
       messages:

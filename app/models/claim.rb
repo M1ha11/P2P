@@ -16,7 +16,7 @@
 #
 class Claim < ApplicationRecord
   include Searchable
-  
+
   belongs_to :user
   has_many :loan_participants, dependent: :destroy
   has_many :taggings, as: :taggable
@@ -25,7 +25,7 @@ class Claim < ApplicationRecord
 
   enum status: { publicly: 'publicly', privatly: 'privatly', archive: 'archive',
                  confirmed: 'confirmed' }
-                 
+
   enum payment_frequency: { 'twice a month': '0.5.month',
                             'once a month': '1.month',
                             'once a 3 month': '3.month',

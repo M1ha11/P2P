@@ -79,6 +79,9 @@ en:
         email: 'Email'
         password: 'Password'
         remember_me: 'Remember me'
+        roles:
+          user: 'user'
+          admin: 'admin'
     errors:
       format: "%{attribute} %{message}"
       messages:
