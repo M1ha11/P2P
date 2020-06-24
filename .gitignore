@@ -8,7 +8,6 @@
 /.bundle
 /db/*.pg
 /coverage/*
-
 #dotenv
 .env
 

@@ -11,17 +11,21 @@
 #  interest_rate     :float            not null
 #  repayment_period  :string           not null
 #  payment_frequency :string           not null
-#  status            :integer          default("0"), not null
 #  user_id           :bigint           not null
+#  status            :string           default("publicly"), not null
 #
 class Claim < ApplicationRecord
   belongs_to :user
+  has_many :loan_participants, dependent: :destroy
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
 
-  enum status: %i[publicly privatly archive]
-  enum payment_frequency: { 'twice a month': 'twice a month', 'once a month': 'once a month',
-                            'once a 3 month': 'once a 3 month', 'once a 4 month': 'once a 4 month',
-                            'once a 6 month': 'once a 6 month', 'once a year': 'once a year' }
+  enum status: { publicly: 'publicly', privatly: 'privatly', archive: 'archive',
+                 confirmed: 'confirmed' }
+  enum payment_frequency: { 'twice a month': '0.5.month', 'once a month': '1.month',
+                            'once a 3 month': '3.month', 'once a 4 month': '4.month',
+                            'once a 6 month': '6.month', 'once a year': '12.month' }
   enum repayment_period: { '2 week': '0.5.month', '1 month': '1.month', '3 month': '3.month',
                            '6 month': '6.month', '1 year': '12.month', 'year and a half': '18.month',
                            '2 years': '24.month', '3 years': '32.month', '5 years': '60.month',
@@ -34,4 +38,8 @@ class Claim < ApplicationRecord
   validates :interest_rate, presence: true
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
+
+  def repayment_period_value
+    Claim.repayment_periods[repayment_period]
+  end
 end

@@ -11,8 +11,8 @@
 #  interest_rate     :float            not null
 #  repayment_period  :string           not null
 #  payment_frequency :string           not null
-#  status            :integer          default("0"), not null
 #  user_id           :bigint           not null
+#  status            :string           default("publicly"), not null
 #
 require 'rails_helper'
 

@@ -1,14 +1,14 @@
 class ProfilePolicy < ApplicationPolicy
   def show?
-    belongs_to_user?(profile) || admin?
+    belongs_to_user? || admin?
   end
 
   def update?
-    belongs_to_user?(profile)
+    belongs_to_user?
   end
 
   def edit?
-    belongs_to_user?(profile)
+    belongs_to_user?
   end
 
   private
