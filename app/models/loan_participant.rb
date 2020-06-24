@@ -10,8 +10,8 @@
 #  money      :float
 #
 class LoanParticipant < ApplicationRecord
-  belongs_to :user
-  belongs_to :claim
+  belongs_to :user, dependent: :destroy
+  belongs_to :claim, dependent: :destroy
   has_one :profile, through: :user
 
   delegate :success_credit_project, to: :profile

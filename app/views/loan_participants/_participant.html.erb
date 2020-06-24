@@ -23,9 +23,11 @@
           <span class='part-sum'><%= income(participant)%></span>
         </p>
       <% end %>
-      <button type='button' class='btn btn-outline-danger'>
-        <%= link_to 'Leave', loan_participant_path(participant.id), method: :delete, class: 'nav-unlog-btn' %>
-      </button>
+      <% if claim_initial_status?(participant) %>
+        <button type='button' class='btn btn-outline-danger'>
+          <%= link_to 'Leave', loan_participant_path(participant.id), method: :delete, class: 'nav-unlog-btn' %>
+        </button>
+      <%end%>
     </div>
   <% end %>
 

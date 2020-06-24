@@ -24,7 +24,7 @@ class Claim < ApplicationRecord
   include AASM
 
   enum status: { publicly: 'publicly', privatly: 'privatly', archived: 'archived',
-                 confirmed: 'confirmed', successful: 'successful' }
+                 confirmed: 'confirmed', successfull: 'successfull' }
   enum payment_frequency: { 'twice a month': '0.5.month', 'once a month': '1.month',
                             'once a 3 month': '3.month', 'once a 4 month': '4.month',
                             'once a 6 month': '6.month', 'once a year': '12.month' }

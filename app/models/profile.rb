@@ -13,7 +13,7 @@
 #  updated_at             :datetime         not null
 #
 class Profile < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   has_many :claims, through: :user
 
   has_one_attached :avatar

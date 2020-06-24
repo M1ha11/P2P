@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_104300) do
+ActiveRecord::Schema.define(version: 2020_06_08_092620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_104300) do
     t.string "payment_frequency", null: false
     t.bigint "user_id", null: false
     t.string "status", default: "publicly", null: false
+    t.datetime "confirmed_at"
     t.index ["user_id"], name: "index_claims_on_user_id"
   end
 
@@ -92,6 +93,16 @@ ActiveRecord::Schema.define(version: 2020_05_22_104300) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
+  end
+
+  create_table "taggables", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tags_id", null: false
+    t.string "taggable_type", null: false
+    t.bigint "taggable_id", null: false
+    t.index ["taggable_type", "taggable_id"], name: "index_taggables_on_taggable_type_and_taggable_id"
+    t.index ["tags_id"], name: "index_taggables_on_tags_id"
   end
 
   create_table "taggings", force: :cascade do |t|

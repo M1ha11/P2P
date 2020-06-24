@@ -17,6 +17,10 @@ module LoanParticipantsHelper
     (loan_participant.money * (rate + (rate / (((1 + rate)**month) - 1))) - loan_participant.money).round(2)
   end
 
+  def claim_initial_status?(participant)
+    participant.claim.publicly? || participant.claim.privatly?
+  end
+
   private
 
   def claim_repayment_period(loan_participant)
