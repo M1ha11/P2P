@@ -6,7 +6,7 @@ module Claims
     end
 
     def paginate
-      @claims.paginate(page: @page, per_page: 6)
+      @claims.paginate(page: @page, per_page: 18)
     end
   end
 end
