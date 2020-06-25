@@ -97,6 +97,6 @@ class Claim < ApplicationRecord
 
   def modify_period(period)
     values = period.split('.')
-    values.first.to_i.send(value.last)
+    values.first.to_i.send(values.last)
   end
 end
