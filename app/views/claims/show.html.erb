@@ -28,6 +28,9 @@
                     <%= @claim.goal %>
                   </p>
                 </div>
+                <% if @claim.tags.present? %>
+                  <%= render partial: 'tags/show_tags', locals: {claim: @claim} %>
+                <% end %>
               </div>
               <div class='col-4'>
                 <div class='other-info'>
@@ -54,6 +57,32 @@
                 <% end %>
               </div>
             </div>
+
+            <% if policy(@claim.tags).create? %>
+              <div class='row justify-content-md-start'>
+                <button type='button' class='btn btn-outline-success'>
+                  <a id='link-tag' href='#' class='nav-log-btn'>Add Tag</a> 
+                </button>
+
+                <button type='button' class='btn btn-outline-danger rem-but'>
+                  <a id='remove-tag' href='#' class='nav-unlog-btn'>Remove Tag</a> 
+                </button>
+              </div>
+
+
+                <div class='edit-tag-form' id='edit-tag-form'>
+                  <%= render template: 'tags/new', locals: { taggable: @claim } %>
+                </div>
+
+                <div class='remove-tag-form' id='remove-tag-form'>
+                  <p>
+                    <%= render partial: 'taggings/remove_tag', collection: @claim.taggings, as: :tagging, locals: {taggable: @claim}  %>
+                  </p>
+                  <a href="" id='close-rem' class='close-tag close-rem'>Close</a>
+                </div>
+
+            <% end %>
+
           </div>
         </div>
       </div>
@@ -64,7 +93,7 @@
         <h1 class='title-com'>Comments:</h1>
       </div>
       <% if policy(@claim.comments).new? %>
-        <%= render partial: 'comments/new', locals: {commentable: @claim } %>
+        <%= render template: 'comments/new', locals: {commentable: @claim } %>
       <% end %>
     </div>
     <div class='all-comments' id='all-comments'>
@@ -75,7 +104,54 @@
 
   </div>
 
-  <div class='col-4'>
+  <% if policy(@claim).can_see_participants? %>
+    <div class='col-4 part'>
+      <div class='container-participants'>
+        <div class='card-participants-show'>
+          <div class='card-body-paticipants'>
 
-  </div>
+            <div class='card-title-paticipants'>
+              <div class='row justify-content-md-center'>
+                <h1 class='part-title'>
+                  Participants
+                </h1>
+              </div>
+            </div>
+
+            <% if @claim.loan_participants.present? %>
+              <div class='participants-list'>
+                <%= render partial: 'loan_participants/participant', collection: @claim.loan_participants, as: :participant %>
+              </div>
+            <% end %>
+
+            <% if policy(@claim).doesnt_belong_to_user? && not_collected_amount_of_money? && policy(@claim).not_already_participant? %>
+              <div class='become-part'>
+                <div class='row justify-content-md-center'>
+                  <button type='button' class='btn btn-outline-success'>
+                    <a href="" id='participant-new' class='nav-log-btn'>Become a Participant</a>
+                  </button>
+                  <%= render 'shared/flash' %>
+                  <div class='part-form' id='part-form'>
+                    <%= render template: 'loan_participants/new', locals: {claim: @claim} %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <% if policy(@claim).confirm? && collected_amount? %>
+              <div class='become-part'>
+                <div class='row justify-content-md-center'>
+                  <button type='button' class='btn btn-outline-success'>
+                    <%= link_to 'Confirm', confirm_claim_path(@claim.id), method: :patch, class: 'nav-log-btn' %>
+                  </button>
+                </div>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
 </div>

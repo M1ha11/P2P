@@ -14,7 +14,7 @@
     </div>
     
     <div class='card-info col'>
-      <% if policy(@profile).belongs_to_user?(@profile) %>
+      <% if policy(@profile).belongs_to_user? %>
         <%= link_to 'Credit Cards' ,cards_path, class: 'nav-log-btn'%>
       <% end %>
     </div>
@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class='profile-body'>
-    <% if policy(@profile).belongs_to_user?(@profile) %>
+    <% if policy(@profile).belongs_to_user? %>
       <div class='btn btn-cl'>
         <%= link_to 'New Credit Claim', new_claim_path, class: 'btn-new-claim' %>
       </div>

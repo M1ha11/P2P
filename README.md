@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# Test Coverage
+
+```sh
+$ xdg-open coverage/index.html
+```
