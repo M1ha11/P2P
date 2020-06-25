@@ -46,10 +46,11 @@ class User < ApplicationRecord
       user.email = auth.info.email || DEFAULT_EMAIL
       user.password = Devise.friendly_token[0, 20]
       user.build_profile(
-        address: auth.info.location || DEFAULT_ADDRESS,
+        address: DEFAULT_ADDRESS,
         phone_number: DEFAULT_PHONE_NUMBER
       )
       user.skip_confirmation!
+      binding.pry
     end
   end
 end
