@@ -17,7 +17,8 @@
 require 'rails_helper'
 
 RSpec.describe Claim, type: :model do
-  subject { build(:claim) }
+  let(:user) { create(:user) }
+  subject { build(:claim, user: user) }
 
   context 'with valid attributes' do
     it 'is valid' do

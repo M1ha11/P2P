@@ -14,7 +14,8 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  subject { build(:comment) }
+  let(:user) { create(:user) }
+  subject { build(:comment, user: user) }
 
   context 'with valid attributtes' do
     it 'is valid' do
