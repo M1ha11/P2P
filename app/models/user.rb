@@ -29,7 +29,8 @@ class User < ApplicationRecord
   DEFAULT_PHONE_NUMBER = '+880 (05) 5535355'.freeze
 
   devise :database_authenticatable, :registerable, :lockable,
-         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: %i[twitter facebook]
+         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable,
+         omniauth_providers: %i[twitter facebook]
 
   has_one :profile, dependent: :destroy
   has_many :cards, dependent: :destroy
@@ -40,7 +41,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :profile
 
   validates :email, presence: true, format: { with: /\A(\S+)@(.+)\.(\S+)\z/i }
-  validates :email, uniqueness: true, if: -> {  provider.nil? || provider.blank?  }
+  validates :email, uniqueness: true, if: -> { provider.nil? || provider.blank? }
   enum role: %i[user admin]
 
   def self.from_omniauth(auth)

@@ -16,7 +16,7 @@
 #
 class Claim < ApplicationRecord
   include Searchable
-  
+
   belongs_to :user
   has_many :loan_participants, dependent: :destroy
   has_many :taggings, as: :taggable
