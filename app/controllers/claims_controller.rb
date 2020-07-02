@@ -10,6 +10,11 @@ class ClaimsController < ApplicationController
     respond_with @claims, location: -> { claims_path }
   end
 
+  def statistic
+    @claims = Claim.all
+    respond_with @claim, location: -> { statistic_claims_path }
+  end
+
   def new
     set_service
     @claim = Claim.new

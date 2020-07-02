@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     member do
       patch 'confirm'
     end
+    collection do
+      get 'statistic'
+    end
     resources :comments, only: %i[new create destroy]
     resources :tags, only: %i[create]
     resources :taggings, only: %i[destroy]

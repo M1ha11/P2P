@@ -1,0 +1,38 @@
+<div class='claim-statistic-container'>
+  <div class='claim-statistic-card'>
+    <div class='card-body'>
+      <div class='claim-statistic-table'>
+        <table class='table'>
+          <thead class='t-head'>
+            <tr>
+              <th class='col'>Status</th>
+              <th class='col'>Amount</th>
+              <th class='col'>Currency</th>
+              <th class='col'>Interest rate</th>
+              <th class='col'>Payment frequency</th>
+              <th class='col'>Repayment period</th>
+              <th class='col'>Owner</th>
+              <th class='col'>Full info</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @claim.each do |claim| %>
+              <tr>
+                <th scope='row'>
+                  <td class='us-gr-rec'><%= claim.status %></td>
+                  <td class='us-gr-rec'><%= claim.amount%></td>
+                  <td class='us-gr-rec'><%= claim.currency %></td>
+                  <td class='us-gr-rec'><%= claim.interest_rate %></td>
+                  <td class='us-gr-rec'><%= claim.payment_frequncy %></td>
+                  <td class='us-gr-rec'><%= claim.repayment_period %></td>
+                  <td class='us-gr-rec'><%= claim.user %></td>
+                  <td class='us-gr-rec'><a href="">info</a></td>
+                </th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
