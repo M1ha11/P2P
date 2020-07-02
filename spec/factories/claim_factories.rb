@@ -8,7 +8,7 @@ FactoryBot.define do
     payment_frequency { Claim.payment_frequencies.values.sample }
     status { 'publicly' }
     # user
-    factory :claim_with do
+    trait :claim_with do
       after :create do |claim|
         create :tagging, taggable: claim
         create :loan_participant, claim: claim

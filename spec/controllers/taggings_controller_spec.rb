@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe TaggingsController, type: :controller do
   describe 'DELETE destroy' do
     let(:current_user) { create(:user, role: 'admin') }
-    let(:claim) { create(:claim) }
+    let(:claim) { create(:claim, user: current_user) }
     let(:tag) { create(:tag) }
     let!(:tagging) { create(:tagging, tag: tag, taggable_id: claim.id, taggable_type: claim.class.name) }
 

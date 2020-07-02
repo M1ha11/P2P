@@ -4,7 +4,7 @@ RSpec.describe ClaimsController, type: :controller do
   describe 'GET index' do
     context 'when user role is user' do
       let(:current_user) { create(:user, role: 'user') }
-      let!(:claims) { create_list(:claim, 3, status: 'publicly') }
+      let!(:claims) { create_list(:claim, 3, status: 'publicly', user: current_user) }
 
       before do
         sign_in current_user
@@ -100,7 +100,8 @@ RSpec.describe ClaimsController, type: :controller do
     end
 
     context 'when user unauthorize' do
-      let!(:claim) { create(:claim) }
+      let(:current_user) { create(:user) }
+      let!(:claim) { create(:claim, user: current_user) }
       let(:claim_id) { { id: claim.id } }
 
       it 'returns doesn\'t destroy claim' do

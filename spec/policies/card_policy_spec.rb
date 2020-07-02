@@ -56,7 +56,8 @@ describe CardPolicy do
 
   context 'being a visitor' do
     let(:current_user) { nil }
-    let(:card) { create(:card) }
+    let(:user) { create(:user) }
+    let(:card) { create(:card, user: user) }
 
     it { is_expected.to forbid_actions(%i[index new create destroy]) }
   end

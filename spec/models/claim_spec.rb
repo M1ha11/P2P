@@ -31,7 +31,7 @@ RSpec.describe Claim, type: :model do
   include_examples 'invalid with incorrect attributes', { field: :amount, params: 'one' }
 
   context 'elasticsearch' do
-    let!(:claim) { create(:claim) }
+    let!(:claim) { create(:claim, user: user) }
 
     it 'returns requested results' do
       Claim.__elasticsearch__.refresh_index!

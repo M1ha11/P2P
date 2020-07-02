@@ -5,7 +5,7 @@ FactoryBot.define do
     password { '123456' }
     confirmed_at { Time.now.utc }
 
-    factory :user_with do
+    trait :user_with do
       after :create do |user|
         create :profile, user: user
         create_list :card, 1, user: user

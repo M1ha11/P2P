@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe LoanParticipantsController, type: :controller do
   let!(:user) { create(:user) }
-  let!(:claim) { create(:claim) }
+  let!(:another_user) { create(:user) }
+  let!(:claim) { create(:claim, user: another_user) }
 
   describe 'POST create' do
     context 'when user authorize' do
