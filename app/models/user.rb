@@ -39,7 +39,8 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :profile
 
-  validates :email, presence: true, uniqueness: true, format: { with: /\A(\S+)@(.+)\.(\S+)\z/i }
+  validates :email, presence: true, format: { with: /\A(\S+)@(.+)\.(\S+)\z/i }
+  validates :email, uniqueness: true, if: -> {  provider.nil? || provider.blank?  }
   enum role: %i[user admin]
 
   def self.from_omniauth(auth)
@@ -51,7 +52,10 @@ class User < ApplicationRecord
         phone_number: DEFAULT_PHONE_NUMBER
       )
       user.skip_confirmation!
-      binding.pry
     end
+  end
+
+  def will_save_change_to_email?
+    false
   end
 end

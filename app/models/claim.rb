@@ -40,6 +40,7 @@ class Claim < ApplicationRecord
   validates :interest_rate, presence: true
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
+  validates_with PeriodValidator
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
