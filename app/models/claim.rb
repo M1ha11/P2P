@@ -11,14 +11,20 @@
 #  interest_rate     :float            not null
 #  repayment_period  :string           not null
 #  payment_frequency :string           not null
-#  status            :integer          default("0"), not null
 #  user_id           :bigint           not null
+#  status            :string           default("publicly"), not null
 #
 class Claim < ApplicationRecord
+  include Searchable
+  
   belongs_to :user
+  has_many :loan_participants, dependent: :destroy
+  has_many :taggings, as: :taggable
+  has_many :tags, -> { distinct }, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
 
-  enum status: %i[publicly privatly archive]
+  enum status: { publicly: 'publicly', privatly: 'privatly', archive: 'archive',
+                 confirmed: 'confirmed' }
   enum payment_frequency: { 'twice a month': '0.5.month', 'once a month': '1.month',
                             'once a 3 month': '3.month', 'once a 4 month': '4.month',
                             'once a 6 month': '6.month', 'once a year': '12.month' }
@@ -28,10 +34,21 @@ class Claim < ApplicationRecord
                            '7 years': '84.month', '10 years': '120.month', '15 years': '180.month',
                            '20 years': '240.month' }
 
-  validates :amount, presence: true, numericality: true
+  validates :amount, presence: true, numericality: { greater_than: 0.0 }
   validates :currency, presence: true
   validates :goal, presence: true
   validates :interest_rate, presence: true
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :amount
+      indexes :currency, analyzer: 'simple', search_analyzer: 'simple'
+    end
+  end
+
+  def repayment_period_value
+    Claim.repayment_periods[repayment_period]
+  end
 end

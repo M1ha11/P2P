@@ -6,24 +6,28 @@ class CardPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    user? || admin?
   end
 
   def create?
-    true
+    user? || admin?
   end
 
   def new?
-    true
+    user? || admin?
   end
 
   def destroy?
-    belongs_to_user?(card)
+    belongs_to_user?
   end
 
   private
 
   def card
     record
+  end
+
+  def user_exist?
+    user.present?
   end
 end
