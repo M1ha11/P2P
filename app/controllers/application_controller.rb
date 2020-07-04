@@ -3,25 +3,26 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
-  around_action :set_locale
+  prepend_before_action :set_locale
 
   include Pundit
-  # protect_from_forgery
+  protect_from_forgery
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   self.responder = ApplicationResponder
   respond_to :html
   responders :flash
 
-  def default_url_options
-    { locale: I18n.locale }
+  def self.default_url_options(options={})
+    options.merge({ :locale => I18n.locale })
   end
 
   protected
 
-  def set_locale(&action)
-    locale = current_user.try(:profile).try(:locale) || I18n.default_locale
-    I18n.with_locale(locale, &action)
+  def set_locale
+    # locale = current_user.try(:profile).try(:locale) || I18n.default_locale
+    # I18n.with_locale(locale, &action)
+    I18n.locale = params[:locale]
   end
 
   def configure_permitted_parameters

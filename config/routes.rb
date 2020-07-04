@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'callbacks', registrations: 'registrations' }
+  devise_for :users, controllers: { omniauth_callbacks: 'callbacks', registrations: 'registrations', sessions: 'custom_sessions' }
   
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do  
     root 'claims#index'
