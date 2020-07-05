@@ -15,6 +15,8 @@
 #  status            :string           default("publicly"), not null
 #
 class Claim < ApplicationRecord
+  PER_PAGE = 18.freeze
+
   include Searchable
   
   belongs_to :user
