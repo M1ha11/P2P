@@ -11,7 +11,7 @@ class ClaimsController < ApplicationController
   end
 
   def statistic
-    @claims = Claim.all
+    @claims = Claims::Sort.new(policy_scope(Claim), params[:sort], params[:direction]).call
     respond_with @claim, location: -> { statistic_claims_path }
   end
 

@@ -2,32 +2,72 @@
   <div class='claim-statistic-card'>
     <div class='card-body'>
       <div class='claim-statistic-table'>
-        <table class='table'>
-          <thead class='t-head'>
+        <table class='table table-hover '>
+          <thead class='t-head-stat'>
             <tr>
-              <th class='col'>Status</th>
-              <th class='col'>Amount</th>
-              <th class='col'>Currency</th>
-              <th class='col'>Interest rate</th>
-              <th class='col'>Payment frequency</th>
-              <th class='col'>Repayment period</th>
-              <th class='col'>Owner</th>
-              <th class='col'>Full info</th>
+              <th scope='col'><%= link_to 'Id', statistic_claims_path(sort: 'id'), class: 'stat-head' %></th>
+              <th scope='col'><%= link_to 'Status', statistic_claims_path(sort: 'status'), class: 'stat-head' %></th>
+              <th scope='col'><%= link_to 'Amount', statistic_claims_path(sort: 'amount'), class: 'stat-head' %></th>
+              <th scope='col'><%= link_to 'Currency', statistic_claims_path(sort: 'currency'), class: 'stat-head' %></th>
+              <th scope='col'><%= link_to 'Interest rate', statistic_claims_path(sort: 'interest_rate'), class: 'stat-head' %></th>
+              <th scope='col'><%= link_to 'Payment frequency', statistic_claims_path(sort: 'payment_frequency'), class: 'stat-head' %></th>
+              <th scope='col'><%= link_to 'Repayment period', statistic_claims_path(sort: 'repayment_period'), class: 'stat-head' %></th>
+              <th scope='col'>Owner</th>
+              <th scope='col'>Full info</th>
             </tr>
           </thead>
           <tbody>
-            <% @claim.each do |claim| %>
+            <% @claims.each do |claim| %>
               <tr>
-                <th scope='row'>
-                  <td class='us-gr-rec'><%= claim.status %></td>
-                  <td class='us-gr-rec'><%= claim.amount%></td>
-                  <td class='us-gr-rec'><%= claim.currency %></td>
-                  <td class='us-gr-rec'><%= claim.interest_rate %></td>
-                  <td class='us-gr-rec'><%= claim.payment_frequncy %></td>
-                  <td class='us-gr-rec'><%= claim.repayment_period %></td>
-                  <td class='us-gr-rec'><%= claim.user %></td>
-                  <td class='us-gr-rec'><a href="">info</a></td>
-                </th>
+                <th class='stat-gr-rec' scope='row'>#<%= claim.id %></th>
+                <td class='stat-wh-rec'><%= claim.status %></td>
+                <td class='stat-gr-rec '><%= claim.amount%></td>
+                <td class='stat-wh-rec '><%= claim.currency %></td>
+                <td class='stat-gr-rec '><%= claim.interest_rate %></td>
+                <td class='stat-wh-rec '><%= claim.payment_frequency %></td>
+                <td class='stat-gr-rec '><%= claim.repayment_period %></td>
+                <td><%= link_to claim.user.email, profile_path(claim.user.profile.id), class: 'stat-gr-rec-lnk ' %></td>
+                <td><a href="" id='open-full-stat' class='stat-wh-rec-lnk' data=<%= claim.id %>>Info</a></td>
+              </tr>
+              <tr class='hidden-full-stat' id=<%= "full_#{claim.id}" %>>
+                <td scope='row' colspan='9'>
+                  <div class='full-info-claim-stat'>
+                    <div class='row'>
+                      <p>
+                        <span class='stat-wh-rec stat-title'>Goal:</span>
+                        <span class='stat-gr-rec stat-goal'><%= claim.goal %></span>
+                      </p>
+                    </div>
+                    <div class='row'>
+                      <div class='col-5'>
+                        <p class='stat-wh-rec stat-title'>Tags:</p>
+                        <div class='stat-list'>
+                          <% claim.tags.each do |tag| %>
+                            <p class='stat-gr-rec '><%= tag.name %></p>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class='col-5'>
+                        <p class='stat-wh-rec stat-title'>Participants:</p>
+                        <div class='stat-list'>
+                          <% claim.loan_participants.each do |participant| %>
+                            <p><%= link_to participant.user.email, profile_path(participant.user.profile.id), class: 'stat-wh-rec-lnk' %></p>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class='col-2 align-self-end'>
+                        <div class='row justify-content-md-end'>
+                          <button type='button' class='btn btn-outline-success'>
+                            <%= link_to 'Go to claim', claim_path(claim.id), class: 'nav-log-btn' %>
+                          </button>
+                          <button type='button' class='btn btn-outline-danger'>
+                            <a href="" id='close-full-stat' class='nav-unlog-btn'>Close</a>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
               </tr>
             <% end %>
           </tbody>

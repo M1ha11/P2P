@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_104300) do
+ActiveRecord::Schema.define(version: 2020_07_05_142159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_104300) do
     t.string "payment_frequency", null: false
     t.bigint "user_id", null: false
     t.string "status", default: "publicly", null: false
+    t.datetime "confirmed_at"
     t.index ["user_id"], name: "index_claims_on_user_id"
   end
 
@@ -91,7 +92,27 @@ ActiveRecord::Schema.define(version: 2020_05_22_104300) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "locale", limit: 10, default: "en", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "rate"
+    t.bigint "users_id", null: false
+    t.integer "reviewed_id"
+    t.index ["users_id"], name: "index_ratings_on_users_id"
+  end
+
+  create_table "taggables", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tags_id", null: false
+    t.string "taggable_type", null: false
+    t.bigint "taggable_id", null: false
+    t.index ["taggable_type", "taggable_id"], name: "index_taggables_on_taggable_type_and_taggable_id"
+    t.index ["tags_id"], name: "index_taggables_on_tags_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -125,11 +146,12 @@ ActiveRecord::Schema.define(version: 2020_05_22_104300) do
     t.datetime "locked_at"
     t.integer "role", default: 0
     t.string "provider", limit: 150
-    t.string "uid", limit: 10
+    t.string "uid", limit: 50
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email", "uid", "provider"], name: "index_users_on_email_and_uid_and_provider", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, where: "(provider IS NULL)"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end

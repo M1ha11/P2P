@@ -46,7 +46,7 @@
                     Repayment period: <span class='info'><%= @claim.repayment_period %></span>
                   </p>
                 </div>
-                <% if policy(@claim).destroy? %>
+                <% if policy(@claim).destroy? && @claim.status != 'confirmed' || @claim.status != 'successfull' %>
                   <div class='row justify-content-md-end'>
                     <div class='del-but'>
                       <button type='button' class='btn btn-outline-danger'>
