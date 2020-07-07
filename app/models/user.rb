@@ -32,6 +32,7 @@ class User < ApplicationRecord
   has_many :claims, dependent: :destroy
   has_many :loan_participants, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :ratings, dependent: :destroy
 
   accepts_nested_attributes_for :profile
 

@@ -1,5 +1,6 @@
 class RatingsController < ApplicationController
   def new
+    @rates = Rating.rates.keys
     @rating = current_user.ratings.new
   end
 
@@ -11,6 +12,6 @@ class RatingsController < ApplicationController
   private
 
   def rating_params
-    params.require(:rating).permit(:rate)
+    params.require(:rating).permit(:rate, :reviewed_id)
   end
 end

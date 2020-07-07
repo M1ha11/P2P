@@ -1,0 +1,22 @@
+<%= form_with model: @rating do |f| %>
+  <%= f.hidden_field :reviewed_id, value: reviewed_id %>
+  <%= f.label 'Please rate claim owner', class: 'label' %>
+  <div class='row'>
+    <div class='rating-star'>
+      <input type="radio" name="rate" value='1' id='rate1'>
+      <label for='rate1'></label>
+      <input type="radio" name="rate" value='2' id='rate2'>
+      <label for='rate2'></label>
+      <input type="radio" name="rate" value='3' id='rate3'>
+      <label for='rate3'></label>
+      <input type="radio" name="rate" value='4' id='rate4'>
+      <label for='rate4'></label>
+      <input type="radio" name="rate" value='5' id='rate5'>
+      <label for='rate5'></label>
+      <%= fa_icon 'star 2x' %>
+    </div>
+    <div class='rating-but'>
+      <%= f.submit 'Submit', class: 'btn btn-success' %>
+    </div>  
+  </div>
+<% end %>

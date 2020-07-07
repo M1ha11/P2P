@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       patch 'change_role'
     end
   end
+  resources :ratings, only: %i[new create]
   resources :loan_participants, only: %i[create destroy]
   get 'search', to: 'search#search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

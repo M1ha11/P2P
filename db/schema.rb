@@ -100,9 +100,10 @@ ActiveRecord::Schema.define(version: 2020_07_05_142159) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "rate"
-    t.bigint "users_id", null: false
-    t.integer "reviewed_id"
-    t.index ["users_id"], name: "index_ratings_on_users_id"
+    t.bigint "user_id", null: false
+    t.integer "reviewed_id", null: false
+    t.index ["reviewed_id"], name: "index_ratings_on_reviewed_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "taggables", force: :cascade do |t|

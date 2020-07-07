@@ -27,6 +27,7 @@
         <%= link_to 'Leave', loan_participant_path(participant.id), method: :delete, class: 'nav-unlog-btn' %>
       </button>
     </div>
+    <%= render template: 'ratings/new', locals: {reviewed_id: participant.claim.user.id } %>
   <% end %>
 
 </div>

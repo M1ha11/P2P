@@ -4,8 +4,8 @@ class CreateRatings < ActiveRecord::Migration[5.2]
 
       t.timestamps
       t.integer :rate
-      t.references :users, null: false, index: true
-      t.integer :reviewed_id, foreign_key: true
+      t.references :user, null: false, index: true
+      t.integer :reviewed_id, foreign_key: true, null: false, index: true
     end
   end
 end
