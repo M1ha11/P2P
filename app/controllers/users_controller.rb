@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+    binding.pry
     @users = policy_scope(User)
     respond_with @users, location: -> { users_path }
   end

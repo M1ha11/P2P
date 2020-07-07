@@ -4,17 +4,6 @@ RSpec.describe CommentsController, type: :controller do
   let(:current_user) { create(:user, role: 'user') }
   let(:commentable) { create(:claim, user: current_user) }
 
-  describe 'GET new' do
-    before do
-      sign_in current_user
-    end
-
-    it 'returns success status' do
-      get :new, params: { claim_id: commentable.id }
-      expect(response).to have_http_status(200)
-    end
-  end
-
   describe 'POST create' do
     before do
       sign_in current_user

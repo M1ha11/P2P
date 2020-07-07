@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ProfilesController, type: :controller do
   describe 'GET show' do
-    let(:profile) { create(:profile, user_id: current_user.id) }
     let(:current_user) { create(:user) }
+    let(:profile) { current_user.profile }
 
     before do
       sign_in current_user
@@ -20,7 +20,7 @@ RSpec.describe ProfilesController, type: :controller do
   describe 'PATCH update' do
     context 'when user is authorized' do
       let(:current_user) { create(:user) }
-      let(:profile) { create(:profile, user_id: current_user.id) }
+      let(:profile) { current_user.profile }
 
       before do
         sign_in current_user
@@ -49,7 +49,7 @@ RSpec.describe ProfilesController, type: :controller do
 
     context 'when user is unauthorized' do
       let(:current_user) { create(:user) }
-      let(:profile) { create(:profile, user_id: current_user.id) }
+      let(:profile) { current_user.profile }
       let(:profile_params) { attributes_for(:profile) }
 
       it 'moves to sing in' do
@@ -63,7 +63,7 @@ RSpec.describe ProfilesController, type: :controller do
 
   describe 'GET edit' do
     let(:current_user) { create(:user) }
-    let(:profile) { create(:profile, user_id: current_user.id) }
+    let(:profile) { current_user.profile }
 
     before do
       sign_in current_user
