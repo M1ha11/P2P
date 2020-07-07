@@ -5,7 +5,7 @@
         <table class='table table-hover '>
           <thead class='t-head-stat'>
             <tr>
-              <th scope='col'><%= link_to 'Id', statistic_claims_path(sort: 'id'), class: 'stat-head' %></th>
+              <th scope='col'><%= link_to 'Id', statistic_claims_path(sort: 'id', direction: @sort == 'id' && @direction == 'asc' ? 'desc' : 'asc'), class: 'stat-head' %></th>
               <th scope='col'><%= link_to 'Status', statistic_claims_path(sort: 'status'), class: 'stat-head' %></th>
               <th scope='col'><%= link_to 'Amount', statistic_claims_path(sort: 'amount'), class: 'stat-head' %></th>
               <th scope='col'><%= link_to 'Currency', statistic_claims_path(sort: 'currency'), class: 'stat-head' %></th>
