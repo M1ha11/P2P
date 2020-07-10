@@ -13,7 +13,7 @@ class Card < ApplicationRecord
   before_save :encrypt!
   before_save :remove_spaces!
 
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
 
   validates_with CardDateValidator
   validates :card_number, presence: true, format: { with: /\A(\d{4}\s\d{4}\s\d{4}\s\d{4})\z/ }

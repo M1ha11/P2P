@@ -6,4 +6,8 @@ module ClaimsHelper
   def collected_amount?
     @claim.amount == @claim.loan_participants.sum(:money)
   end
+
+  def initial_status?
+    @claim.publicly? || @claim.privatly?
+  end
 end

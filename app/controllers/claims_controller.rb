@@ -29,13 +29,9 @@ class ClaimsController < ApplicationController
 
   def confirm
     ActiveRecord::Base.transaction do
-      claim.update(status: 'confirmed')
-      claim.user.profile.update(success_credit_project: claim.user.profile.success_credit_project + 1)
-      claim.loan_participants.each do |participant|
-        participant.user.profile.update(success_lend_project: participant.user.profile.success_lend_project + 1)
-      end
+      claim.confirm!
+      claim.update(confirmed_at: Time.zone.now)
     end
-    # claim.confirm!
     respond_with claim, location: -> { claim_path(claim.id) }
   end
 

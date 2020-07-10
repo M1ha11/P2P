@@ -1,0 +1,12 @@
+archive_job:
+  cron: '10 13 * * *'
+  class: 'ArchiveWorker'
+  queue: 'archive'
+pay_notification_job:
+  cron: '00 06 * * *'
+  class: 'PayNotification'
+  queue: 'notification'
+success_claim_job:
+  cron: '00 17 * * *'
+  class: 'SuccessClaim'
+  queue: 'success'
