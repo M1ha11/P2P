@@ -7,7 +7,7 @@
     </div>
     <div class='card-txt'>
       <p class='cl-goal'>
-        <%= claim.goal.truncate(100) %>
+        <%= claim.goal.truncate(60, separator: ' ') %>
       </p>
       <% if claim.tags.present? %>
         <p class='tags-info-text'>

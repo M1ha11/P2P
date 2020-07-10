@@ -11,18 +11,37 @@
             </div>
           </div>
           <div class='card-sub-title'>
-            <div class='row justify-content-md-end'>
-              <% unless average_rate(@claim.user).nil? %>
-                <div class='row'>
-                  <h4 class='claim-user rating-user'>
-                    <%= average_rate(@claim.user) %>
-                    <%= fa_icon 'star 1x' %>
+            <div class='row'>
+              <div class='col-3'>
+                <% if @claim.archived? %>
+                  <div class='claim-icon'>
+                    <%= fa_icon 'archive 2x', class: 'claim-fa-icon' %>
+                  </div>
+                <% elsif @claim.successfull? %>
+                  <div class='claim-icon'>
+                    <%= fa_icon 'check-circle 2x', class: 'claim-fa-icon' %>
+                  </div>
+                <% elsif @claim.privatly? %>
+                  <div class='claim-icon'>
+                    <%= fa_icon 'home 2x', class: 'claim-fa-icon' %>
+                  </div>
+                <% end %>
+              </div>
+              <div class='col-9'>
+                <div class='row justify-content-md-end'>
+                  <% unless average_rate(@claim.user).nil? %>
+                  <div class='row'>
+                    <h4 class='claim-user rating-user'>
+                      <%= average_rate(@claim.user) %>
+                      <%= fa_icon 'star 1x' %>
+                    </h4>
+                  </div>
+              <% end %>
+                  <h4 class='claim-user'>
+                    <%= @claim.user.email %>
                   </h4>
                 </div>
-              <% end %>
-              <h4 class='claim-user'>
-                <%= @claim.user.email %>
-              </h4>
+              </div>
             </div>
           </div>
 
@@ -101,7 +120,7 @@
         <h1 class='title-com'>Comments:</h1>
       </div>
       <% if policy(@claim.comments).new? %>
-        <%= render template: 'comments/new', locals: {commentable: @claim } %>
+        <%= render partial: 'comments/new', locals: {commentable: @claim } %>
       <% end %>
     </div>
     <div class='all-comments' id='all-comments'>
@@ -146,7 +165,7 @@
               </div>
             <% end %>
 
-            <% if policy(@claim).confirm? && collected_amount? %>
+            <% if policy(@claim).confirm? && collected_amount? && initial_status? %>
               <div class='become-part'>
                 <div class='row justify-content-md-center'>
                   <button type='button' class='btn btn-outline-success'>

@@ -20,4 +20,8 @@ module ClaimsHelper
       fa_icon 'sort-up'
     end
   end
+
+  def initial_status?
+    @claim.publicly? || @claim.privatly?
+  end
 end

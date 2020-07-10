@@ -22,4 +22,7 @@
   <div class='row'>
       <%= render partial: 'claims', collection: @claims, as: :claim %>
   </div>
+  <div class='row justify-content-md-center pagination-cont'>
+    <%= will_paginate @claims, class: "apple_pagination" %>
+  </div>
 </div>

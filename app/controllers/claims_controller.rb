@@ -6,7 +6,8 @@ class ClaimsController < ApplicationController
     @sort = params[:sort]
     @direction = params[:direction]
     claims = Claims::Filter.new(policy_scope(Claim), params).call
-    @claims = Claims::Sort.new(claims, params[:sort], params[:direction]).call
+    sort_claims = Claims::Sort.new(claims, params[:sort], params[:direction]).call
+    @claims = Global::Pagination.new(sort_claims, params[:page], Claim::PER_PAGE).paginate
     respond_with @claims, location: -> { claims_path }
   end
 
@@ -35,13 +36,9 @@ class ClaimsController < ApplicationController
 
   def confirm
     ActiveRecord::Base.transaction do
-      claim.update(status: 'confirmed')
-      claim.user.profile.update(success_credit_project: claim.user.profile.success_credit_project + 1)
-      claim.loan_participants.each do |participant|
-        participant.user.profile.update(success_lend_project: participant.user.profile.success_lend_project + 1)
-      end
+      claim.confirm!
+      claim.update(confirmed_at: Time.zone.now)
     end
-    # claim.confirm!
     respond_with claim, location: -> { claim_path(claim.id) }
   end
 

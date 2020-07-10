@@ -34,3 +34,7 @@ en:
   loan_participants:
     create:
       alert: "You have entered sum bigger than needed. Please enter %{residual_amount}"
+  claim:
+    create:
+      alert:
+        periods: 'You have entered payment frequency bigger than repayment period'
