@@ -6,7 +6,8 @@ class ClaimsController < ApplicationController
     @sort = params[:sort]
     @direction = params[:direction]
     claims = Claims::Filter.new(policy_scope(Claim), params).call
-    @claims = Claims::Sort.new(claims, params[:sort], params[:direction]).call
+    sort_claims = Claims::Sort.new(claims, params[:sort], params[:direction]).call
+    @claims = Global::Pagination.new(sort_claims, params[:page], Claim::PER_PAGE).paginate
     respond_with @claims, location: -> { claims_path }
   end
 
