@@ -14,7 +14,6 @@
           </div>
 
           <%= f.fields_for :profile do |profile_f| %>
-
             <div class="field">
               <%= profile_f.label :phone_number, class: 'label-login' %><br />
               <%= profile_f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: t('devise.registrations.placeholder.phone'), class: 'field-login' %>
@@ -58,4 +57,4 @@
   </div>
 </div>
 
-<%= render 'devise/shared/omni_auth' %>
+<%= render partial: 'devise/shared/omniauth' %>

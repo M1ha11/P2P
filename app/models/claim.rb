@@ -15,7 +15,10 @@
 #  status            :string           default("publicly"), not null
 #
 class Claim < ApplicationRecord
+  PER_PAGE = 18.freeze
+
   include Searchable
+  include AASM
 
   belongs_to :user
   has_many :loan_participants, dependent: :destroy
@@ -53,6 +56,27 @@ class Claim < ApplicationRecord
   validates :interest_rate, presence: true
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
+  validates_with PeriodValidator
+
+  aasm column: :status, enum: true do
+    state :publicly, initial: true
+    state :privatly, initial: true
+    state :archived
+    state :confirmed
+    state :successfull
+
+    event :archive do
+      transitions from: %i[publicly privatly], to: :archived
+    end
+
+    event :confirm do
+      transitions from: %i[publicly privatly], to: :confirmed
+    end
+
+    event :success do
+      transitions from: :confirmed, to: :successfull, after: :update_users_projects_statistics
+    end
+  end
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
@@ -62,6 +86,32 @@ class Claim < ApplicationRecord
   end
 
   def repayment_period_value
-    Claim.repayment_periods[repayment_period]
+    period = Claim.repayment_periods[repayment_period]
+    return 2.week if period == '0.5.month'
+
+    modify_period(period)
+  end
+
+  def payment_frequency_value
+    period = Claim.payment_frequencies[payment_frequency]
+    return 2.week if period == '0.5.month'
+
+    modify_period(period)
+  end
+
+  private
+
+  def update_users_projects_statistics
+    ActiveRecord::Base.transaction do
+      self.user.profile.update(success_credit_project: self.user.profile.success_credit_project + 1)
+      self.loan_participants.find_each do |participant|
+        participant.user.profile.update(success_lend_project: participant.user.profile.success_lend_project + 1)
+      end
+    end
+  end
+
+  def modify_period(period)
+    values = period.split('.')
+    values.first.to_i.send(values.last)
   end
 end

@@ -96,6 +96,16 @@ ActiveRecord::Schema.define(version: 2020_06_09_124528) do
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
+  create_table "taggables", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tags_id", null: false
+    t.string "taggable_type", null: false
+    t.bigint "taggable_id", null: false
+    t.index ["taggable_type", "taggable_id"], name: "index_taggables_on_taggable_type_and_taggable_id"
+    t.index ["tags_id"], name: "index_taggables_on_tags_id"
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -127,11 +137,12 @@ ActiveRecord::Schema.define(version: 2020_06_09_124528) do
     t.datetime "locked_at"
     t.integer "role", default: 0
     t.string "provider", limit: 150
-    t.string "uid", limit: 10
+    t.string "uid", limit: 50
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email", "uid", "provider"], name: "index_users_on_email_and_uid_and_provider", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, where: "(provider IS NULL)"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end

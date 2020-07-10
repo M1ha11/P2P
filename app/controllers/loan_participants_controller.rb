@@ -4,6 +4,7 @@ class LoanParticipantsController < ApplicationController
     authorize @participant
     if @participant.valid?
       @participant.save
+      NewParticipantMailer.notification(@participant.id).deliver_later
       respond_with @participant, location: -> { claim_path(@participant.claim_id) }
     else
       redirect_to claim_path(claim.id), flash: { alert: @participant.errors.full_messages.join(',') }

@@ -130,6 +130,9 @@ en:
     index:
       title: 'Credit card'
   claim:
+    create:
+      alert:
+        periods: 'You have entered payment frequency bigger than repayment period'
     title: 'Credit on'
     sort:
       title: 'Sort by'

@@ -16,9 +16,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_locale
-    # locale = current_user.try(:profile).try(:locale) || I18n.default_locale
-    # I18n.with_locale(locale, &action)
-    I18n.locale = current_user.try(:profile).try(:locale) if current_user.present?
+    return I18n.locale = current_user.try(:profile).try(:locale) if current_user.present?
     I18n.locale = I18n.default_locale
   end
 
