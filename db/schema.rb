@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_092620) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "locale", limit: 10, default: "en", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
@@ -136,11 +137,12 @@ ActiveRecord::Schema.define(version: 2020_06_08_092620) do
     t.datetime "locked_at"
     t.integer "role", default: 0
     t.string "provider", limit: 150
-    t.string "uid", limit: 10
+    t.string "uid", limit: 50
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email", "uid", "provider"], name: "index_users_on_email_and_uid_and_provider", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, where: "(provider IS NULL)"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end

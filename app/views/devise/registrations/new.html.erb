@@ -14,7 +14,6 @@
           </div>
 
           <%= f.fields_for :profile do |profile_f| %>
-
             <div class="field">
               <%= profile_f.label :phone_number, class: 'label-login' %><br />
               <%= profile_f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: 'Phone Number', class: 'field-login' %>
@@ -59,24 +58,4 @@
   </div>
 </div>
 
-<% if devise_mapping.omniauthable? %>
-  <div class='third-party'>
-    <div class='card login-card'>
-      <div class='card-body'>
-        <div class='card-title'>
-          <h1 class='login-title-thd'>Sign In with</h1>        
-        </div>
-        <div>
-          <ul class='list-group list-group-horizontal nodots'>
-            <% resource_class.omniauth_providers.each do |provider| %>
-              <li class='thd-li'>
-                <%= link_to image_tag("/third_party_service/#{provider}.png", class: 'img-thd'), omniauth_authorize_path(resource_name, provider) %><br>
-                <%= link_to "#{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'thd-lnk' %><br />
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div> 
-<% end %>
+<%= render partial: 'devise/shared/omniauth' %>

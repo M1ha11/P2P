@@ -18,7 +18,7 @@ class Claim < ApplicationRecord
   PER_PAGE = 18.freeze
 
   include Searchable
-  
+
   belongs_to :user
   has_many :loan_participants, dependent: :destroy
   has_many :taggings, as: :taggable
@@ -44,6 +44,7 @@ class Claim < ApplicationRecord
   validates :interest_rate, presence: true
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
+  validates_with PeriodValidator
 
   aasm column: :status, enum: true do
     state :publicly, initial: true
