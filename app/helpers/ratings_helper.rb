@@ -1,5 +1,6 @@
 module RatingsHelper
   def average_rate(user)
-    Rating.where(reviewed_id: user.id).average(:rate).round(1)
+    @rating = Rating.where(reviewed_id: user.id).average(:rate)
+    @rating.round(1) unless @rating.nil?
   end
 end

@@ -7,3 +7,41 @@
   font-size: 18px;
   font-style: italic; 
 }
+
+.star-icon {
+  color: white;
+}
+
+.submit-star {
+  margin-left: 0.5em;
+}
+
+.rating-star {
+  margin-left: 1em;
+  display: flex;
+  // transform: translate(0, 0) rotateY(180deg);
+}
+
+.rating-star input {
+  display: none;
+}
+
+.rating-star i {
+  display: block;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.rating-star i:before {
+  color: white;
+}
+
+.rating-star i:after {
+  color: var(--mint);
+  opacity: 1;
+  transition: 0.2s;
+}
+
+.rating-star i:hover:after {
+  
+}

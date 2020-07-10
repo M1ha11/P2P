@@ -12,6 +12,14 @@
           </div>
           <div class='card-sub-title'>
             <div class='row justify-content-md-end'>
+              <% unless average_rate(@claim.user).nil? %>
+                <div class='row'>
+                  <h4 class='claim-user rating-user'>
+                    <%= average_rate(@claim.user) %>
+                    <%= fa_icon 'star 1x' %>
+                  </h4>
+                </div>
+              <% end %>
               <h4 class='claim-user'>
                 <%= @claim.user.email %>
               </h4>
