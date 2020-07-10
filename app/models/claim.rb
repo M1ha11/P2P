@@ -25,8 +25,10 @@ class Claim < ApplicationRecord
   has_many :tags, -> { distinct }, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
 
-  enum status: { publicly: 'publicly', privatly: 'privatly', archive: 'archive',
-                 confirmed: 'confirmed' }
+  include AASM
+
+  enum status: { publicly: 'publicly', privatly: 'privatly', archived: 'archived',
+                 confirmed: 'confirmed', successfull: 'successfull' }
   enum payment_frequency: { 'twice a month': '0.5.month', 'once a month': '1.month',
                             'once a 3 month': '3.month', 'once a 4 month': '4.month',
                             'once a 6 month': '6.month', 'once a year': '12.month' }
@@ -43,6 +45,26 @@ class Claim < ApplicationRecord
   validates :repayment_period, presence: true
   validates :payment_frequency, presence: true
 
+  aasm column: :status, enum: true do
+    state :publicly, initial: true
+    state :privatly, initial: true
+    state :archived
+    state :confirmed
+    state :successfull
+
+    event :archive do
+      transitions from: %i[publicly privatly], to: :archived
+    end
+
+    event :confirm do
+      transitions from: %i[publicly privatly], to: :confirmed
+    end
+
+    event :success do
+      transitions from: :confirmed, to: :successfull, after: :update_users_projects_statistics
+    end
+  end
+
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
       indexes :amount
@@ -51,6 +73,32 @@ class Claim < ApplicationRecord
   end
 
   def repayment_period_value
-    Claim.repayment_periods[repayment_period]
+    period = Claim.repayment_periods[repayment_period]
+    return 2.week if period == '0.5.month'
+
+    modify_period(period)
+  end
+
+  def payment_frequency_value
+    period = Claim.payment_frequencies[payment_frequency]
+    return 2.week if period == '0.5.month'
+
+    modify_period(period)
+  end
+
+  private
+
+  def update_users_projects_statistics
+    ActiveRecord::Base.transaction do
+      self.user.profile.update(success_credit_project: self.user.profile.success_credit_project + 1)
+      self.loan_participants.find_each do |participant|
+        participant.user.profile.update(success_lend_project: participant.user.profile.success_lend_project + 1)
+      end
+    end
+  end
+
+  def modify_period(period)
+    values = period.split('.')
+    values.first.to_i.send(values.last)
   end
 end
