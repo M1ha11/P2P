@@ -1,4 +1,4 @@
-  require 'application_responder'
+require 'application_responder'
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   include Pundit
-  
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   self.responder = ApplicationResponder
   respond_to :html
@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_locale
-    return I18n.locale = current_user.try(:profile).try(:locale) if current_user.present?
+    return I18n.locale = current_user&.profile&.locale if current_user.present?
+
     I18n.locale = I18n.default_locale
   end
 

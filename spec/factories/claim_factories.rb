@@ -7,7 +7,7 @@ FactoryBot.define do
     repayment_period { Claim.repayment_periods.values.sample }
     payment_frequency { Claim.payment_frequencies.values.sample }
     status { 'publicly' }
-    
+
     trait :claim_with_tag do
       after :create do |claim|
         create :tagging, taggable: claim

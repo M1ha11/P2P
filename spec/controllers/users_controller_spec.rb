@@ -13,7 +13,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'returns users' do
         get :index
-binding.pry
+
         expect(assigns(:users)).to eq(users)
       end
 

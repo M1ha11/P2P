@@ -15,7 +15,7 @@
 #  status            :string           default("publicly"), not null
 #
 class Claim < ApplicationRecord
-  PER_PAGE = 18.freeze
+  PER_PAGE = 18
 
   include Searchable
   include AASM
