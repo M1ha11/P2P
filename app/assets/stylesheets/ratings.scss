@@ -19,6 +19,7 @@
 .rating-star {
   margin-left: 1em;
   display: flex;
+  transform: rotateY(180deg);
   // transform: translate(0, 0) rotateY(180deg);
 }
 
@@ -27,21 +28,25 @@
 }
 
 .rating-star i {
+  display: none;
+}
+
+.rating-star label.stars {
   display: block;
   transition: all 0.2s;
   cursor: pointer;
-}
-
-.rating-star i:before {
   color: white;
+  font-size: 28px;
+  transition: all 0.2s;
 }
 
-.rating-star i:after {
+.rating-star input:checked ~ label.stars:before {
+  content: '\F005';
   color: var(--mint);
-  opacity: 1;
-  transition: 0.2s;
+  transition: all 0.2s;
 }
 
-.rating-star i:hover:after {
-  
+.rating-star label.stars:before {
+  content: '\F005';
+  font-family: fontAwesome;
 }

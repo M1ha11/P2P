@@ -17,7 +17,7 @@
 #  locked_at              :datetime
 #  role                   :integer          default("0")
 #  provider               :string(150)
-#  uid                    :string(10)
+#  uid                    :string(50)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

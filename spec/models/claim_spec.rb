@@ -13,6 +13,7 @@
 #  payment_frequency :string           not null
 #  user_id           :bigint           not null
 #  status            :string           default("publicly"), not null
+#  confirmed_at      :datetime
 #
 require 'rails_helper'
 

@@ -1,11 +1,12 @@
 class RatingsController < ApplicationController
   def new
-    @rates = Rating.rates.keys
     @rating = current_user.ratings.new
+    authorize @rating
   end
 
   def create
     @rating = current_user.ratings.new(rating_params)
+    authorize @rating
     @rating.save
   end
 

@@ -13,19 +13,19 @@
 #  payment_frequency :string           not null
 #  user_id           :bigint           not null
 #  status            :string           default("publicly"), not null
+#  confirmed_at      :datetime
 #
 class Claim < ApplicationRecord
   PER_PAGE = 18.freeze
 
   include Searchable
+  include AASM
 
   belongs_to :user
   has_many :loan_participants, dependent: :destroy
   has_many :taggings, as: :taggable
   has_many :tags, -> { distinct }, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
-
-  include AASM
 
   enum status: { publicly: 'publicly', privatly: 'privatly', archived: 'archived',
                  confirmed: 'confirmed', successfull: 'successfull' }
