@@ -21,4 +21,13 @@ RSpec.describe Tag, type: :model do
   include_examples 'invalid without attributes', :name
 
   include_examples 'invalid with incorrect attributes', { field: :name, params: 'one' }
+
+  context 'elasticsearch' do
+    let!(:tag) { create(:tag) }
+
+    it 'returns requested results' do
+      Tag.__elasticsearch__.refresh_index!
+      expect(Tag.search(tag.name).records.length).to eq(1)
+    end
+  end
 end

@@ -13,6 +13,6 @@ FactoryBot.define do
   factory :loan_participant do
     money { Faker::Number.decimal(l_digits: 2) }
     user
-    claim
+    # claim
   end
 end

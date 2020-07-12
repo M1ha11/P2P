@@ -5,15 +5,15 @@
     <div class='row'>
       <div class='col-10'> 
         <div class='field'>
-          <%= f.text_field :text, autofocus: true, placeholder: 'Comment...', class: 'field-reply' %>
+          <%= f.text_area :text, rows: 2, autofocus: true, placeholder: t('comment.new.placeholder'), class: 'field-reply' %>
         </div>
       </div>
       <div class='col-2'>
         <div class="actions sub-com">
-          <%= f.submit "Reply", class: 'btn btn-dark' %>
+          <%= f.submit t('comment.reply_link'), class: 'btn btn-dark' %>
         </div>
         <div id='closee'>
-          <a id='close-comment-form' href='#'>Close</a>
+          <%= link_to t('global.back'), :back %>
         </div>
       </div>
     </div>

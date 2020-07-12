@@ -2,7 +2,7 @@
   <div class='card-body cl-body'>
     <div class='card-title'>
       <h1 class='cl-title'>
-        <%= link_to "Credit #{claim.amount} #{claim.currency}", claim_path(claim.id), class: 'cl-name' %>
+        <%= link_to "#{t('claim.title')} #{claim.amount} #{claim.currency}", claim_path(claim.id), class: 'cl-name' %>
       </h1>
     </div>
     <div class='card-txt'>
@@ -11,7 +11,7 @@
       </p>
       <% if claim.tags.present? %>
         <p class='tags-info-text'>
-          Tags:
+          <%= t('tag.title') %>
             <% claim.tags.each do |tag| %>
               <span class='tags-text'><%= tag.name %></span>
             <% end %>

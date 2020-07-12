@@ -4,22 +4,22 @@
     <div class='without-padding col-4'>
       <%= f.select :sort, options_for_select({
                                               '' => '',
-                                              'Amount' => 'amount',
-                                              'Currency' => 'currency',
-                                              'Date' => 'crated_at'
+                                              t('claim.sort.amount') => 'amount',
+                                              t('claim.sort.currency') => 'currency',
+                                              t('claim.sort.date') => 'created_at'
                                               }, params[:sort]),
                    { selected: params[:sort]},
                    { class: 'custom-select opt-sel' } %>
     </div>
     <div class='col-3 without-padding'>
       <%= f.select :direction, options_for_select({
-                                                    'A-Z0-9' => 'asc',
-                                                    'Z-A9-0' => 'desc'
+                                                    t('claim.sort.asc_direction') => 'asc',
+                                                    t('claim.sort.desc_direction') => 'desc'
                                                    }, params[:direction]), {},
                    { class: 'custom-select dir-sel'}%>
     </div>
     <div class='col-2 without-padding'>
-      <%= f.submit 'Sort', class: 'btn btn-dark' %>
+      <%= f.submit t('claim.sort.submit'), class: 'btn btn-dark' %>
     </div>  
   </div>
 <% end %>

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe LoanParticipantsController, type: :controller do
   let!(:user) { create(:user) }
-  let!(:claim) { create(:claim) }
+  let!(:another_user) { create(:user) }
+  let!(:claim) { create(:claim, user: another_user) }
 
   describe 'POST create' do
     context 'when user authorize' do
@@ -52,7 +53,7 @@ RSpec.describe LoanParticipantsController, type: :controller do
 
       it 'destroys loan participant' do
         expect { delete :destroy, params: loan_participant_id }.to change { LoanParticipant.count }.by(-1)
-        expect(response).to redirect_to('/claims')
+        expect(response).to redirect_to(claims_path)
       end
     end
 

@@ -3,7 +3,7 @@
   <div class="card login-card">
     <div class='card-body'>
       <div class='card-title'>
-        <h1 class='login-title'>Log In</h1>        
+        <h1 class='login-title'><%= t('devise.sessions.title') %></h1>        
       </div>
       <div class='login-form'>
         <% if flash[:errors] %>
@@ -15,7 +15,7 @@
 
           <div class="field">
             <%= f.label :email, class: 'label-login' %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: 'field-login' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t('devise.sessions.placeholder.email'), class: 'field-login' %>
           </div>
 
           <div class="field">
@@ -23,7 +23,7 @@
             <% if @minimum_password_length %>
             <em class='label-login'>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password', class: 'field-login' %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: t('devise.sessions.placeholder.password'), class: 'field-login' %>
           </div>
 
           <% if devise_mapping.rememberable? %>
@@ -34,12 +34,11 @@
           <% end %>
 
           <div class="actions submit-btn">
-            <%= f.submit "Log In", class: 'btn log-btn btn-lg btn-login' %>
+            <%= f.submit t('devise.sessions.submit'), class: 'btn log-btn btn-lg btn-login' %>
           </div>
         <% end %>
       </div>
 
-      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>

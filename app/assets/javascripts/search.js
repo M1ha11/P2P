@@ -22,7 +22,7 @@ $(document).on('turbolinks:load',function () {
           if (search_result.model_name == 'Claim'){
             return (
               `<a href="${search_result.url}" class="auto-lnk">
-                <p class="hint">Credit on ${search_result.amount} ${search_result.currency}</p>
+                <p class="hint">${search_result.title} ${search_result.amount} ${search_result.currency}</p>
               </a>`
             );
           } else if (search_result.model_name == 'Tag') {

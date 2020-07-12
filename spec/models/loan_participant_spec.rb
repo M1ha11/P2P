@@ -12,7 +12,9 @@
 require 'rails_helper'
 
 RSpec.describe LoanParticipant, type: :model do
-  subject { build(:loan_participant) }
+  let(:user) { create(:user) }
+  let(:claim) { create(:claim, user: user) }
+  subject { build(:loan_participant, claim: claim) }
 
   context 'with valid attributtes' do
     it 'is valid' do

@@ -105,8 +105,8 @@ describe ClaimPolicy do
 
   context 'being a visitor' do
     let(:current_user) { nil }
-    let(:claim) { create(:claim) }
     let(:another_user) { create(:user) }
+    let(:claim) { create(:claim, user: another_user) }
 
     context 'when claim publicly' do
       let(:claim) { create(:claim, user: another_user, status: 'publicly') }

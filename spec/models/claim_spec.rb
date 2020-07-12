@@ -17,7 +17,8 @@
 require 'rails_helper'
 
 RSpec.describe Claim, type: :model do
-  subject { build(:claim) }
+  let(:user) { create(:user) }
+  subject { build(:claim, user: user) }
 
   context 'with valid attributes' do
     it 'is valid' do
@@ -28,4 +29,13 @@ RSpec.describe Claim, type: :model do
   include_examples 'invalid without attributes', :amount, :goal
 
   include_examples 'invalid with incorrect attributes', { field: :amount, params: 'one' }
+
+  context 'elasticsearch' do
+    let!(:claim) { create(:claim, user: user) }
+
+    it 'returns requested results' do
+      Claim.__elasticsearch__.refresh_index!
+      expect(Claim.search(claim.currency).records.length).to eq(1)
+    end
+  end
 end
