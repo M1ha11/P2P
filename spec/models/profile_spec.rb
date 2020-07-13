@@ -16,7 +16,8 @@
 require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
-  subject { build(:profile) }
+  let(:user) { create(:user) }
+  subject { user.profile }
 
   context 'with valid attributes' do
     it 'is valid with all valid params' do

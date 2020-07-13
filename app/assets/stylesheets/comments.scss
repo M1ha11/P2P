@@ -50,8 +50,10 @@
 }
 
 .com-ava {
-  width: 28px;
-  height: 28px;
+  // margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
 }
 
 .com-user {
@@ -65,7 +67,8 @@
 .text-com {
   font-size: 16px;
   color: var(--bootstrap-black);
-  margin-left: 28px;
+  margin-left: 55px;
+  margin-top: -1.5rem;
   max-width: 500px;
   overflow-wrap: break-word;
 }

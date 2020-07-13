@@ -4,7 +4,7 @@ RSpec.describe UsersController, type: :controller do
   let(:current_user) { create(:user, role: 'admin') }
 
   describe 'GET index' do
-    let(:users) { create_list(:user, 3) }
+    let(:users) { create_list(:user, 2) }
 
     context 'when user authorize' do
       before do

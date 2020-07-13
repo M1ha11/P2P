@@ -8,7 +8,7 @@ module ClaimsHelper
   end
 
   def statistic_header(sort_field)
-    link_to sort_field.titleize, statistic_claims_path(sort: sort_field,
+    link_to I18n.t("activerecord.attributes.claim.#{sort_field}"), statistic_claims_path(sort: sort_field,
                                          direction: @sort == sort_field && @direction == 'asc' ? 'desc' : 'asc'),
             class: 'stat-head'
   end

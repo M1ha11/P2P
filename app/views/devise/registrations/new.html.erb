@@ -2,7 +2,7 @@
   <div class="card login-card">
     <div class='card-body'>
       <div class='card-title'>
-        <h1 class='login-title'>Sign up</h1>        
+        <h1 class='login-title'><%= t('devise.registrations.title') %></h1>        
       </div>
       <div class='login-card'>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -10,32 +10,32 @@
 
           <div class="field">
             <%= f.label :email, class: 'label-login' %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: 'field-login' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t('devise.registrations.placeholder.email'), class: 'field-login' %>
           </div>
 
           <%= f.fields_for :profile do |profile_f| %>
             <div class="field">
               <%= profile_f.label :phone_number, class: 'label-login' %><br />
-              <%= profile_f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: 'Phone Number', class: 'field-login' %>
+              <%= profile_f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: t('devise.registrations.placeholder.phone'), class: 'field-login' %>
             </div>
 
             <div class="field">
               <%= profile_f.label :address, class: 'label-login' %><br />
-              <%= profile_f.text_area :address, rows: 3, autofocus: true, autocomplete: "address", placeholder: 'Address', class: 'field-login area' %>
+              <%= profile_f.text_area :address, rows: 3, autofocus: true, autocomplete: "address", placeholder: t('devise.registrations.placeholder.address'), class: 'field-login area' %>
             </div>
           <% end %>
 
           <div class="field">
             <%= f.label :password, class: 'label-login' %>
             <% if @minimum_password_length %>
-            <em class='label-login'>(<%= @minimum_password_length %> characters minimum)</em>
+            <em class='label-login'>(<%= @minimum_password_length %> <%= t('devise.registrations.placeholder.min_character') %>)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password', class: 'field-login' %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: t('devise.registrations.placeholder.password'), class: 'field-login' %>
           </div>
 
           <div class="field">
             <%= f.label :password_confirmation, class: 'label-login' %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirm password', class: 'field-login' %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('devise.registrations.placeholder.confirm_password'), class: 'field-login' %>
           </div>
 
           <br>
@@ -48,12 +48,11 @@
           <% end %>
 
           <div class="actions submit-btn">
-            <%= f.submit "Sign up", class: 'btn log-btn btn-lg btn-login' %>
+            <%= f.submit t('devise.registrations.submit'), class: 'btn log-btn btn-lg btn-login' %>
           </div>
         <% end %>
       </div>
 
-      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>

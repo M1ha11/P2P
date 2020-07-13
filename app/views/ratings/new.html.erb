@@ -1,7 +1,7 @@
 <div id='rating-form'>
   <%= form_for Rating.new do |f| %>
     <%= f.hidden_field :reviewed_id, value: reviewed_id %>
-    <%= f.label 'Please rate claim owner', class: 'label' %>
+    <%= f.label t('rating.label'), class: 'label' %>
     <div class='row'>
       <div class='rating-star'>
         <%= f.radio_button(:rate, 5, class: 'stars') %>
@@ -16,7 +16,7 @@
         <%= f.label(:rate_1, (fa_icon 'star'), class: 'stars') %>
       </div>
       <div class='rating-but'>
-        <%= f.submit 'Submit', class: 'btn btn-success submit-star', id: 'submit-rating' %>
+        <%= f.submit t('rating.submit'), class: 'btn btn-success submit-star', id: 'submit-rating' %>
       </div>  
     </div>
   <% end %>

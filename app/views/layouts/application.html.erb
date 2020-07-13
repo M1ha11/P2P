@@ -17,41 +17,41 @@
         <% unless current_user %>
           <li class='nav-item'>
             <button type='button' class='btn btn-outline-success'>
-              <%= link_to 'Log In', new_user_session_path, class: 'nav-log-btn' %>
+              <%= link_to t('layout.login'), new_user_session_path, class: 'nav-log-btn' %>
             </button>
           </li>
           <li class='nav-item'>
             <button type='button' class='btn btn-outline-success'>
-              <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-log-btn' %>
+              <%= link_to t('layout.signup'), new_user_registration_path, class: 'nav-log-btn' %>
             </button>
           </li>
         <% else %>
           <% if policy(current_user).admin? %>
             <li class='nav-item btn-group'>
               <button type='button' class='btn btn-outline-success'>
-                <%= link_to 'Claims', statistic_claims_path, class: 'nav-log-btn' %>
+                <%= link_to t('layout.claims'), statistic_claims_path, class: 'nav-log-btn' %>
               </button>
             </li>
             <li class='nav-item btn-group'>
               <button type='button' class='btn btn-outline-success'>
-                <%= link_to 'Users', users_path, class: 'nav-log-btn' %>
+                <%= link_to t('layout.users'), users_path, class: 'nav-log-btn' %>
               </button>
             </li>
           <% end %>
           <li class='nav-item btn-group'>
             <button type='button' class='btn btn-outline-success'>
-              <%= link_to 'Profile', profile_path(current_user.profile.id), class: 'nav-log-btn' %>
+              <%= link_to t('layout.profile'), profile_path(current_user.profile.id), class: 'nav-log-btn' %>
             </button>
             <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="sr-only">Toggle Dropdown</span>
             </button>
             <div class="dp-mn dropdown-menu" role='menu'>
-              <%= link_to 'Edit Profile', edit_profile_path(current_user.profile.id), class: 'dropdown-item drop-menu' %>
+              <%= link_to t('layout.edit_profile'), edit_profile_path(current_user.profile.id), class: 'dropdown-item drop-menu' %>
             </div>
           </li>
           <li class='nav-item'>
             <button type='button' class='btn btn-outline-danger'>
-              <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-unlog-btn' %>
+              <%= link_to t('layout.logout'), destroy_user_session_path, method: :delete, class: 'nav-unlog-btn' %>
             </button>
           </li>
         <% end %>

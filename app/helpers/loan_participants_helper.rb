@@ -1,7 +1,7 @@
 module LoanParticipantsHelper
-  PERCENT = 100.0.freeze
-  MONTHES = 12.0.freeze
-  HALF_A_MONTH = 0.5.freeze
+  PERCENT = 100.0
+  MONTHES = 12.0
+  HALF_A_MONTH = 0.5
 
   def loan_participant_avatar(loan_participant)
     if loan_participant.profile.avatar.attached?

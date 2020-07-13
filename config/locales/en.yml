@@ -30,11 +30,230 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  loan_participants:
-    create:
-      alert: "You have entered sum bigger than needed. Please enter %{residual_amount}"
+  activerecord:
+    models:
+      card: 'Card'
+      claim: 'Claim'
+      comment: 'Comment'
+      profile: 'Profile'
+      user: 'User'
+    attributes:
+      card:
+        card_number: 'Card number'
+        expire_date: 'Expire date'
+      claim:
+        id: 'Id'
+        amount: 'Amount'
+        currency: 'Currency'
+        goal: 'Goal'
+        status: 'Status'
+        owner: 'Owner'
+        interest_rate: 'Interest rate'
+        repayment_period: 'Repayment period'
+        payment_frequency: 'Payment frequency'
+        payment_frequencies:
+          twice a month: 'twice a month'
+          once a month: 'once a month'
+          once a 3 month: 'once a 3 month'
+          once a 4 month: 'once a 4 month'
+          once a 6 month: 'once a 6 month'
+          once a year: 'once a year'
+        repayment_periods:
+          2 week: '2 week'
+          1 month: '1 month'
+          3 month: '3 month'
+          6 month: '6 month'
+          1 year: '1 year'
+          year and a half: '1,5 year'
+          2 years: '2 years'
+          3 years: '3 years'
+          5 years: '5 years'
+          7 years: '7 years'
+          10 years: '10 years'
+          15 years: '15 years'
+          20 years: '20 years'
+        statuses:
+          publicly: 'publicly'
+          privatly: 'privatly'
+          archive: 'archive'
+          confirmed: 'confirmed'
+          successfull: 'successfull'
+      profile:
+        success_credit_project: 'Success credit projects'
+        success_lend_project: 'Success lend projects'
+        phone_number: 'Phone number'
+        address: 'Address'
+        avatar: 'Avatar'
+      user:
+        email: 'Email'
+        password: 'Password'
+        remember_me: 'Remember me'
+        roles:
+          user: 'user'
+          admin: 'admin'
+    errors:
+      format: "%{attribute} %{message}"
+      messages:
+        accepted: must be accepted
+        blank: can't be blank
+        confirmation: doesn't match %{attribute}
+        empty: can't be empty
+        equal_to: must be equal to %{count}
+        even: must be even
+        exclusion: is reserved
+        greater_than: must be greater than %{count}
+        greater_than_or_equal_to: must be greater than or equal to %{count}
+        inclusion: is not included in the list
+        invalid: is invalid
+        less_than: must be less than %{count}
+        less_than_or_equal_to: must be less than or equal to %{count}
+        model_invalid: 'Validation failed: %{errors}'
+        not_a_number: is not a number
+        not_an_integer: must be an integer
+        odd: must be odd
+        other_than: must be other than %{count}
+        present: must be blank
+        required: must exist
+        taken: has already been taken
+        too_long:
+          one: is too long (maximum is 1 character)
+          other: is too long (maximum is %{count} characters)
+        too_short:
+          one: is too short (minimum is 1 character)
+          other: is too short (minimum is %{count} characters)
+        wrong_length:
+          one: is the wrong length (should be 1 character)
+          other: is the wrong length (should be %{count} characters)
+        loan_participants:
+          bigger_sum: 'You have entered sum bigger than needed. Please enter %{residual_amount}'
+  global:
+    delete: 'Delete'
+    create: 'Create'
+    back: 'Back'
+  card:
+    new: 
+      link: 'New Card'
+      title: 'New Card'
+      placeholder:
+        card_number: 'Card Number'
+    index:
+      title: 'Credit card'
   claim:
     create:
       alert:
         periods: 'You have entered payment frequency bigger than repayment period'
+    title: 'Credit on'
+    sort:
+      title: 'Sort by'
+      amount: 'Amount'
+      currency: 'Currency'
+      date: 'Date'
+      asc_direction: 'A-Z0-9'
+      desc_direction: 'Z-A9-0'
+      submit: 'Sort'
+    new:
+      title: 'New Credit Claim'
+      placeholder:
+        amount: 'Amount'
+        goal: 'Goal'
+    show:
+      interest_rate: 'Interest rate:'
+      payment_frequency: 'Payment frequency:'
+      repayment_period: 'Repayment period:'
+      comments: 'Comments:'
+      add_tag: 'Add Tag'
+      remove_tag: 'Remove Tag'
+      close: 'Close'
+      participant:
+        title: 'Participants'
+        become: 'Become a Participant'
+        confirm: 'Confirm'
+    statistic:
+      goto_link: 'Go to claim'
+      tags: 'Tags:'
+      goal: 'Goal:'
+      participants: 'Participants:'
+  comment:
+    reply_link: 'Reply'
+    new:
+      placeholder: 'Comment...'
+      submit: 'Add comment'
+  devise:
+  layout:
+    login: 'Log In'
+    signup: 'Sign Up'
+    logout: 'Log Out'
+    users: 'Users' 
+    profile: 'Profile'
+    edit_profile: 'Edit'
+    claims: 'Claims'
+  profile:
+    show:
+      phone: 'Phone:'
+      address: 'Address:'
+      credit_card_link: 'Credit Cards'
+      success_credit_projects: 'Success credit projects:'
+      success_lend_projects: 'Success lend projects:'
+      new_claim_link: 'New Credit Claim'
+    edit:
+      title: 'Edit Profile'
+      placeholder:
+        phone: 'Phone number'
+        address: 'Address'
+      submit: 'Update'
+  user:
+    index:
+      status: 'Status'
+      email: 'Email'
+      phone: 'Phone number'
+      address: 'Address'
+      role: 'Role'
+      credit_history: 'Credit history'
+  devise:
+    omni_title: 'Sign In With'
+    sessions:
+      title: 'Log In'
+      submit: 'Log In'
+      placeholder:
+        email: 'Email'
+        password: 'Password'
+    registrations:
+      title: 'Sign Up'
+      submit: 'Sign Up'
+      placeholder:
+        email: 'Email'
+        phone: 'Phone number'
+        address: 'Address'
+        password: 'Password'
+        confirm_password: 'Confirm password'
+        min_character: 'character minimum'
+  tag:
+    title: 'Tags:'
+    new:
+      submit: 'Submit'
+      close: 'Close'
+  loan_participant:
+    amount: 'Amount of money:'
+    income: 'Income:'
+    leave: 'Leave'
+    new:
+      confirm: 'Confirm'
+  search:
+    title: 'Search...'
+  rating:
+    label: 'Please rate claim owner'
+    submit: 'Submit'
+  mailers:
+    pay_mailer:
+      pay_notification:
+        hello: 'Hello'
+        pay_message: 'You you need to pay for Credit on'
+        luck: 'Good luck!'
+    new_participant_mailer:
+      notification:
+        hello: 'Hello'
+        new_participant: 'New participant'
+        new_participant_continue: 'agreed to participate in your claim "Credit on'
+        given_money: 'He is ready to give you'
+        glad: 'Glad to see you on P2P!'
+

@@ -9,24 +9,32 @@
     </div>
     <div class='main-info gr-cl'>
       <h1 class='main-nm'><%= @profile.user.email %></h1>
-      <h6 class='us-ph-info wh-cl'>Phone:  <%= @profile.phone_number %></h6>
-      <h6 class='us-ad-info wh-cl'>Address:  <%= @profile.address %></h6>
+      <h6 class='us-ph-info wh-cl'><%= t('profile.show.phone')%>  <%= @profile.phone_number %></h6>
+      <h6 class='us-ad-info wh-cl'><%= t('profile.show.address')%>  <%= @profile.address %></h6>
     </div>
     
     <div class='card-info col'>
       <% if policy(@profile).belongs_to_user? %>
-        <%= link_to 'Credit Cards' ,cards_path, class: 'nav-log-btn'%>
+        <div class='row justify-content-center'>
+          <button class="btn btn-dark">
+            <%= link_to t('profile.show.credit_card_link') ,cards_path, class: 'nav-log-btn card-lnk'%>
+          </button>
+        </div>
       <% end %>
     </div>
-    <div class='claims-info col col-2'>
-      <h5 class='wh-cl success'>Success credit project: <span class='gr-cl'><%= @profile.success_credit_project %></span></p>
-      <h5 class='wh-cl success'>Success lend project: <span class='gr-cl'><%= @profile.success_lend_project %></span></p>
+    <div class='claims-info col col-3'>
+      <div class='row justify-content-md-start'>
+      <h5 class='wh-cl success'><%= t('profile.show.success_credit_projects') %> <span class='gr-cl'><%= @profile.success_credit_project %></span></p>
+      </div>
+      <div class='row justify-content-md-start'>
+      <h5 class='wh-cl success'><%= t('profile.show.success_lend_projects')%> <span class='gr-cl'><%= @profile.success_lend_project %></span></p>
+      </div>
     </div>
   </div>
   <div class='profile-body'>
     <% if policy(@profile).belongs_to_user? %>
       <div class='btn btn-cl'>
-        <%= link_to 'New Credit Claim', new_claim_path, class: 'btn-new-claim' %>
+        <%= link_to t('profile.show.new_claim_link'), new_claim_path, class: 'btn-new-claim' %>
       </div>
     <% end %>
     <% unless @profile.claims.nil? %>

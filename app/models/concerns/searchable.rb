@@ -3,7 +3,6 @@ module Searchable
 
   included do
     include Elasticsearch::Model
-    include Elasticsearch::Model::Callbacks
     after_commit :index_document, if: :persisted?
     after_commit on: [:destroy] do
       __elasticsearch__.delete_document

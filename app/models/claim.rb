@@ -16,7 +16,7 @@
 #  confirmed_at      :datetime
 #
 class Claim < ApplicationRecord
-  PER_PAGE = 18.freeze
+  PER_PAGE = 18
 
   include Searchable
   include AASM
@@ -27,15 +27,28 @@ class Claim < ApplicationRecord
   has_many :tags, -> { distinct }, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
 
-  enum status: { publicly: 'publicly', privatly: 'privatly', archived: 'archived',
+  enum status: { publicly: 'publicly', privatly: 'privatly', archive: 'archive',
                  confirmed: 'confirmed', successfull: 'successfull' }
-  enum payment_frequency: { 'twice a month': '0.5.month', 'once a month': '1.month',
-                            'once a 3 month': '3.month', 'once a 4 month': '4.month',
-                            'once a 6 month': '6.month', 'once a year': '12.month' }
-  enum repayment_period: { '2 week': '0.5.month', '1 month': '1.month', '3 month': '3.month',
-                           '6 month': '6.month', '1 year': '12.month', 'year and a half': '18.month',
-                           '2 years': '24.month', '3 years': '32.month', '5 years': '60.month',
-                           '7 years': '84.month', '10 years': '120.month', '15 years': '180.month',
+
+  enum payment_frequency: { 'twice a month': '0.5.month',
+                            'once a month': '1.month',
+                            'once a 3 month': '3.month',
+                            'once a 4 month': '4.month',
+                            'once a 6 month': '6.month',
+                            'once a year': '12.month' }
+
+  enum repayment_period: { '2 week': '0.5.month',
+                           '1 month': '1.month',
+                           '3 month': '3.month',
+                           '6 month': '6.month',
+                           '1 year': '12.month',
+                           'year and a half': '18.month',
+                           '2 years': '24.month',
+                           '3 years': '32.month',
+                           '5 years': '60.month',
+                           '7 years': '84.month',
+                           '10 years': '120.month',
+                           '15 years': '180.month',
                            '20 years': '240.month' }
 
   validates :amount, presence: true, numericality: { greater_than: 0.0 }

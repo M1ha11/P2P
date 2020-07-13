@@ -4,10 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hello, <b><%= @user.email %></b></h1>
+    <h1><%= t('mailers.pay_mailer.pay_notification.hello') %>, <b><%= @user.email %></b></h1>
     <p>
-      You you need to pay for Credit on <%= @claim.amount %> <%= @claim.currency %>.<br>
+      <%= t('mailers.pay_mailer.pay_notification.pay_message') %> <%= @claim.amount %> <%= @claim.currency %>.<br>
     </p>
-    <p>Hope on your understanding!</p>
+    <p><%= t('mailers.pay_mailer.pay_notification.luck') %></p>
   </body>
 </html>
