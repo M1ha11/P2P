@@ -1,23 +1,27 @@
-<div id='rating-form'>
-  <%= form_for Rating.new do |f| %>
-    <%= f.hidden_field :reviewed_id, value: reviewed_id %>
-    <%= f.label t('rating.label'), class: 'label' %>
-    <div class='row'>
-      <div class='rating-star'>
-        <%= f.radio_button(:rate, 5, class: 'stars') %>
-        <%= f.label(:rate_5, (fa_icon 'star'), class: 'stars') %>
-        <%= f.radio_button(:rate, 4, class: 'stars') %>
-        <%= f.label(:rate_4, (fa_icon 'star'), class: 'stars') %>
-        <%= f.radio_button(:rate, 3, class: 'stars') %>
-        <%= f.label(:rate_3, (fa_icon 'star'), class: 'stars') %>
-        <%= f.radio_button(:rate, 2, class: 'stars') %>
-        <%= f.label(:rate_2, (fa_icon 'star'), class: 'stars') %>
-        <%= f.radio_button(:rate, 1, class: 'stars') %>
-        <%= f.label(:rate_1, (fa_icon 'star'), class: 'stars') %>
+<% if rating_not_exist(ratable_type, ratable_id, reviewed_id) %>
+  <div id='rating-form'>
+    <%= form_for Rating.new do |f| %>
+      <%= f.hidden_field :reviewed_id, value: reviewed_id %>
+      <%= f.hidden_field :ratable_type, value: ratable_type %>
+      <%= f.hidden_field :ratable_id, value: ratable_id %>
+      <%= f.label t('rating.label'), class: 'label' %>
+      <div class='row'>
+        <div class='rating-star'>
+          <%= f.radio_button(:rate, 5, class: 'stars') %>
+          <%= f.label(:rate_5, (fa_icon 'star'), class: 'stars') %>
+          <%= f.radio_button(:rate, 4, class: 'stars') %>
+          <%= f.label(:rate_4, (fa_icon 'star'), class: 'stars') %>
+          <%= f.radio_button(:rate, 3, class: 'stars') %>
+          <%= f.label(:rate_3, (fa_icon 'star'), class: 'stars') %>
+          <%= f.radio_button(:rate, 2, class: 'stars') %>
+          <%= f.label(:rate_2, (fa_icon 'star'), class: 'stars') %>
+          <%= f.radio_button(:rate, 1, class: 'stars') %>
+          <%= f.label(:rate_1, (fa_icon 'star'), class: 'stars') %>
+        </div>
+        <div class='rating-but'>
+          <%= f.submit t('rating.submit'), class: 'btn btn-success submit-star', id: 'submit-rating' %>
+        </div>  
       </div>
-      <div class='rating-but'>
-        <%= f.submit t('rating.submit'), class: 'btn btn-success submit-star', id: 'submit-rating' %>
-      </div>  
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>

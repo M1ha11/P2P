@@ -24,4 +24,8 @@ module ClaimsHelper
   def initial_status?
     @claim.publicly? || @claim.privatly?
   end
+
+  def statuses_for_delete?
+    initial_status? || @claim.archived?
+  end
 end

@@ -25,6 +25,10 @@
                   <div class='claim-icon'>
                     <%= fa_icon 'home 2x', class: 'claim-fa-icon' %>
                   </div>
+                <% elsif @claim.confirmed? %>
+                  <div class='claim-icon'>
+                    <%= fa_icon 'thumbs-up 2x', class: 'claim-fa-icon' %>
+                  </div>
                 <% end %>
               </div>
               <div class='col-9'>
@@ -73,7 +77,7 @@
                     <%= t('claim.show.repayment_period') %> <span class='info'><br><%= enum_locale(Claim, :repayment_period, @claim.repayment_period) %></span>
                   </p>
                 </div>
-                <% if policy(@claim).destroy? && @claim.status != 'confirmed' || @claim.status != 'successfull' %>
+                <% if policy(@claim).destroy? && statuses_for_delete? %>
                   <div class='row justify-content-md-end'>
                     <div class='del-but'>
                       <button type='button' class='btn btn-outline-danger'>

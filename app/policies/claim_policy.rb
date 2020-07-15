@@ -4,7 +4,8 @@ class ClaimPolicy < ApplicationPolicy
       if admin?
         scope.all
       elsif user?
-        scope.where(status: 'publicly').or(scope.where(user_id: user.id).where.not(status: 'publicly'))
+        claims = scope.includes(:loan_participants)
+        claims.where(status: 'publicly').or(claims.where(user_id: user.id).where.not(status: 'publicly')).or(claims.where(loan_participants: { user_id: user.id }))
       else
         scope.where(status: 'publicly')
       end
@@ -16,19 +17,23 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def new?
-    user? || admin?
+    user? || admin? && not_default_user?
   end
 
   def create?
-    belongs_to_user?
+    belongs_to_user? && not_default_user?
   end
 
   def can_see_participants?
-    user.present?
+    user.present? && not_default_user?
   end
 
   def confirm?
-    belongs_to_user?
+    belongs_to_user? && not_default_user?
+  end
+
+  def statistic?
+    admin?
   end
 
   def destroy?
@@ -36,7 +41,7 @@ class ClaimPolicy < ApplicationPolicy
   end
 
   def doesnt_belong_to_user?
-    user.present? && !belongs_to_user?
+    user.present? && !belongs_to_user? && not_default_user?
   end
 
   def show?

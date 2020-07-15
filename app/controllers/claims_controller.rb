@@ -6,7 +6,7 @@ class ClaimsController < ApplicationController
     @sort = params[:sort]
     @direction = params[:direction]
     claims = Claims::Filter.new(policy_scope(Claim), params).call
-    sort_claims = Claims::Sort.new(claims, params[:sort], params[:direction]).call
+    sort_claims = Claims::Sort.new(claims, @sort, @direction).call
     @claims = Global::Pagination.new(sort_claims, params[:page], Claim::PER_PAGE).paginate
     respond_with @claims, location: -> { claims_path }
   end
@@ -54,14 +54,16 @@ class ClaimsController < ApplicationController
   private
 
   def set_service
-    @currencies = Claims::Currency.new.list
-    @rates = Claims::Rate.new.list
+    @currencies = Claims::Currency.new.currency_list
+    @rates = Claims::Rate.new.interest_rate_list
     @statuses = Claim.statuses.slice(:privatly, :publicly).keys
   end
 
   def claim
-    @claim ||= Claim.find(params[:id])
-    authorize @claim
+    @claim ||= begin
+      claim = Claim.find(params[:id])
+      authorize claim
+    end
   end
 
   def flash_interpolation_options

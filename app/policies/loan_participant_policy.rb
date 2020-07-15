@@ -1,10 +1,10 @@
 class LoanParticipantPolicy < ApplicationPolicy
   def create?
-    user.present? && user_not_locked? && !claim_owner?
+    user.present? && user_not_locked? && !claim_owner? && not_default_user?
   end
 
   def destroy?
-    admin? || belongs_to_user? || claim_owner?
+    admin? || belongs_to_user? || claim_owner? && not_default_user?
   end
 
   private

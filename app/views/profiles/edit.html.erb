@@ -13,7 +13,7 @@
           <%= f.fields_for :user do |user_f| %>
             <div class="field">
             <%= user_f.label :email, class: 'label-login' %><br />
-            <%= user_f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: 'field-login' %>
+            <%= user_f.email_field :email, autofocus: true, autocomplete: "email", placeholder:t('devise.registrations.placeholder.email'), class: 'field-login' %>
           </div>
           <% end %>
 
@@ -35,7 +35,7 @@
           </div>
           <br>
           <div class='field'>
-            <%= f.label :language, class: 'label-login' %>
+            <%= f.label t('profile.edit.language'), class: 'label-login' %>
             
             <%= f.select :locale, (I18n.available_locales), {}, class: 'language' %>
           </div>

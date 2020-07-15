@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_124528) do
+ActiveRecord::Schema.define(version: 2020_07_13_180459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,9 @@ ActiveRecord::Schema.define(version: 2020_06_09_124528) do
     t.integer "rate"
     t.bigint "user_id", null: false
     t.integer "reviewed_id", null: false
+    t.string "ratable_type"
+    t.bigint "ratable_id"
+    t.index ["ratable_type", "ratable_id"], name: "index_ratings_on_ratable_type_and_ratable_id"
     t.index ["reviewed_id"], name: "index_ratings_on_reviewed_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end

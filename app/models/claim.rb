@@ -26,8 +26,9 @@ class Claim < ApplicationRecord
   has_many :taggings, as: :taggable
   has_many :tags, -> { distinct }, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :ratings, as: :ratable
 
-  enum status: { publicly: 'publicly', privatly: 'privatly', archive: 'archive',
+  enum status: { publicly: 'publicly', privatly: 'privatly', archived: 'archived',
                  confirmed: 'confirmed', successfull: 'successfull' }
 
   enum payment_frequency: { 'twice a month': '0.5.month',

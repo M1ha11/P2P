@@ -29,11 +29,9 @@
         </button>
       <%end%>
     </div>
-    <% if policy(participant).belongs_to_user?  %>
-      <%= render template: 'ratings/new', locals: {reviewed_id: participant.claim.user.id } %>
+    <% if policy(participant).belongs_to_user? && participant.claim.successfull? %>
+      <%= render template: 'ratings/new', locals: {reviewed_id: participant.claim.user.id, ratable_id: participant.claim.id, ratable_type: participant.claim.class } %>
     <% end %>
   <% end %>
 
 </div>
-
-<!-- && participant.claim.status == 'successfull' --> 

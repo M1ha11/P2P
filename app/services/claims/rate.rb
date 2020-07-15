@@ -2,17 +2,18 @@ module Claims
   class Rate
     API = 'http://www.nbrb.by/API/RefinancingRate'.freeze
 
-    def initialize
-      @rate = []
+    def interest_rate_list
+      interest_rate_list = JSON.parse(response.body).map do |data|
+        data['Value']
+      end
+      interest_rate_list
     end
 
-    def list
+    private
+
+    def response
       url = "#{API}?onDate=#{Date.today.strftime('%Y-%m')}"
       response = HTTParty.get(url)
-      JSON.parse(response.body).each do |data|
-        @rate << data['Value']
-      end
-      @rate
     end
   end
 end

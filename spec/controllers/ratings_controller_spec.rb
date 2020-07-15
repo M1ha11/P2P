@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe RatingsController, type: :controller do
-  let(:current_user) { create(:user) }
-  let(:rating) { build(:rating, user: current_user) }
+  let(:current_user) { create(:user, :user_with_claims) }
+  let(:rating) { build(:rating, user: current_user, ratable: current_user.claims.last) }
 
   describe 'GET new' do
     before do
@@ -23,7 +23,8 @@ RSpec.describe RatingsController, type: :controller do
       end
 
       context 'with valid params' do
-        let(:valid_params) { attributes_for(:rating, user_id: current_user.id, reviewed_id: User.first.id) }
+        let(:valid_params) { attributes_for(:rating, user_id: current_user.id, reviewed_id: User.first.id,
+                             ratable_type: current_user.claims.last.class.to_s, ratable_id: current_user.claims.last.id) }
 
         it 'creates new Rating' do
           expect { post :create, params: { rating: valid_params } }.to change { Rating.count }.by(1)

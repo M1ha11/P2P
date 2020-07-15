@@ -3,7 +3,7 @@ class SuccessClaim
   sidekiq_options retry: false, queue: 'success'
 
   def perform
-    Claim.where(status: 'confirmed').each do |claim|
+    Claim.confirmed.each do |claim|
       repayment_period = claim.repayment_period_value
       next if Time.zone.today < claim.confirmed_at + repayment_period
 

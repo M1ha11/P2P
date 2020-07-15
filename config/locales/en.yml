@@ -75,7 +75,7 @@ en:
         statuses:
           publicly: 'publicly'
           privatly: 'privatly'
-          archive: 'archive'
+          archived: 'archived'
           confirmed: 'confirmed'
           successfull: 'successfull'
       profile:
@@ -196,6 +196,7 @@ en:
       success_lend_projects: 'Success lend projects:'
       new_claim_link: 'New Credit Claim'
     edit:
+      language: 'Language'
       title: 'Edit Profile'
       placeholder:
         phone: 'Phone number'

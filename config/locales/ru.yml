@@ -44,7 +44,7 @@ ru:
         statuses:
           publicly: 'открытый'
           privatly: 'закртытый'
-          archive: 'архивный'
+          archived: 'архивный'
           confirmed: 'подтвержденный'
           successfull: 'успешный'
       profile:
@@ -169,6 +169,7 @@ ru:
       success_lend_projects: 'Успешные прокредитованные проекты:'
       new_claim_link: 'Новая Заявка на кредит'
     edit:
+      language: 'Язык'
       title: 'Редактировать профиль'
       placeholder:
         phone: 'Номер мобильного телефона'

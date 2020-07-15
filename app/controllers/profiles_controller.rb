@@ -8,15 +8,17 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    profile.update(profile_params)
+    profile.update_attributes(profile_params)
     respond_with profile, flash: true, location: -> { profile_path(profile.id) }
   end
 
   private
 
   def profile
-    @profile ||= Profile.find(params[:id])
-    authorize @profile
+    @profile ||= begin
+      profile = Profile.find(params[:id])
+      authorize profile
+    end
   end
 
   def flash_interpolation_options
@@ -25,6 +27,6 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:success_credit_project, :success_lend_project,
-                                    :phone_number, :address, :avatar, user: [:email])
+                                    :phone_number, :address, :avatar, user_attributes: [:id, :email])
   end
 end
