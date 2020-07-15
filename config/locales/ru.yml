@@ -151,7 +151,6 @@ ru:
     new:
       placeholder: 'Комментарий...'
       submit: 'Добавить комментарий'
-  devise:
   layout:
     login: 'Войти'
     signup: 'Зарегистрироваться'
@@ -230,3 +229,7 @@ ru:
         new_participant_continue: 'согласился участвовать в вашей заявке "Кредит на'
         given_money: 'Он готов предоставить вам'
         glad: 'Рады видеть вас на P2P!'
+  will_paginate:
+    previous_label: "&#8592; Назад"
+    next_label: "Далее &#8594;"
+    page_gap: "&hellip;"

@@ -10,7 +10,7 @@ $(document).on('turbolinks:load',function () {
   $('#autocomplete').typeahead(null,
     {
       source: search_result,
-      limit: 20,
+      limit: 10,
       display: `${search_result}`,
       templates: {
         empty: [

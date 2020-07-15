@@ -16,7 +16,7 @@
 #  confirmed_at      :datetime
 #
 class Claim < ApplicationRecord
-  PER_PAGE = 18
+  PER_PAGE = 15
 
   include Searchable
   include AASM
@@ -99,6 +99,10 @@ class Claim < ApplicationRecord
     return 2.week if period == '0.5.month'
 
     modify_period(period)
+  end
+
+  def repayment_period_hash_value
+    Claim.repayment_periods[repayment_period]
   end
 
   private

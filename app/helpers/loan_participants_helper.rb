@@ -15,7 +15,7 @@ module LoanParticipantsHelper
     rate = (loan_participant.claim.interest_rate.to_f / (PERCENT * MONTHES))
     month = claim_repayment_period(loan_participant)
     month = 1 if month < 1
-    (loan_participant.money * (rate + (rate / (((1 + rate)**month) - 1))) - loan_participant.money).round(2)
+    ((rate * (1 + rate) ** month / ((1 + rate) ** month - 1)) * loan_participant.money * month - loan_participant.money).round(2)
   end
 
   def claim_initial_status?(participant)
@@ -28,7 +28,7 @@ module LoanParticipantsHelper
     if loan_participant.claim.repayment_period == '2 week'
       HALF_A_MONTH
     else
-      loan_participant.claim.repayment_period_value.split(/\.(?=[^.]*$)/).first.to_f
+      loan_participant.claim.repayment_period_hash_value.split(/\.(?=[^.]*$)/).first.to_f
     end
   end
 end

@@ -178,7 +178,6 @@ en:
     new:
       placeholder: 'Comment...'
       submit: 'Add comment'
-  devise:
   layout:
     login: 'Log In'
     signup: 'Sign Up'
@@ -257,4 +256,8 @@ en:
         new_participant_continue: 'agreed to participate in your claim "Credit on'
         given_money: 'He is ready to give you'
         glad: 'Glad to see you on P2P!'
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"
 
