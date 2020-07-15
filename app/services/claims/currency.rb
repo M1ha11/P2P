@@ -14,7 +14,7 @@ module Claims
     private
 
     def response
-      response = HTTParty.get(API)
+      HTTParty.get(API)
     end
   end
 end

@@ -13,7 +13,7 @@ module Claims
 
     def response
       url = "#{API}?onDate=#{Date.today.strftime('%Y-%m')}"
-      response = HTTParty.get(url)
+      HTTParty.get(url)
     end
   end
 end

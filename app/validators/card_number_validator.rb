@@ -14,7 +14,7 @@ class CardNumberValidator < ActiveModel::Validator
     card_number.each_with_index do |number, index|
       if index.even?
         double_number = number * 2
-        card_number_sum << ((double_number > 9) ? (double_number - 9) : (double_number))
+        card_number_sum << (double_number > 9) ? (double_number - 9) : double_number
       else
         card_number_sum << number
       end

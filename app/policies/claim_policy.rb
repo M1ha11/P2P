@@ -5,7 +5,8 @@ class ClaimPolicy < ApplicationPolicy
         scope.all
       elsif user?
         claims = scope.includes(:loan_participants)
-        claims.where(status: 'publicly').or(claims.where(user_id: user.id).where.not(status: 'publicly')).or(claims.where(loan_participants: { user_id: user.id }))
+        claims.where(status: 'publicly').or(claims.where(user_id: user.id).where.not(status: 'publicly'))
+              .or(claims.where(loan_participants: { user_id: user.id }))
       else
         scope.where(status: 'publicly')
       end

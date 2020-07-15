@@ -41,7 +41,7 @@ class ApplicationPolicy
 
   def not_default_user?
     user.email != User::DEFAULT_EMAIL && user.profile.address != User::DEFAULT_ADDRESS &&
-    user.profile.phone_number != User::DEFAULT_PHONE_NUMBER
+      user.profile.phone_number != User::DEFAULT_PHONE_NUMBER
   end
 
   class Scope

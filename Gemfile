@@ -67,8 +67,8 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'aasm', '~> 5.0'
-gem 'after_commit_everywhere', '~> 0.1.5'
 gem 'active_model_serializers', '~> 0.10.10'
+gem 'after_commit_everywhere', '~> 0.1.5'
 gem 'bootstrap', '~> 4.4'
 gem 'devise', '~> 4.7'
 gem 'dotenv', '~> 2.7'

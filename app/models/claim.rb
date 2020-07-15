@@ -105,8 +105,8 @@ class Claim < ApplicationRecord
 
   def update_users_projects_statistics
     ActiveRecord::Base.transaction do
-      self.user.profile.update(success_credit_project: self.user.profile.success_credit_project + 1)
-      self.loan_participants.find_each do |participant|
+      user.profile.update(success_credit_project: user.profile.success_credit_project + 1)
+      loan_participants.find_each do |participant|
         participant.user.profile.update(success_lend_project: participant.user.profile.success_lend_project + 1)
       end
     end
