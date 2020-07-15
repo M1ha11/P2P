@@ -51,9 +51,9 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'bullet', '~> 6.1'
   gem 'capistrano', '~> 3.14'
+  gem 'capistrano-bundler', '~> 2.0', require: false
   gem 'capistrano3-puma'
   gem 'capistrano-rails', '~> 1.6', require: false
-  gem 'capistrano-bundler', '~> 2.0', require: false
   gem 'capistrano-rvm', '~> 0.1.2'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '>= 3.0.5', '< 3.2'
