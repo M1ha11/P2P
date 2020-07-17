@@ -2,7 +2,7 @@ require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'callbacks', registrations: 'registrations', sessions: 'custom_sessions' }
+  devise_for :users, controllers: { omniauth_callbacks: 'callbacks', registrations: 'registrations' }
   
   # scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do  
   root 'claims#index'
