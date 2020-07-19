@@ -6,11 +6,20 @@ class SearchPolicy < ApplicationPolicy
       if admin?
         scope
       elsif user?
-        (claims.select { |claim| claim.publicly? } + claims.select { |claim| claim.user_id == user.id &&
-          !claim.publicly? }).uniq! + tags
+        scope = (claims.select { |claim| claim.publicly? } + claims.select { |claim| claim.user_id == user.id &&
+          !claim.publicly? } + claims_with_participants(claims)).uniq + tags
       else
-        claims.select { |claim| claim.publicly? } + tags
+        scope = claims.select { |claim| claim.publicly? } + tags
       end
+    end
+
+    private
+
+    def claims_with_participants(claims)
+      claims.map! do |claim|
+        claim unless claim&.loan_participants.find_by(user_id: user.id).nil?
+      end
+      claims = claims.compact unless claims.compact.empty?
     end
   end
 
