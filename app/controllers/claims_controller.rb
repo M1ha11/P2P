@@ -54,8 +54,8 @@ class ClaimsController < ApplicationController
   private
 
   def set_service
-    @currencies = Claims::Currency.new.currency_list
-    @rates = Claims::Rate.new.interest_rate_list
+    @currencies = Claims::Currency.new.list
+    @rates = Claims::Rate.new.list
     @statuses = Claim.statuses.slice(:privatly, :publicly).keys
   end
 

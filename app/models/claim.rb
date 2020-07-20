@@ -26,7 +26,7 @@ class Claim < ApplicationRecord
   has_many :taggings, as: :taggable
   has_many :tags, -> { distinct }, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
-  has_many :ratings, as: :ratable
+  has_many :ratings, as: :ratable, dependent: :destroy
 
   enum status: { publicly: 'publicly', privatly: 'privatly', archived: 'archived',
                  confirmed: 'confirmed', successfull: 'successfull' }

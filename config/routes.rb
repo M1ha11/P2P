@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
-  # mount Sidekiq::Web => '/sidekiq'
 
   resources :profiles, only: %i[show edit update]
   resources :cards, only: %i[index new create destroy]
@@ -35,5 +34,4 @@ Rails.application.routes.draw do
   resources :loan_participants, only: %i[create destroy]
 
   get 'search', to: 'search#search'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

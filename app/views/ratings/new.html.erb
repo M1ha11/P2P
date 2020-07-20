@@ -1,4 +1,4 @@
-<% if rating_not_exist(ratable_type, ratable_id, reviewed_id) %>
+<% if rating_not_exist?(ratable_type, ratable_id, reviewed_id) %>
   <div id='rating-form'>
     <%= form_for Rating.new do |f| %>
       <%= f.hidden_field :reviewed_id, value: reviewed_id %>
