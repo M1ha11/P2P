@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    profile.update_attributes(profile_params)
+    profile.update(profile_params)
     respond_with profile, flash: true, location: -> { profile_path(profile.id) }
   end
 

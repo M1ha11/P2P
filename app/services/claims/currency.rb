@@ -4,11 +4,11 @@ module Claims
     BYN = 'BYN'.freeze
 
     def list
-      currency_list = currency_list.map do |val|
+      list = currency_list.map do |val|
         val['Cur_Abbreviation']
       end
-      currency_list << BYN
-      currency_list.uniq.sort
+      list << BYN
+      list.uniq.sort
     end
 
     private

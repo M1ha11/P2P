@@ -23,7 +23,7 @@ class Claim < ApplicationRecord
 
   belongs_to :user
   has_many :loan_participants, dependent: :destroy
-  has_many :taggings, as: :taggable
+  has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, -> { distinct }, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :ratings, as: :ratable, dependent: :destroy
@@ -89,14 +89,14 @@ class Claim < ApplicationRecord
 
   def repayment_period_value
     period = Claim.repayment_periods[repayment_period]
-    return 2.week if period == '0.5.month'
+    return 2.weeks if period == '0.5.month'
 
     modify_period(period)
   end
 
   def payment_frequency_value
     period = Claim.payment_frequencies[payment_frequency]
-    return 2.week if period == '0.5.month'
+    return 2.weeks if period == '0.5.month'
 
     modify_period(period)
   end

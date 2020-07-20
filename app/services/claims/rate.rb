@@ -3,10 +3,10 @@ module Claims
     API = 'http://www.nbrb.by/API/RefinancingRate'.freeze
 
     def list
-      interest_rate_list = interest_rate_list.map do |data|
+      list = interest_rate_list.map do |data|
         data['Value']
       end
-      interest_rate_list
+      list
     end
 
     private

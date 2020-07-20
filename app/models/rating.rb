@@ -13,7 +13,7 @@
 #
 class Rating < ApplicationRecord
   belongs_to :user
-  belongs_to :reviewed, class_name: 'User', foreign_key: :reviewed_id
+  belongs_to :reviewed, class_name: 'User', foreign_key: :reviewed_id, inverse_of: 'set_ratings'
   belongs_to :ratable, polymorphic: true
 
   validates :rate, presence: true, inclusion: { in: (1..5) }
