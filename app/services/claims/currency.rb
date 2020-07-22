@@ -1,18 +1,20 @@
 module Claims
   class Currency
     API = 'http://www.nbrb.by/API/ExRates/Currencies'.freeze
-
-    def initialize
-      @currencies = []
-    end
+    BYN = 'BYN'.freeze
 
     def list
-      response = HTTParty.get(API)
-      JSON.parse(response.body).each do |val|
-        @currencies << val['Cur_Abbreviation']
+      list = currency_list.map do |val|
+        val['Cur_Abbreviation']
       end
-      @currencies << 'BYN'
-      @currencies.uniq.sort
+      list << BYN
+      list.uniq.sort
+    end
+
+    private
+
+    def currency_list
+      JSON.parse(HTTParty.get(API).body)
     end
   end
 end

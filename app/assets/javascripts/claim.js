@@ -18,3 +18,13 @@ document.getElementById('close-rem').onclick=function hide(event) {
   document.getElementById('remove-tag-form').style.display = 'none';
 };
 
+document.getElementById('open-full-stat').onclick=function show(event) {
+  event.preventDefault();
+  $('#full_'+$(this).attr('data')).toggle();
+};
+
+document.getElementById('close-full-stat').onclick=function hide(event) {
+  event.preventDefault();
+  document.getElementById('hidden-full-stat').style.display = 'none';
+};
+

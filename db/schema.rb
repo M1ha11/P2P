@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_124528) do
+ActiveRecord::Schema.define(version: 2020_07_13_180459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,19 @@ ActiveRecord::Schema.define(version: 2020_06_09_124528) do
     t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "rate", null: false
+    t.bigint "user_id", null: false
+    t.integer "reviewed_id", null: false
+    t.string "ratable_type", null: false
+    t.bigint "ratable_id", null: false
+    t.index ["ratable_type", "ratable_id", "user_id", "reviewed_id"], name: "index_ratings_on_ratable_and_user_id_and_reviewed_id", unique: true
+    t.index ["reviewed_id"], name: "index_ratings_on_reviewed_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "taggables", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -155,4 +168,6 @@ ActiveRecord::Schema.define(version: 2020_06_09_124528) do
   add_foreign_key "loan_participants", "claims"
   add_foreign_key "loan_participants", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "ratings", "users"
+  add_foreign_key "ratings", "users", column: "reviewed_id"
 end

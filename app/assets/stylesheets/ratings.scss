@@ -1,0 +1,52 @@
+// Place all the styles related to the Ratings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.label {
+  color: white;
+  font-size: 18px;
+  font-style: italic; 
+}
+
+.star-icon {
+  color: white;
+}
+
+.submit-star {
+  margin-left: 0.5em;
+}
+
+.rating-star {
+  margin-left: 1em;
+  display: flex;
+  transform: rotateY(180deg);
+  // transform: translate(0, 0) rotateY(180deg);
+}
+
+.rating-star input {
+  display: none;
+}
+
+.rating-star i {
+  display: none;
+}
+
+.rating-star label.stars {
+  display: block;
+  transition: all 0.2s;
+  cursor: pointer;
+  color: white;
+  font-size: 28px;
+  transition: all 0.2s;
+}
+
+.rating-star input:checked ~ label.stars:before {
+  content: '\F005';
+  color: var(--mint);
+  transition: all 0.2s;
+}
+
+.rating-star label.stars:before {
+  content: '\F005';
+  font-family: fontAwesome;
+}

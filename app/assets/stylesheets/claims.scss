@@ -276,6 +276,80 @@ hr.solid {
   list-style-type: none;
 }
 
+.claim-statistic-container {
+  width: 95%;
+  margin-top: 1em;
+  margin-bottom: 5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.claim-statistic-card {
+  border-radius: 2em;
+  display: grid;
+  min-width: 400px;
+}
+
+.claim-statistic-table {
+  padding: 1em;
+}
+
+.t-head-stat {
+  background-color: var(--mint);
+}
+
+.stat-wh-rec {
+  color: white;
+}
+
+.stat-gr-rec {
+  color: var(--mint);
+}
+
+.stat-gr-rec-lnk {
+   color: white;
+ }
+
+.stat-gr-rec-lnk:hover {
+   color: var(--mint);
+}
+
+.stat-wh-rec-lnk {
+   color: var(--mint);
+ }
+
+.stat-wh-rec-lnk:hover {
+   color: white;
+}
+
+.full-info-claim-stat {
+  margin-left: 6em;
+}
+
+.stat-title {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.stat-goal {
+  margin-left: 0.5em;
+}
+
+.stat-list {
+  margin-left: 1em;
+}
+
+.stat-head {
+  color: var(--bootstrap-black);
+}
+
+.stat-head:hover {
+  color: var(--bootstrap-black);
+}
+
+.rating-user {
+  margin-right: 2em;
+}
 .pagination-cont {
   margin-top: 2em;
 }

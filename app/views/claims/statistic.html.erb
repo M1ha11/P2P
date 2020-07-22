@@ -1,0 +1,73 @@
+<div class='claim-statistic-container'>
+  <div class='claim-statistic-card'>
+    <div class='card-body'>
+      <div class='claim-statistic-table'>
+        <table class='table table-hover '>
+          <thead class='t-head-stat'>
+            <tr>
+              <th scope='col'><%= statistic_header('id') %><%= sort_arrow('id') %></th>
+              <th scope='col'><%= statistic_header('status') %><%= sort_arrow('status') %></th>
+              <th scope='col'><%= statistic_header('amount') %><%= sort_arrow('amount') %></th>
+              <th scope='col'><%= statistic_header('currency') %><%= sort_arrow('currency') %></th>
+              <th scope='col'><%= statistic_header('interest_rate') %><%= sort_arrow('interest_rate') %></th>
+              <th scope='col'><%= statistic_header('payment_frequency') %><%= sort_arrow('payment_frequency') %></th>
+              <th scope='col'><%= statistic_header('repayment_period') %><%= sort_arrow('repayment_period') %></th>
+              <th scope='col'><%= t('activerecord.attributes.claim.owner') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @claims.each do |claim| %>
+              <tr>
+                <th class='stat-gr-rec' scope='row'>#<%= claim.id %></th>
+                <td class='stat-wh-rec'><%= enum_locale(Claim, :status, claim.status) %></td>
+                <td class='stat-gr-rec '><%= claim.amount%></td>
+                <td class='stat-wh-rec '><%= claim.currency %></td>
+                <td class='stat-gr-rec '><%= claim.interest_rate %></td>
+                <td class='stat-wh-rec '><%= enum_locale(Claim, :payment_frequency, claim.payment_frequency) %></td>
+                <td class='stat-gr-rec '><%= enum_locale(Claim, :repayment_period, claim.repayment_period) %></td>
+                <td><%= link_to claim.user.email, profile_path(claim.user.profile.id), class: 'stat-gr-rec-lnk ' %></td>
+              </tr>
+              <tr class='hidden-full-stat' id=<%= "full_#{claim.id}" %>>
+                <td scope='row' colspan='8'>
+                  <div class='full-info-claim-stat'>
+                    <div class='row'>
+                      <p>
+                        <span class='stat-wh-rec stat-title'><%= t('claim.statistic.goal') %></span>
+                        <span class='stat-gr-rec stat-goal'><%= claim.goal %></span>
+                      </p>
+                    </div>
+                    <div class='row'>
+                      <div class='col-5'>
+                        <p class='stat-wh-rec stat-title'><%= t('claim.statistic.tags') %></p>
+                        <div class='stat-list'>
+                          <% claim.tags.each do |tag| %>
+                            <p class='stat-gr-rec '><%= tag.name %></p>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class='col-5'>
+                        <p class='stat-wh-rec stat-title'><%= t('claim.statistic.participants') %></p>
+                        <div class='stat-list'>
+                          <% claim.loan_participants.each do |participant| %>
+                            <p><%= link_to participant.user.email, profile_path(participant.user.profile.id), class: 'stat-wh-rec-lnk' %></p>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class='col-2 align-self-end'>
+                        <div class='row justify-content-md-end'>
+                          <button type='button' class='btn btn-outline-success'>
+                            <%= link_to t('claim.statistic.goto_link'), claim_path(claim.id), class: 'nav-log-btn' %>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

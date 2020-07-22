@@ -11,12 +11,15 @@
 #  user_id                :bigint           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  locale                 :string(10)       default("en"), not null
 #
 class Profile < ApplicationRecord
   belongs_to :user, dependent: :destroy
   has_many :claims, through: :user
 
   has_one_attached :avatar
+
+  accepts_nested_attributes_for :user
 
   validates :phone_number, presence: true, length: { minimum: 10, maximum: 25 },
                            format: {

@@ -13,21 +13,23 @@
 #  payment_frequency :string           not null
 #  user_id           :bigint           not null
 #  status            :string           default("publicly"), not null
+#  confirmed_at      :datetime
 #
 class Claim < ApplicationRecord
-  PER_PAGE = 18
+  PER_PAGE = 15
 
   include Searchable
   include AASM
 
   belongs_to :user
   has_many :loan_participants, dependent: :destroy
-  has_many :taggings, as: :taggable
+  has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, -> { distinct }, through: :taggings
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :ratings, as: :ratable, dependent: :destroy
 
-  enum status: { publicly: 'publicly', privatly: 'privatly', archive: 'archive',
-                 confirmed: 'confirmed' }
+  enum status: { publicly: 'publicly', privatly: 'privatly', archived: 'archived',
+                 confirmed: 'confirmed', successfull: 'successfull' }
 
   enum payment_frequency: { 'twice a month': '0.5.month',
                             'once a month': '1.month',
@@ -87,24 +89,28 @@ class Claim < ApplicationRecord
 
   def repayment_period_value
     period = Claim.repayment_periods[repayment_period]
-    return 2.week if period == '0.5.month'
+    return 2.weeks if period == '0.5.month'
 
     modify_period(period)
   end
 
   def payment_frequency_value
     period = Claim.payment_frequencies[payment_frequency]
-    return 2.week if period == '0.5.month'
+    return 2.weeks if period == '0.5.month'
 
     modify_period(period)
+  end
+
+  def repayment_period_hash_value
+    Claim.repayment_periods[repayment_period]
   end
 
   private
 
   def update_users_projects_statistics
     ActiveRecord::Base.transaction do
-      self.user.profile.update(success_credit_project: self.user.profile.success_credit_project + 1)
-      self.loan_participants.find_each do |participant|
+      user.profile.update(success_credit_project: user.profile.success_credit_project + 1)
+      loan_participants.find_each do |participant|
         participant.user.profile.update(success_lend_project: participant.user.profile.success_lend_project + 1)
       end
     end
