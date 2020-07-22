@@ -22,8 +22,10 @@ class UsersController < ApplicationController
   private
 
   def user
-    @user ||= User.find(params[:id])
-    authorize @user
+    @user ||= begin
+      user = User.find(params[:id])
+      authorize user
+    end
   end
 
   def user_params

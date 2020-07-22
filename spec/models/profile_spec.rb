@@ -11,6 +11,7 @@
 #  user_id                :bigint           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  locale                 :string(10)       default("en"), not null
 #
 require 'rails_helper'
 

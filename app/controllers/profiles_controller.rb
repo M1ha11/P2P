@@ -15,8 +15,10 @@ class ProfilesController < ApplicationController
   private
 
   def profile
-    @profile ||= Profile.find(params[:id])
-    authorize @profile
+    @profile ||= begin
+      profile = Profile.find(params[:id])
+      authorize profile
+    end
   end
 
   def flash_interpolation_options
@@ -25,6 +27,6 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:success_credit_project, :success_lend_project,
-                                    :phone_number, :address, :avatar, :locale)
+                                    :phone_number, :address, :avatar, user_attributes: %i[id email])
   end
 end

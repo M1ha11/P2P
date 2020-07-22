@@ -7,8 +7,6 @@ class ArchiveWorker
 
   def perform
     Claim.where(status: AVALIABLE_STATUSES).where('created_at < ?', ARCHIVE_DAY).find_each do |claim|
-      next unless claim.loan_participants.nil?
-
       claim.archive!
     end
   end

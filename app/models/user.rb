@@ -17,7 +17,7 @@
 #  locked_at              :datetime
 #  role                   :integer          default("0")
 #  provider               :string(150)
-#  uid                    :string(10)
+#  uid                    :string(50)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -37,6 +37,8 @@ class User < ApplicationRecord
   has_many :claims, dependent: :destroy
   has_many :loan_participants, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :ratings, dependent: :destroy
+  has_many :set_ratings, class_name: 'Rating', dependent: :destroy
 
   accepts_nested_attributes_for :profile
 

@@ -1,25 +1,13 @@
 class SearchPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      claims = scope.select { |claim| claim.class.to_s == 'Claim' }
-      tags = scope.select { |tag| tag.class.to_s == 'Tag' }
-      if admin?
-        scope
-      elsif user?
-        scope = (claims.select { |claim| claim.publicly? } + claims.select { |claim| claim.user_id == user.id &&
-          !claim.publicly? } + claims_with_participants(claims)).uniq + tags
-      else
-        scope = claims.select { |claim| claim.publicly? } + tags
-      end
-    end
-
-    private
-
-    def claims_with_participants(claims)
-      claims.map! do |claim|
-        claim unless claim&.loan_participants.find_by(user_id: user.id).nil?
-      end
-      claims = claims.compact unless claims.compact.empty?
+      claims_array = scope.select { |claim| claim.class.to_s == 'Claim' }
+      tags_array = scope.select { |tag| tag.class.to_s == 'Tag' }
+      claims = Claim.where(id: claims_array.map(&:id))
+      tags = Tag.where(id: tags_array.map(&:id))
+      claim_policy = ClaimPolicy::Scope.new(user, claims).resolve
+      tag_policy = TagPolicy::Scope.new(user, tags).resolve
+      claim_policy + tag_policy
     end
   end
 

@@ -4,8 +4,8 @@ FactoryBot.define do
     currency { Faker::Currency.code }
     goal { Faker::Lorem.sentence }
     interest_rate { Faker::Number.decimal(l_digits: 1, r_digits: 2) }
-    repayment_period { Claim.repayment_periods.values.sample }
-    payment_frequency { Claim.payment_frequencies.values.sample }
+    repayment_period { Claim.repayment_periods.values.last }
+    payment_frequency { Claim.payment_frequencies.values.first }
     status { 'publicly' }
 
     trait :claim_with_tag do

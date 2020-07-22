@@ -6,9 +6,15 @@ class ClaimsController < ApplicationController
     @sort = params[:sort]
     @direction = params[:direction]
     claims = Claims::Filter.new(policy_scope(Claim), params).call
-    sort_claims = Claims::Sort.new(claims, params[:sort], params[:direction]).call
+    sort_claims = Claims::Sort.new(claims, @sort, @direction).call
     @claims = Global::Pagination.new(sort_claims, params[:page], Claim::PER_PAGE).paginate
     respond_with @claims, location: -> { claims_path }
+  end
+
+  def statistic
+    @sort, @direction = params[:sort], params[:direction]
+    @claims = Claims::Sort.new(policy_scope(Claim), @sort, @direction).call
+    respond_with @claim, location: -> { statistic_claims_path }
   end
 
   def new
@@ -54,8 +60,10 @@ class ClaimsController < ApplicationController
   end
 
   def claim
-    @claim ||= Claim.find(params[:id])
-    authorize @claim
+    @claim ||= begin
+      claim = Claim.find(params[:id])
+      authorize claim
+    end
   end
 
   def flash_interpolation_options

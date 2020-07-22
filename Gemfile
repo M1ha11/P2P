@@ -50,6 +50,11 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'bullet', '~> 6.1'
+  gem 'capistrano', '~> 3.14'
+  gem 'capistrano-bundler', '~> 2.0', require: false
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails', '~> 1.6', require: false
+  gem 'capistrano-rvm', '~> 0.1.2'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -62,8 +67,8 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'aasm', '~> 5.0'
-gem 'after_commit_everywhere', '~> 0.1.5'
 gem 'active_model_serializers', '~> 0.10.10'
+gem 'after_commit_everywhere', '~> 0.1.5'
 gem 'bootstrap', '~> 4.4'
 gem 'devise', '~> 4.7'
 gem 'dotenv', '~> 2.7'

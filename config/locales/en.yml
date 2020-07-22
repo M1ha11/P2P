@@ -42,9 +42,12 @@ en:
         card_number: 'Card number'
         expire_date: 'Expire date'
       claim:
+        id: 'Id'
         amount: 'Amount'
         currency: 'Currency'
         goal: 'Goal'
+        status: 'Status'
+        owner: 'Owner'
         interest_rate: 'Interest rate'
         repayment_period: 'Repayment period'
         payment_frequency: 'Payment frequency'
@@ -69,6 +72,12 @@ en:
           10 years: '10 years'
           15 years: '15 years'
           20 years: '20 years'
+        statuses:
+          publicly: 'publicly'
+          privatly: 'privatly'
+          archived: 'archived'
+          confirmed: 'confirmed'
+          successfull: 'successfull'
       profile:
         success_credit_project: 'Success credit projects'
         success_lend_project: 'Success lend projects'
@@ -159,12 +168,16 @@ en:
         title: 'Participants'
         become: 'Become a Participant'
         confirm: 'Confirm'
+    statistic:
+      goto_link: 'Go to claim'
+      tags: 'Tags:'
+      goal: 'Goal:'
+      participants: 'Participants:'
   comment:
     reply_link: 'Reply'
     new:
       placeholder: 'Comment...'
       submit: 'Add comment'
-  devise:
   layout:
     login: 'Log In'
     signup: 'Sign Up'
@@ -172,6 +185,7 @@ en:
     users: 'Users' 
     profile: 'Profile'
     edit_profile: 'Edit'
+    claims: 'Claims'
   profile:
     show:
       phone: 'Phone:'
@@ -181,6 +195,7 @@ en:
       success_lend_projects: 'Success lend projects:'
       new_claim_link: 'New Credit Claim'
     edit:
+      language: 'Language'
       title: 'Edit Profile'
       placeholder:
         phone: 'Phone number'
@@ -225,3 +240,24 @@ en:
       confirm: 'Confirm'
   search:
     title: 'Search...'
+  rating:
+    label: 'Please rate claim owner'
+    submit: 'Submit'
+  mailers:
+    pay_mailer:
+      pay_notification:
+        hello: 'Hello'
+        pay_message: 'You you need to pay for Credit on'
+        luck: 'Good luck!'
+    new_participant_mailer:
+      notification:
+        hello: 'Hello'
+        new_participant: 'New participant'
+        new_participant_continue: 'agreed to participate in your claim "Credit on'
+        given_money: 'He is ready to give you'
+        glad: 'Glad to see you on P2P!'
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"
+

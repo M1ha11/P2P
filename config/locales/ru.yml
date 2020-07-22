@@ -11,9 +11,12 @@ ru:
         card_number: 'Номер карты'
         expire_date: 'Срок действия'
       claim:
+        id: 'Номер'
         amount: 'Сумма'
         currency: 'Валюта'
         goal: 'Цель'
+        status: 'Статус'
+        owner: 'Владелец'
         interest_rate: 'Процентная ставка'
         repayment_period: 'Срок погашения'
         payment_frequency: 'Частота платежей'
@@ -38,6 +41,12 @@ ru:
           10 years: '10 лет'
           15 years: '15 лет'
           20 years: '20 лет'
+        statuses:
+          publicly: 'открытый'
+          privatly: 'закртытый'
+          archived: 'архивный'
+          confirmed: 'подтвержденный'
+          successfull: 'успешный'
       profile:
         success_credit_project: 'Успешные кредитные проекты'
         success_lend_project: 'Успешные прокредитованные проекты'
@@ -132,12 +141,16 @@ ru:
         title: 'Участники'
         become: 'Стать участником'
         confirm: 'Подтвердить'
+    statistic:
+      goto_link: 'Перейти к заявке'
+      tags: 'Теги:'
+      goal: 'Цель:'
+      participants: 'Участники:'
   comment:
     reply_link: 'Ответить'
     new:
       placeholder: 'Комментарий...'
       submit: 'Добавить комментарий'
-  devise:
   layout:
     login: 'Войти'
     signup: 'Зарегистрироваться'
@@ -145,6 +158,7 @@ ru:
     users: 'Пользователи' 
     profile: 'Профиль'
     edit_profile: 'Редактировать'
+    claims: 'Заявки'
   profile:
     show:
       phone: 'Номер мобильного телефона:'
@@ -154,6 +168,7 @@ ru:
       success_lend_projects: 'Успешные прокредитованные проекты:'
       new_claim_link: 'Новая Заявка на кредит'
     edit:
+      language: 'Язык'
       title: 'Редактировать профиль'
       placeholder:
         phone: 'Номер мобильного телефона'
@@ -198,4 +213,23 @@ ru:
       confirm: 'Подтвердить'
   search:
     title: 'Поиск...'
-
+  rating:
+    label: 'Пожалуйста оцените владельца заявки'
+    submit: 'Подтвердить'
+  mailers:
+    pay_mailer:
+      pay_notification:
+        hello: 'Здравствуйте'
+        pay_message: 'Вам необходимо заплатить за Кредит на'
+        luck: 'Удачи!'
+    new_participant_mailer:
+      notification:
+        hello: 'Здравствуйте'
+        new_participant: 'Новый участник'
+        new_participant_continue: 'согласился участвовать в вашей заявке "Кредит на'
+        given_money: 'Он готов предоставить вам'
+        glad: 'Рады видеть вас на P2P!'
+  will_paginate:
+    previous_label: "&#8592; Назад"
+    next_label: "Далее &#8594;"
+    page_gap: "&hellip;"

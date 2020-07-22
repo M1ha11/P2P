@@ -6,11 +6,6 @@
         <h1 class='login-title'><%= t('devise.sessions.title') %></h1>        
       </div>
       <div class='login-form'>
-        <% if flash[:errors] %>
-          <% flash[:errors].each do |e| %>
-            <p><%=e%></p><br>
-          <% end %>
-        <% end %>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
           <div class="field">

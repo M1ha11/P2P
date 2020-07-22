@@ -10,7 +10,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    admin?
+    admin? && not_default_user?
   end
 
   def lock?
@@ -22,7 +22,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def change_role?
-    editable_user_not_locked? && admin?
+    editable_user_not_locked? && admin? && not_default_user?
   end
 
   def editable_user_not_admin?

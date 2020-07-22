@@ -29,6 +29,11 @@
           <% if policy(current_user).admin? %>
             <li class='nav-item btn-group'>
               <button type='button' class='btn btn-outline-success'>
+                <%= link_to t('layout.claims'), statistic_claims_path, class: 'nav-log-btn' %>
+              </button>
+            </li>
+            <li class='nav-item btn-group'>
+              <button type='button' class='btn btn-outline-success'>
                 <%= link_to t('layout.users'), users_path, class: 'nav-log-btn' %>
               </button>
             </li>

@@ -6,6 +6,6 @@ class TagPolicy < ApplicationPolicy
   end
 
   def create?
-    admin?
+    admin? && not_default_user?
   end
 end

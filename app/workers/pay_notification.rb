@@ -5,7 +5,7 @@ class PayNotification
   EXPIRE_DAY = 4.days.freeze
 
   def perform
-    Claim.where(status: 'confirmed').each do |claim|
+    Claim.confirmed.each do |claim|
       if repayment_day_is_not_today?(claim) && !$redis.exists(claim.id)
         PayMailer.pay_notification(claim.id).deliver_later!
         $redis.set(claim.id, '', ex: expire_time(claim))

@@ -4,11 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hello, <%= @user.email %></h1>
+    <h1><%= t('mailers.new_participant_mailer.notification.hello') %>, <%= @user.email %></h1>
     <p>
-      New participant <b><%= @participant.user.email %></b> agreed to participate in your claim "Credit on <%= @claim.amount%> <%= @claim.currency%>".<br>
-      He is ready to give you <b><%= @participant.money %> <%= @claim.currency%></b>.<br>
+      <%= t('mailers.new_participant_mailer.notification.new_participant') %> <b><%= @participant.user.email %></b> <%= t('mailers.new_participant_mailer.notification.new_participant_continue') %> <%= @claim.amount%> <%= @claim.currency%>".<br>
+      <%= t('mailers.new_participant_mailer.notification.given_money') %> <b><%= @participant.money %> <%= @claim.currency%></b>.<br>
     </p>
-    <p>Glad to see you on P2P!</p>
+    <p><%= t('mailers.new_participant_mailer.notification.glad') %></p>
   </body>
 </html>
