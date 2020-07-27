@@ -1,21 +1,16 @@
 class SearchPolicy < ApplicationPolicy
   class Scope < Scope
+    MODELS_FOR_SEARCH = %w(Claim Tag).freeze
+
     def resolve
-      claims(scope) + tags(scope)
-    end
-
-    private
-
-    def claims(scope)
-      claims_array = scope.select { |claim| claim.class.to_s == 'Claim' }
-      claims = Claim.where(id: claims_array.map(&:id))
-      ClaimPolicy::Scope.new(user, claims).resolve
-    end
-
-    def tags(scope)
-      tags_array = scope.select { |tag| tag.class.to_s == 'Tag' }
-      tags = Tag.where(id: tags_array.map(&:id))
-      TagPolicy::Scope.new(user, tags).resolve
+      search_scope = MODELS_FOR_SEARCH.each_with_object([]) do |klass, memo|
+        collection = scope.select { |model| model.class.to_s == klass }
+        relation = klass.constantize.where(id: collection.map(&:id))
+        policy_klass = "#{klass}Policy"
+        authorized_relation = policy_klass.constantize::Scope.new(user, relation).resolve
+        memo.push(authorized_relation)
+      end
+      search_scope.flatten
     end
   end
 
