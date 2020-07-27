@@ -6,6 +6,7 @@ class SearchController < ApplicationController
       Claim.none
     else
       @search_result = Elasticsearch::Model.search(params[:q] + '*', [Claim, Tag]).records.to_a
+      @search_result = policy_scope(@search_result, policy_scope_class: SearchPolicy::Scope)
       render json: @search_result
     end
   end

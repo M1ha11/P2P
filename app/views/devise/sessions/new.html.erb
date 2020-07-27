@@ -7,13 +7,7 @@
       </div>
       <div class='login-form'>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <%= render partial: "devise/shared/error_messages", resource: resource %>
-          <% if flash[:errors] %>
-            <% flash[:errors].each do |e| %>
-              <p><%=e%></p><br>
-            <% end %>
-          <% end %>
-
+          <%= render "devise/shared/error_messages", resource: resource %>
           <div class="field">
             <%= f.label :email, class: 'label-login' %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t('devise.sessions.placeholder.email'), class: 'field-login' %>

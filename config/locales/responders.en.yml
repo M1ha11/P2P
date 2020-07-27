@@ -10,3 +10,9 @@ en:
       destroy:
         notice: '%{resource_name} was successfully destroyed.'
         alert: '%{resource_name} could not be destroyed.'
+    registrations:
+      create:
+        alert: '{resource_errors}'
+    sessions:
+      create:
+        alert: '{resource_errors}'
