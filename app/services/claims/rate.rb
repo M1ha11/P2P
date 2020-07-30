@@ -6,7 +6,6 @@ module Claims
       list = interest_rate_list.map do |data|
         data['Value']
       end
-      list
     end
 
     private

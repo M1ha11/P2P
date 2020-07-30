@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :tag do
-    name { '#example' }
+    name { "##{Faker::Lorem.word}" }
   end
 end
