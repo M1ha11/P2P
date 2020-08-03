@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'factory_bot_rails'
 
-1.times do
+3.times do
   FactoryBot.create(:user, :user_with_cards, :user_with_claims, :user_with_comments)
 
   Claim.create([

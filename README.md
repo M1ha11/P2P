@@ -1,27 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+P2P
 
-Things you may want to cover:
+# About
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+P2P is created to enable user to get a loan for the purposes he/she needs with help of other users.
 
 # Compatibility
 
