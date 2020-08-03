@@ -16,13 +16,19 @@ FactoryBot.define do
 
     trait :user_with_claims do
       after :create do |user|
-        create_list :claim, 1, user: user
+        create_list(:claim, 3, :claim_with_tag, :claim_with_loan_participant, user: user)
       end
     end
 
     trait :user_with_comments do
       after :create do |user|
         create_list :comment, 1, user: user
+      end
+    end
+
+    trait :user_with_ratings do
+      after :create do |user|
+        create_list :rating, 1, user: user
       end
     end
   end

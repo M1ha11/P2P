@@ -1,27 +1,42 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+P2P
 
-Things you may want to cover:
+# About
 
-* Ruby version
+P2P is created to enable user to get a loan for the purposes he/she needs with help of other users.
 
-* System dependencies
+# Compatibility
 
-* Configuration
+* Ruby 2.6.3
+* Ruby on Rails 5.2.4
+* PostgresSQL 12.3
 
-* Database creation
+#Installation
 
-* Database initialization
+1. Setup PostgrSQL:
 
-* How to run the test suite
+https://www.digitalocean.com/community/tutorials/postgresql-ubuntu-16-04-ru
 
-* Services (job queues, cache servers, search engines, etc.)
+2. Install ruby:
 
-* Deployment instructions
+https://rvm.io/rvm/install
 
-* ...
+```sh
+  $ rvm install 2.6.3
+```
+
+3. Clone repository:
+
+git clone https://github.com/M1ha11/P2P.git
+
+4. In your project directory:
+
+```sh
+  $ bundle install
+  $ rake db:create
+  $ rake db:migrate
+  ```
 
 # Test Coverage
 

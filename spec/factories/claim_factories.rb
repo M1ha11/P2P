@@ -19,5 +19,9 @@ FactoryBot.define do
         create :loan_participant, claim: claim
       end
     end
+
+    trait :claim_with_user do
+      association :user, factory: :user
+    end
   end
 end
